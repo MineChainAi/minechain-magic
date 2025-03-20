@@ -26,32 +26,32 @@ const Footer = () => {
             </p>
             
             <div className="flex space-x-4 mb-6">
-              <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center bg-white/5 hover:bg-primary/20 gucci-glow transition-colors">
-                <Twitter className="w-5 h-5 text-primary" />
+              <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center bg-white/5 hover:bg-white/10 transition-colors">
+                <Twitter className="w-5 h-5 text-white/80" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center bg-white/5 hover:bg-primary/20 gucci-glow transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
+              <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center bg-white/5 hover:bg-white/10 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/80">
                   <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                 </svg>
               </a>
-              <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center bg-white/5 hover:bg-primary/20 gucci-glow transition-colors">
-                <Github className="w-5 h-5 text-primary" />
+              <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center bg-white/5 hover:bg-white/10 transition-colors">
+                <Github className="w-5 h-5 text-white/80" />
               </a>
             </div>
 
             <div className="text-white/70 space-y-2">
               <p className="flex items-center">
-                <span className="font-medium text-primary mr-2">Location:</span> Jupiter, Florida
+                <span className="font-medium text-yellow-400 mr-2">Location:</span> Jupiter, Florida
               </p>
               <p className="flex items-center">
-                <span className="font-medium text-primary mr-2">Email:</span> 
-                <a href="mailto:FTW@minechain.ai" className="hover:text-primary transition-colors">
+                <span className="font-medium text-yellow-400 mr-2">Email:</span> 
+                <a href="mailto:FTW@minechain.ai" className="hover:text-yellow-400 transition-colors">
                   FTW@minechain.ai
                 </a>
               </p>
               <p className="flex items-center">
-                <span className="font-medium text-primary mr-2">Phone:</span> 
-                <a href="tel:8557587660" className="hover:text-primary transition-colors">
+                <span className="font-medium text-yellow-400 mr-2">Phone:</span> 
+                <a href="tel:8557587660" className="hover:text-yellow-400 transition-colors">
                   855-758-7660
                 </a>
               </p>
@@ -62,25 +62,25 @@ const Footer = () => {
             <h3 className="font-bold text-white mb-4">Quick Links</h3>
             <ul className="space-y-3">
               <li>
-                <a href="#about" className="text-white/70 hover:text-primary flex items-center gucci-glow">
+                <a href="#about" className="text-white/70 hover:text-white flex items-center">
                   <span>About</span>
                   <ArrowUpRight className="w-3 h-3 ml-1 inline" />
                 </a>
               </li>
               <li>
-                <a href="#how-it-works" className="text-white/70 hover:text-primary flex items-center gucci-glow">
+                <a href="#how-it-works" className="text-white/70 hover:text-white flex items-center">
                   <span>How It Works</span>
                   <ArrowUpRight className="w-3 h-3 ml-1 inline" />
                 </a>
               </li>
               <li>
-                <a href="#roadmap" className="text-white/70 hover:text-primary flex items-center gucci-glow">
+                <a href="#roadmap" className="text-white/70 hover:text-white flex items-center">
                   <span>Roadmap</span>
                   <ArrowUpRight className="w-3 h-3 ml-1 inline" />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white/70 hover:text-primary flex items-center gucci-glow">
+                <a href="#" className="text-white/70 hover:text-white flex items-center">
                   <span>Whitepaper</span>
                   <ArrowUpRight className="w-3 h-3 ml-1 inline" />
                 </a>
@@ -92,25 +92,25 @@ const Footer = () => {
             <h3 className="font-bold text-white mb-4">Resources</h3>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-white/70 hover:text-primary flex items-center gucci-glow">
+                <a href="#" className="text-white/70 hover:text-white flex items-center">
                   <span>Documentation</span>
                   <ArrowUpRight className="w-3 h-3 ml-1 inline" />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white/70 hover:text-primary flex items-center gucci-glow">
+                <a href="#" className="text-white/70 hover:text-white flex items-center">
                   <span>Privacy Policy</span>
                   <ArrowUpRight className="w-3 h-3 ml-1 inline" />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white/70 hover:text-primary flex items-center gucci-glow">
+                <a href="#" className="text-white/70 hover:text-white flex items-center">
                   <span>Terms of Service</span>
                   <ArrowUpRight className="w-3 h-3 ml-1 inline" />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white/70 hover:text-primary flex items-center gucci-glow">
+                <a href="#" className="text-white/70 hover:text-white flex items-center">
                   <span>Contact</span>
                   <ArrowUpRight className="w-3 h-3 ml-1 inline" />
                 </a>
@@ -119,13 +119,13 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="border-t border-primary/20 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center">
+        <div className="border-t border-white/10 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-white/50 text-sm">
             &copy; {currentYear} MineChain.ai. All rights reserved. Full-Stack Miners™ is a trademark of MineChain.
           </p>
           <div className="mt-4 md:mt-0">
             <p className="text-white/50 text-sm">
-              Powered by <a href="#" className="text-primary hover:text-primary/80">Coinbase Commerce</a>
+              Powered by <a href="#" className="text-yellow-400 hover:text-yellow-300">Coinbase Commerce</a>
             </p>
           </div>
         </div>
