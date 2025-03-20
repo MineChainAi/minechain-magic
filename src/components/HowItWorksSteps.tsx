@@ -19,8 +19,7 @@ const HowItWorksSteps = () => {
 
   return (
     <section className="py-24 bg-[#050A12]/70 relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute inset-0 bg-neural-pattern opacity-20 mix-blend-overlay pointer-events-none"></div>
+      {/* Single background image */}
       <div 
         className="absolute inset-0 opacity-10 pointer-events-none bg-cover bg-center"
         style={{ backgroundImage: "url('/lovable-uploads/1b245174-ff96-4315-a4ae-b796a651b175.png')" }}

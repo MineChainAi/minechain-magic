@@ -28,10 +28,9 @@ const HowItWorks = () => {
     <div className="min-h-screen bg-[#050A12] text-white">
       <Navbar />
       
-      {/* Hero Section */}
+      {/* Hero Section with single background image */}
       <section className="pt-32 pb-20 relative overflow-hidden">
-        {/* Background image */}
-        <div className="absolute inset-0 opacity-20 bg-neural-pattern mix-blend-overlay pointer-events-none" />
+        {/* Single background image */}
         <div 
           className="absolute inset-0 opacity-20 pointer-events-none bg-cover bg-center"
           style={{ backgroundImage: "url('/lovable-uploads/caa8d77a-a6e6-4c81-a123-ab5eceeaf154.png')" }}
@@ -80,8 +79,7 @@ const HowItWorks = () => {
       
       {/* Why Own a Block Section */}
       <section className="py-20 bg-[#101520] relative overflow-hidden">
-        {/* Background pattern and image overlay */}
-        <div className="absolute inset-0 bg-neural-pattern opacity-10 mix-blend-overlay pointer-events-none" />
+        {/* Single background image */}
         <div 
           className="absolute inset-0 opacity-10 pointer-events-none bg-cover bg-center"
           style={{ backgroundImage: "url('/lovable-uploads/dad08f3d-6bd9-4c95-8728-83fb420e7863.png')" }}
