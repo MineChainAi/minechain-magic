@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import ComputePowerDashboard from '@/components/ComputePowerDashboard';
 import About from '@/components/About';
 import HowItWorks from '@/components/HowItWorks';
 import Roadmap from '@/components/Roadmap';
@@ -43,6 +44,7 @@ const Index = () => {
         <Navbar />
         <main>
           <Hero />
+          <ComputePowerDashboard />
           <About />
           <HowItWorks />
           <Roadmap />
@@ -53,7 +55,7 @@ const Index = () => {
         {/* Floating back-to-top button */}
         <button 
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-blue-600 hover:bg-blue-700 flex items-center justify-center text-white shadow-lg transition-all duration-300 z-40"
+          className="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-cosmic-purple hover:bg-cosmic-purple/90 flex items-center justify-center text-white shadow-lg transition-all duration-300 z-40"
         >
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
