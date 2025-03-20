@@ -1,3 +1,4 @@
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -101,4 +102,21 @@
 
 .hover\:glow-purple:hover {
   box-shadow: 0 0 15px 5px rgba(75, 0, 130, 0.3);
+}
+
+/* Animation for the glow pulse effect */
+@keyframes glow-pulse {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
 }
