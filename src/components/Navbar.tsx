@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
@@ -42,6 +42,15 @@ const Navbar = () => {
           <Link to="/about" className="text-white/80 hover:text-white transition-colors">About</Link>
           <Link to="/how-it-works" className="text-white/80 hover:text-white transition-colors">How It Works</Link>
           <Link to="/roadmap" className="text-white/80 hover:text-white transition-colors">Roadmap</Link>
+          <a 
+            href="/whitepaper.pdf" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-white/80 hover:text-white transition-colors flex items-center"
+          >
+            <FileText className="w-4 h-4 mr-1" />
+            Whitepaper
+          </a>
           <Button
             className="bg-[#0A1F33] hover:bg-[#0A1F33]/90 text-white border-none"
           >
@@ -83,6 +92,16 @@ const Navbar = () => {
             >
               Roadmap
             </Link>
+            <a 
+              href="/whitepaper.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-white/80 hover:text-white transition-colors flex items-center"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <FileText className="w-4 h-4 mr-1" />
+              Whitepaper
+            </a>
             <Button
               className="bg-[#0A1F33] hover:bg-[#0A1F33]/90 text-white w-full border-none"
             >

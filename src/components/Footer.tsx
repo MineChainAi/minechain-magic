@@ -1,5 +1,5 @@
 
-import { Github, Twitter, ArrowUpRight } from 'lucide-react';
+import { Github, Twitter, ArrowUpRight, FileText } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Footer = () => {
@@ -62,27 +62,27 @@ const Footer = () => {
             <h3 className="font-bold text-white mb-4">Quick Links</h3>
             <ul className="space-y-3">
               <li>
-                <a href="#about" className="text-white/70 hover:text-white flex items-center">
+                <a href="/about" className="text-white/70 hover:text-white flex items-center">
                   <span>About</span>
                   <ArrowUpRight className="w-3 h-3 ml-1 inline" />
                 </a>
               </li>
               <li>
-                <a href="#how-it-works" className="text-white/70 hover:text-white flex items-center">
+                <a href="/how-it-works" className="text-white/70 hover:text-white flex items-center">
                   <span>How It Works</span>
                   <ArrowUpRight className="w-3 h-3 ml-1 inline" />
                 </a>
               </li>
               <li>
-                <a href="#roadmap" className="text-white/70 hover:text-white flex items-center">
+                <a href="/roadmap" className="text-white/70 hover:text-white flex items-center">
                   <span>Roadmap</span>
                   <ArrowUpRight className="w-3 h-3 ml-1 inline" />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white/70 hover:text-white flex items-center">
+                <a href="/whitepaper.pdf" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white flex items-center">
                   <span>Whitepaper</span>
-                  <ArrowUpRight className="w-3 h-3 ml-1 inline" />
+                  <FileText className="w-3 h-3 ml-1 inline" />
                 </a>
               </li>
             </ul>
