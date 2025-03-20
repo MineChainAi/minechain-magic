@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { ArrowRight, CreditCard, Server, Coins } from 'lucide-react';
 import { useState } from 'react';
@@ -30,7 +29,7 @@ const HowItWorks = () => {
       
       {/* Hero Section with single background image */}
       <section className="pt-32 pb-20 relative overflow-hidden">
-        {/* Single background image */}
+        {/* Single background image - keeping only this one */}
         <div 
           className="absolute inset-0 opacity-20 pointer-events-none bg-cover bg-center"
           style={{ backgroundImage: "url('/lovable-uploads/caa8d77a-a6e6-4c81-a123-ab5eceeaf154.png')" }}
@@ -74,16 +73,11 @@ const HowItWorks = () => {
         </div>
       </section>
       
-      {/* How It Works Section */}
+      {/* How It Works Section - removing background image in HowItWorksSteps component */}
       <HowItWorksSteps />
       
-      {/* Why Own a Block Section */}
+      {/* Why Own a Block Section - removing background image */}
       <section className="py-20 bg-[#101520] relative overflow-hidden">
-        {/* Single background image */}
-        <div 
-          className="absolute inset-0 opacity-10 pointer-events-none bg-cover bg-center"
-          style={{ backgroundImage: "url('/lovable-uploads/dad08f3d-6bd9-4c95-8728-83fb420e7863.png')" }}
-        />
         
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto">
