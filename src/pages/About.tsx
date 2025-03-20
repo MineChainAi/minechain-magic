@@ -42,7 +42,7 @@ const About = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gradient"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gradient leading-tight"
             >
               Powering the Future of AI Mining
             </motion.h1>
@@ -51,7 +51,7 @@ const About = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-lg md:text-xl text-white/70 mb-10 max-w-3xl mx-auto"
+              className="text-lg md:text-xl text-white/70 mb-10 max-w-3xl mx-auto leading-relaxed px-2"
             >
               MineChain operates full-stack AI miners, providing enterprise-grade compute power for AI workloads. Own a virtual miner, earn rewards, and be part of the decentralized AI revolution.
             </motion.p>
