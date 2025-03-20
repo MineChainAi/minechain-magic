@@ -1,9 +1,8 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { PaymentModal } from './PaymentModal';
-import { Zap, Server, Coins, Shield, ArrowRight } from 'lucide-react';
+import { Zap, Server, Coins, Shield, ArrowRight, Gem } from 'lucide-react';
 
 const Hero = () => {
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
@@ -46,14 +45,14 @@ const Hero = () => {
               >
                 <Button
                   onClick={() => setIsPaymentModalOpen(true)}
-                  className="px-8 py-6 text-lg font-medium bg-gradient-to-r from-electric-orange to-amber-500 hover:from-amber-500 hover:to-electric-orange text-white rounded-md border-none hover:shadow-lg hover:shadow-electric-orange/40 transition-all duration-300 relative overflow-hidden group"
+                  className="px-8 py-6 text-lg font-medium bg-gradient-to-r from-cosmic-purple to-[#9b87f5] hover:from-[#9b87f5] hover:to-cosmic-purple text-white rounded-md border-none transition-all duration-300 relative overflow-hidden group button-shine"
                 >
-                  <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-electric-orange/10 to-amber-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                  <Coins className="mr-2 h-5 w-5 animate-pulse" />
-                  Buy a Block Now
+                  <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-cosmic-purple/20 to-[#9b87f5]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                  <Gem className="mr-2 h-5 w-5 text-white animate-pulse" />
+                  <span className="font-bold">BUY A BLOCK NOW</span>
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                 </Button>
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-electric-orange to-amber-500 rounded-lg blur opacity-30 group-hover:opacity-70 transition duration-1000 group-hover:duration-300 animate-glow-pulse"></div>
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-cosmic-purple to-[#8B5CF6] rounded-lg blur opacity-40 group-hover:opacity-70 transition duration-500 group-hover:duration-200 animate-glow-pulse"></div>
               </motion.div>
               <Button
                 variant="outline"
@@ -115,20 +114,16 @@ const Hero = () => {
           >
             <div className="absolute inset-0 bg-gradient-to-br from-cosmic-purple/20 to-neon-cyan/20 rounded-3xl animate-glow-pulse"></div>
             <div className="absolute inset-2 bg-midnight-navy/80 backdrop-blur-sm rounded-3xl border border-cosmic-purple/20 overflow-hidden">
-              {/* MineChain AI Miner Visualization - cleaner */}
               <div className="absolute inset-0 flex items-center justify-center p-4">
                 <div className="w-full h-full relative rounded-xl overflow-hidden border border-cosmic-purple/30 group">
-                  {/* The futuristic miner image */}
                   <img 
                     src="/lovable-uploads/dad08f3d-6bd9-4c95-8728-83fb420e7863.png" 
                     alt="MineChain AI Miner" 
                     className="w-full h-full object-cover rounded-xl transition-transform duration-700 group-hover:scale-105"
                   />
                   
-                  {/* Overlay with scanning effect */}
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-midnight-navy/90"></div>
                   
-                  {/* Status indicators - simplified */}
                   <div className="absolute bottom-0 left-0 right-0 p-3 bg-midnight-navy/80 backdrop-blur-sm border-t border-cosmic-purple/30">
                     <div className="flex justify-between items-center">
                       <div className="flex items-center gap-2">
@@ -181,8 +176,6 @@ const Hero = () => {
             </div>
           </div>
         </motion.div>
-
-        {/* Removed Roadmap Preview section and Stats Section for simplicity */}
       </div>
 
       {isPaymentModalOpen && <PaymentModal onClose={() => setIsPaymentModalOpen(false)} />}
