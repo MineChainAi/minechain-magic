@@ -6,6 +6,8 @@ import Auth from './pages/Auth';
 import About from './pages/About';
 import HowItWorks from './pages/HowItWorks';
 import Roadmap from './pages/Roadmap';
+import Profile from './pages/Profile';
+import Settings from './pages/Settings';
 import NotFound from './pages/NotFound';
 import { AuthProvider } from './contexts/AuthContext';
 import './App.css';
@@ -20,6 +22,8 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/roadmap" element={<Roadmap />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/settings" element={<Settings />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Toaster />
