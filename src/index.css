@@ -1,16 +1,17 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 210 57% 12%; /* Midnight Navy */
+    --background: 220 35% 5%; /* Near-black with slight blue tint */
     --foreground: 210 40% 98%;
 
-    --card: 207 52% 23%; /* Dark Steel */
+    --card: 218 30% 10%; /* Very dark steel blue */
     --card-foreground: 210 40% 98%;
 
-    --popover: 207 52% 23%; /* Dark Steel */
+    --popover: 218 30% 10%; /* Very dark steel blue */
     --popover-foreground: 210 40% 98%;
 
     --primary: 23 100% 50%; /* Electric Orange */
@@ -19,7 +20,7 @@
     --secondary: 275 100% 25%; /* Cosmic Purple */
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 215 27% 17%;
+    --muted: 215 27% 12%; /* Darker muted background */
     --muted-foreground: 217 10% 64%;
 
     --accent: 199 93% 54%; /* Neon Cyan */
@@ -28,8 +29,8 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 207 52% 23%; /* Dark Steel */
-    --input: 207 52% 23%; /* Dark Steel */
+    --border: 220 35% 12%; /* Very dark borders */
+    --input: 220 35% 12%; /* Very dark input */
     --ring: 275 100% 25%; /* Cosmic Purple */
 
     --radius: 0.75rem;
@@ -49,7 +50,7 @@
   body {
     @apply bg-background text-foreground;
     background-image: 
-      linear-gradient(to bottom, rgba(10, 31, 51, 0.9), rgba(28, 61, 90, 0.8)),
+      linear-gradient(to bottom, rgba(5, 10, 18, 0.95), rgba(10, 15, 25, 0.9)),
       url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234B0082' fill-opacity='0.06'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10zm10 8c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm40 40c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
 }
@@ -114,21 +115,21 @@
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(10, 31, 51, 0.5);
+  background: rgba(5, 10, 18, 0.8);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(75, 0, 130, 0.3);
+  background: rgba(75, 0, 130, 0.4);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(41, 182, 246, 0.4);
+  background: rgba(41, 182, 246, 0.5);
 }
 
 /* Animation delays */

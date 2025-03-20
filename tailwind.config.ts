@@ -72,8 +72,8 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				// Custom colors for direct use
-				'midnight-navy': '#0A1F33',
-				'dark-steel': '#1C3D5A',
+				'midnight-navy': '#050A12',
+				'dark-steel': '#101520',
 				'cosmic-purple': '#4B0082',
 				'electric-orange': '#FF6700',
 				'neon-cyan': '#29B6F6',
@@ -143,8 +143,8 @@ export default {
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 				'neural-pattern': "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImEiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgcGF0dGVyblRyYW5zZm9ybT0icm90YXRlKDQ1KSI+PGNpcmNsZSBjeD0iMCIgY3k9IjAiIHI9IjAuNSIgZmlsbD0iI2ZmZiIgZmlsbC1vcGFjaXR5PSIwLjAzIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2EpIi8+PC9zdmc+')",
-				'midnight-gradient': 'linear-gradient(to bottom, #0A1F33, #1C3D5A)',
-				'midnight-radial': 'radial-gradient(circle at center, #1C3D5A, #0A1F33)'
+				'midnight-gradient': 'linear-gradient(to bottom, #050A12, #101520)',
+				'midnight-radial': 'radial-gradient(circle at center, #101520, #050A12)'
 			}
 		}
 	},
