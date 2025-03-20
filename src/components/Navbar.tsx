@@ -25,14 +25,15 @@ const Navbar = () => {
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <a href="/" className="flex items-center space-x-2">
-          <div className="relative w-10 h-10">
-            <div className="absolute inset-0 bg-blue-500/30 rounded-full animate-pulse-slow"></div>
-            <div className="absolute inset-[2px] bg-gradient-to-br from-blue-400 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
-              M
-            </div>
+        <a href="/" className="flex items-center space-x-3">
+          <div className="relative w-10 h-10 overflow-hidden rounded-full">
+            <img 
+              src="/lovable-uploads/caa8d77a-a6e6-4c81-a123-ab5eceeaf154.png" 
+              alt="MineChain Logo" 
+              className="w-full h-full object-cover"
+            />
           </div>
-          <span className="text-white font-semibold text-xl">MineChain<span className="text-blue-500">.ai</span></span>
+          <span className="text-white font-semibold text-xl">MineChain<span className="text-yellow-500">.ai</span></span>
         </a>
         
         {/* Desktop Menu */}
@@ -41,7 +42,7 @@ const Navbar = () => {
           <a href="#how-it-works" className="text-white/80 hover:text-white transition-colors">How It Works</a>
           <a href="#roadmap" className="text-white/80 hover:text-white transition-colors">Roadmap</a>
           <Button
-            className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium rounded-md border-none"
+            className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-black font-medium rounded-md border-none"
           >
             Get Started
           </Button>
@@ -82,7 +83,7 @@ const Navbar = () => {
               Roadmap
             </a>
             <Button
-              className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium rounded-md w-full border-none"
+              className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-black font-medium rounded-md w-full border-none"
             >
               Get Started
             </Button>
