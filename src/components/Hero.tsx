@@ -12,23 +12,23 @@ const Hero = () => {
     <section className="min-h-screen w-full pt-28 pb-16 relative flex items-center">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-20 w-60 h-60 bg-blue-500/10 rounded-full filter blur-3xl"></div>
-        <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-blue-500/10 rounded-full filter blur-3xl"></div>
+        <div className="absolute top-1/4 -left-20 w-60 h-60 bg-cosmic-purple/20 rounded-full filter blur-3xl animate-pulse-slow"></div>
+        <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-neon-cyan/10 rounded-full filter blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
         
         {/* Neural network visualization */}
         <div className="absolute inset-0 opacity-10">
           <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <pattern id="neural-net" width="60" height="60" patternUnits="userSpaceOnUse">
-                <circle cx="30" cy="30" r="0.5" fill="#fff" />
-                <circle cx="15" cy="15" r="0.5" fill="#fff" />
-                <circle cx="45" cy="15" r="0.5" fill="#fff" />
-                <circle cx="15" cy="45" r="0.5" fill="#fff" />
-                <circle cx="45" cy="45" r="0.5" fill="#fff" />
-                <path d="M30,30 L15,15" stroke="#fff" strokeWidth="0.2" opacity="0.5" />
-                <path d="M30,30 L45,15" stroke="#fff" strokeWidth="0.2" opacity="0.5" />
-                <path d="M30,30 L15,45" stroke="#fff" strokeWidth="0.2" opacity="0.5" />
-                <path d="M30,30 L45,45" stroke="#fff" strokeWidth="0.2" opacity="0.5" />
+                <circle cx="30" cy="30" r="0.5" fill="#29B6F6" />
+                <circle cx="15" cy="15" r="0.5" fill="#29B6F6" />
+                <circle cx="45" cy="15" r="0.5" fill="#29B6F6" />
+                <circle cx="15" cy="45" r="0.5" fill="#29B6F6" />
+                <circle cx="45" cy="45" r="0.5" fill="#29B6F6" />
+                <path d="M30,30 L15,15" stroke="#29B6F6" strokeWidth="0.2" opacity="0.5" />
+                <path d="M30,30 L45,15" stroke="#29B6F6" strokeWidth="0.2" opacity="0.5" />
+                <path d="M30,30 L15,45" stroke="#29B6F6" strokeWidth="0.2" opacity="0.5" />
+                <path d="M30,30 L45,45" stroke="#29B6F6" strokeWidth="0.2" opacity="0.5" />
               </pattern>
             </defs>
             <rect x="0" y="0" width="100%" height="100%" fill="url(#neural-net)" />
@@ -45,7 +45,7 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
             className="max-w-2xl"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100 leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/80 leading-tight">
               Own a Block. Mine AI. Earn Rewards.
             </h1>
 
@@ -61,13 +61,13 @@ const Hero = () => {
             >
               <Button
                 onClick={() => setIsPaymentModalOpen(true)}
-                className="px-8 py-6 text-lg font-medium bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-md border-none hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300"
+                className="px-8 py-6 text-lg font-medium bg-electric-orange hover:bg-electric-orange/90 text-white rounded-md border-none hover:shadow-lg hover:shadow-electric-orange/20 transition-all duration-300"
               >
                 Buy a Block Now
               </Button>
               <Button
                 variant="outline"
-                className="px-8 py-6 text-lg font-medium bg-transparent border border-white/20 text-white hover:bg-white/5 rounded-md transition-all duration-300"
+                className="px-8 py-6 text-lg font-medium bg-transparent border border-cosmic-purple/30 text-white hover:bg-cosmic-purple/10 rounded-md transition-all duration-300"
               >
                 Learn More
               </Button>
@@ -87,8 +87,8 @@ const Hero = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-white/90">
                 <div className="flex items-start gap-3">
-                  <div className="p-2 rounded-lg bg-white/5 border border-white/10">
-                    <Server size={24} className="text-blue-400" />
+                  <div className="p-2 rounded-lg bg-cosmic-purple/10 border border-cosmic-purple/20">
+                    <Server size={24} className="text-neon-cyan" />
                   </div>
                   <div>
                     <p className="text-sm text-white/70">Enterprise-grade GPU compute for AI workloads</p>
@@ -96,8 +96,8 @@ const Hero = () => {
                 </div>
                 
                 <div className="flex items-start gap-3">
-                  <div className="p-2 rounded-lg bg-white/5 border border-white/10">
-                    <Coins size={24} className="text-blue-400" />
+                  <div className="p-2 rounded-lg bg-cosmic-purple/10 border border-cosmic-purple/20">
+                    <Coins size={24} className="text-neon-cyan" />
                   </div>
                   <div>
                     <p className="text-sm text-white/70">100% passive earnings—no maintenance required</p>
@@ -105,8 +105,8 @@ const Hero = () => {
                 </div>
                 
                 <div className="flex items-start gap-3">
-                  <div className="p-2 rounded-lg bg-white/5 border border-white/10">
-                    <Shield size={24} className="text-blue-400" />
+                  <div className="p-2 rounded-lg bg-cosmic-purple/10 border border-cosmic-purple/20">
+                    <Shield size={24} className="text-neon-cyan" />
                   </div>
                   <div>
                     <p className="text-sm text-white/70">Built on Cosmos for scalability & interoperability</p>
@@ -123,17 +123,17 @@ const Hero = () => {
             transition={{ duration: 1, delay: 0.2 }}
             className="relative w-full max-w-md aspect-square"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-blue-700/20 rounded-3xl animate-pulse-slow"></div>
-            <div className="absolute inset-2 bg-black/40 backdrop-blur-sm rounded-3xl border border-white/10 overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-cosmic-purple/20 to-neon-cyan/20 rounded-3xl animate-glow-pulse"></div>
+            <div className="absolute inset-2 bg-midnight-navy/80 backdrop-blur-sm rounded-3xl border border-cosmic-purple/20 overflow-hidden">
               {/* Circuit pattern */}
               <div className="absolute inset-0 opacity-30">
                 <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
                   <pattern id="circuit" width="100" height="100" patternUnits="userSpaceOnUse">
-                    <path d="M0,50 L100,50 M50,0 L50,100" stroke="#4287f5" strokeWidth="0.5" opacity="0.5" />
-                    <path d="M25,25 L75,75 M75,25 L25,75" stroke="#4287f5" strokeWidth="0.5" opacity="0.3" />
-                    <circle cx="50" cy="50" r="8" fill="none" stroke="#4287f5" strokeWidth="0.5" opacity="0.6" />
-                    <circle cx="50" cy="50" r="16" fill="none" stroke="#4287f5" strokeWidth="0.5" opacity="0.4" />
-                    <circle cx="50" cy="50" r="24" fill="none" stroke="#4287f5" strokeWidth="0.5" opacity="0.2" />
+                    <path d="M0,50 L100,50 M50,0 L50,100" stroke="#29B6F6" strokeWidth="0.5" opacity="0.5" />
+                    <path d="M25,25 L75,75 M75,25 L25,75" stroke="#29B6F6" strokeWidth="0.5" opacity="0.3" />
+                    <circle cx="50" cy="50" r="8" fill="none" stroke="#29B6F6" strokeWidth="0.5" opacity="0.6" />
+                    <circle cx="50" cy="50" r="16" fill="none" stroke="#29B6F6" strokeWidth="0.5" opacity="0.4" />
+                    <circle cx="50" cy="50" r="24" fill="none" stroke="#29B6F6" strokeWidth="0.5" opacity="0.2" />
                   </pattern>
                 </svg>
                 <rect x="0" y="0" width="100%" height="100%" fill="url(#circuit)" />
@@ -141,21 +141,21 @@ const Hero = () => {
               
               {/* Server component */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-3/4 h-2/3 bg-black/60 rounded-lg border border-blue-500/20 p-4 flex flex-col">
+                <div className="w-3/4 h-2/3 bg-dark-steel/60 rounded-lg border border-cosmic-purple/20 p-4 flex flex-col">
                   {/* Server lights */}
                   <div className="flex justify-between mb-3">
-                    <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
-                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-                    <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" style={{ animationDelay: '1s' }}></div>
+                    <div className="w-2 h-2 rounded-full bg-neon-cyan animate-pulse"></div>
+                    <div className="w-2 h-2 rounded-full bg-electric-orange animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+                    <div className="w-2 h-2 rounded-full bg-cosmic-purple animate-pulse" style={{ animationDelay: '1s' }}></div>
                   </div>
                   
                   {/* Server slots */}
                   <div className="flex-1 flex flex-col justify-around">
                     {[...Array(4)].map((_, i) => (
-                      <div key={i} className="w-full h-6 bg-gray-900 rounded border border-white/5 flex items-center px-2">
-                        <div className="w-full h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded">
+                      <div key={i} className="w-full h-6 bg-midnight-navy rounded border border-cosmic-purple/20 flex items-center px-2">
+                        <div className="w-full h-1 bg-gradient-to-r from-neon-cyan to-cosmic-purple rounded">
                           <div 
-                            className="h-full bg-blue-400 rounded animate-pulse" 
+                            className="h-full bg-neon-cyan rounded animate-pulse" 
                             style={{ 
                               width: `${Math.random() * 100}%`,
                               animationDuration: `${2 + Math.random() * 2}s`
@@ -168,13 +168,13 @@ const Hero = () => {
                   
                   {/* Server name */}
                   <div className="mt-3 text-center">
-                    <p className="text-xs text-blue-400 font-mono">MineChain FullStack-01</p>
+                    <p className="text-xs text-neon-cyan font-mono">MineChain FullStack-01</p>
                   </div>
                 </div>
               </div>
               
               {/* Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-500/10 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-cosmic-purple/10 to-transparent"></div>
             </div>
           </motion.div>
         </div>
@@ -184,30 +184,30 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-16 border-t border-white/10 pt-16"
+          className="mt-16 border-t border-cosmic-purple/20 pt-16"
         >
           <h2 className="text-2xl font-bold text-white mb-8 text-center">Why MineChain?</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="p-6 rounded-xl glass">
-              <Server size={32} className="text-blue-400 mb-4" />
+            <div className="p-6 rounded-xl glass border border-cosmic-purple/20">
+              <Server size={32} className="text-neon-cyan mb-4" />
               <h3 className="text-xl font-semibold text-white mb-2">AI Compute Power, Tokenized</h3>
               <p className="text-white/70">Own a share of enterprise-grade AI mining infrastructure without any technical expertise.</p>
             </div>
             
-            <div className="p-6 rounded-xl glass">
-              <Coins size={32} className="text-blue-400 mb-4" />
+            <div className="p-6 rounded-xl glass border border-cosmic-purple/20">
+              <Coins size={32} className="text-neon-cyan mb-4" />
               <h3 className="text-xl font-semibold text-white mb-2">USDC Earnings, No Volatility</h3>
               <p className="text-white/70">Receive predictable, stable income in USDC without worrying about cryptocurrency price swings.</p>
             </div>
             
-            <div className="p-6 rounded-xl glass">
-              <Zap size={32} className="text-blue-400 mb-4" />
+            <div className="p-6 rounded-xl glass border border-cosmic-purple/20">
+              <Zap size={32} className="text-neon-cyan mb-4" />
               <h3 className="text-xl font-semibold text-white mb-2">Built on Cosmos</h3>
               <p className="text-white/70">Leverage the scalability and interoperability of the Cosmos ecosystem for future-proof infrastructure.</p>
             </div>
             
-            <div className="p-6 rounded-xl glass">
-              <Shield size={32} className="text-blue-400 mb-4" />
+            <div className="p-6 rounded-xl glass border border-cosmic-purple/20">
+              <Shield size={32} className="text-neon-cyan mb-4" />
               <h3 className="text-xl font-semibold text-white mb-2">100% Hands-Free</h3>
               <p className="text-white/70">We manage all hardware, software, and maintenance. You simply collect your rewards.</p>
             </div>
@@ -219,16 +219,16 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-16 border-t border-white/10 pt-16"
+          className="mt-16 border-t border-cosmic-purple/20 pt-16"
         >
           <h2 className="text-2xl font-bold text-white mb-8 text-center">Roadmap Preview</h2>
           <div className="max-w-3xl mx-auto">
             <div className="relative">
-              <div className="absolute top-0 bottom-0 left-[20px] w-1 bg-gradient-to-b from-blue-600/50 via-indigo-600/50 to-purple-600/50"></div>
+              <div className="absolute top-0 bottom-0 left-[20px] w-1 bg-gradient-to-b from-electric-orange/70 via-cosmic-purple/70 to-neon-cyan/70"></div>
               
               <div className="space-y-8">
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center relative z-10 mr-4">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-electric-orange flex items-center justify-center relative z-10 mr-4">
                     <span className="font-bold text-black">1</span>
                   </div>
                   <div>
@@ -238,8 +238,8 @@ const Hero = () => {
                 </div>
                 
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-500 flex items-center justify-center relative z-10 mr-4">
-                    <span className="font-bold text-black">2</span>
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-cosmic-purple flex items-center justify-center relative z-10 mr-4">
+                    <span className="font-bold text-white">2</span>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-white">Phase 2: Deploy MineChain blockchain</h3>
@@ -248,8 +248,8 @@ const Hero = () => {
                 </div>
                 
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-violet-500 flex items-center justify-center relative z-10 mr-4">
-                    <span className="font-bold text-black">3</span>
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-neon-cyan flex items-center justify-center relative z-10 mr-4">
+                    <span className="font-bold text-midnight-navy">3</span>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-white">Phase 3: Launch $MINE token</h3>
@@ -258,8 +258,8 @@ const Hero = () => {
                 </div>
                 
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center relative z-10 mr-4">
-                    <span className="font-bold text-black">4</span>
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-neon-cyan/80 flex items-center justify-center relative z-10 mr-4">
+                    <span className="font-bold text-midnight-navy">4</span>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-white">Phase 4: Scale AI mining pools</h3>

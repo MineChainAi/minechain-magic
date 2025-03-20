@@ -1,37 +1,36 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 232 26% 7%;
+    --background: 210 57% 12%; /* Midnight Navy */
     --foreground: 210 40% 98%;
 
-    --card: 229 22% 10%;
+    --card: 207 52% 23%; /* Dark Steel */
     --card-foreground: 210 40% 98%;
 
-    --popover: 229 22% 10%;
+    --popover: 207 52% 23%; /* Dark Steel */
     --popover-foreground: 210 40% 98%;
 
-    --primary: 217 91% 60%;
+    --primary: 23 100% 50%; /* Electric Orange */
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 217 33% 17%;
+    --secondary: 275 100% 25%; /* Cosmic Purple */
     --secondary-foreground: 210 40% 98%;
 
     --muted: 215 27% 17%;
     --muted-foreground: 217 10% 64%;
 
-    --accent: 217 91% 60%;
+    --accent: 199 93% 54%; /* Neon Cyan */
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 224 76% 48%;
+    --border: 207 52% 23%; /* Dark Steel */
+    --input: 207 52% 23%; /* Dark Steel */
+    --ring: 275 100% 25%; /* Cosmic Purple */
 
     --radius: 0.75rem;
   }
@@ -50,8 +49,8 @@
   body {
     @apply bg-background text-foreground;
     background-image: 
-      linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(10, 15, 25, 0.8)),
-      url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23113366' fill-opacity='0.06'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10zm10 8c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm40 40c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      linear-gradient(to bottom, rgba(10, 31, 51, 0.9), rgba(28, 61, 90, 0.8)),
+      url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234B0082' fill-opacity='0.06'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10zm10 8c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm40 40c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
 }
 
@@ -65,11 +64,30 @@
   }
   
   .text-gradient {
-    @apply bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-neon-cyan to-cosmic-purple bg-clip-text text-transparent;
   }
 
   .text-stroke {
     -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+  }
+  
+  .glow-purple {
+    @apply relative;
+    box-shadow: 0 0 20px 2px rgba(75, 0, 130, 0.5);
+  }
+  
+  .glow-orange {
+    @apply relative;
+    box-shadow: 0 0 20px 2px rgba(255, 103, 0, 0.5);
+  }
+  
+  .glow-cyan {
+    @apply relative;
+    box-shadow: 0 0 20px 2px rgba(41, 182, 246, 0.5);
+  }
+  
+  .btn-electric {
+    @apply bg-gradient-to-r from-electric-orange to-electric-orange/90 hover:from-electric-orange/90 hover:to-electric-orange text-white font-medium transition-all duration-300 hover:shadow-lg hover:shadow-electric-orange/20;
   }
 }
 
@@ -101,16 +119,16 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(10, 31, 51, 0.5);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(75, 0, 130, 0.3);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(41, 182, 246, 0.4);
 }
 
 /* Animation delays */
