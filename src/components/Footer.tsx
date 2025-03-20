@@ -1,3 +1,4 @@
+
 import { Github, Twitter, ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -12,21 +13,19 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           <div className="md:col-span-2">
             <a href="/" className="flex items-center space-x-2 mb-6">
-              <div className="relative w-10 h-10">
-                <div className="absolute inset-0 bg-blue-500/30 rounded-full animate-pulse-slow"></div>
-                <div className="absolute inset-[2px] bg-gradient-to-br from-blue-400 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                  M
-                </div>
-              </div>
-              <span className="text-white font-semibold text-xl">MineChain<span className="text-blue-500">.ai</span></span>
+              <img 
+                src="/lovable-uploads/caa8d77a-a6e6-4c81-a123-ab5eceeaf154.png" 
+                alt="MineChain Logo" 
+                className="h-12" 
+              />
             </a>
             
             <p className="text-white/70 mb-6 max-w-md">
-              MineChain is a Web3 AI mining company operating full-stack AI workstations. 
+              MineChain is a Web3 AI mining company operating Full-Stack Miners™. 
               Own a virtual miner, earn AI-powered rewards in USDC and $MINE.
             </p>
             
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 mb-6">
               <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center bg-white/5 hover:bg-white/10 transition-colors">
                 <Twitter className="w-5 h-5 text-white/80" />
               </a>
@@ -38,6 +37,24 @@ const Footer = () => {
               <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center bg-white/5 hover:bg-white/10 transition-colors">
                 <Github className="w-5 h-5 text-white/80" />
               </a>
+            </div>
+
+            <div className="text-white/70 space-y-2">
+              <p className="flex items-center">
+                <span className="font-medium text-yellow-400 mr-2">Location:</span> Jupiter, Florida
+              </p>
+              <p className="flex items-center">
+                <span className="font-medium text-yellow-400 mr-2">Email:</span> 
+                <a href="mailto:FTW@minechain.ai" className="hover:text-yellow-400 transition-colors">
+                  FTW@minechain.ai
+                </a>
+              </p>
+              <p className="flex items-center">
+                <span className="font-medium text-yellow-400 mr-2">Phone:</span> 
+                <a href="tel:8557587660" className="hover:text-yellow-400 transition-colors">
+                  855-758-7660
+                </a>
+              </p>
             </div>
           </div>
           
@@ -104,11 +121,11 @@ const Footer = () => {
         
         <div className="border-t border-white/10 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-white/50 text-sm">
-            &copy; {currentYear} MineChain.ai. All rights reserved.
+            &copy; {currentYear} MineChain.ai. All rights reserved. Full-Stack Miners™ is a trademark of MineChain.
           </p>
           <div className="mt-4 md:mt-0">
             <p className="text-white/50 text-sm">
-              Powered by <a href="#" className="text-blue-400 hover:text-blue-300">Coinbase Commerce</a>
+              Powered by <a href="#" className="text-yellow-400 hover:text-yellow-300">Coinbase Commerce</a>
             </p>
           </div>
         </div>
