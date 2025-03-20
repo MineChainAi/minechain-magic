@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { PaymentModal } from './PaymentModal';
-import { Zap, Server, Coins, Shield } from 'lucide-react';
+import { Zap, Server, Coins, Shield, ArrowRight } from 'lucide-react';
 
 const Hero = () => {
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
@@ -39,12 +39,22 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="flex flex-col sm:flex-row justify-start gap-4 mb-10"
             >
-              <Button
-                onClick={() => setIsPaymentModalOpen(true)}
-                className="px-8 py-6 text-lg font-medium bg-electric-orange hover:bg-electric-orange/90 text-white rounded-md border-none hover:shadow-lg hover:shadow-electric-orange/20 transition-all duration-300"
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+                className="relative"
               >
-                Buy a Block Now
-              </Button>
+                <Button
+                  onClick={() => setIsPaymentModalOpen(true)}
+                  className="px-8 py-6 text-lg font-medium bg-gradient-to-r from-electric-orange to-amber-500 hover:from-amber-500 hover:to-electric-orange text-white rounded-md border-none hover:shadow-lg hover:shadow-electric-orange/40 transition-all duration-300 relative overflow-hidden group"
+                >
+                  <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-electric-orange/10 to-amber-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                  <Coins className="mr-2 h-5 w-5 animate-pulse" />
+                  Buy a Block Now
+                  <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                </Button>
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-electric-orange to-amber-500 rounded-lg blur opacity-30 group-hover:opacity-70 transition duration-1000 group-hover:duration-300 animate-glow-pulse"></div>
+              </motion.div>
               <Button
                 variant="outline"
                 className="px-8 py-6 text-lg font-medium bg-transparent border border-cosmic-purple/30 text-white hover:bg-cosmic-purple/10 rounded-md transition-all duration-300"
