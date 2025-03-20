@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { PaymentModal } from '@/components/PaymentModal';
+import HowItWorksSteps from '@/components/HowItWorksSteps';
 
 const HowItWorks = () => {
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
@@ -24,19 +25,25 @@ const HowItWorks = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#131516] text-white">
+    <div className="min-h-screen bg-[#050A12] text-white">
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-20 relative">
-        <div className="absolute inset-0 bg-[#0A1F33]/20 pointer-events-none" />
+      <section className="pt-32 pb-20 relative overflow-hidden">
+        {/* Background image */}
+        <div className="absolute inset-0 opacity-20 bg-neural-pattern mix-blend-overlay pointer-events-none" />
+        <div 
+          className="absolute inset-0 opacity-20 pointer-events-none bg-cover bg-center"
+          style={{ backgroundImage: "url('/lovable-uploads/caa8d77a-a6e6-4c81-a123-ab5eceeaf154.png')" }}
+        />
+        
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <motion.h1 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 gold-text"
             >
               Own a Block. Mine AI. Earn USDC.
             </motion.h1>
@@ -45,7 +52,7 @@ const HowItWorks = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-lg md:text-xl text-[#41474D] mb-10 max-w-3xl mx-auto"
+              className="text-lg md:text-xl text-white/70 mb-10 max-w-3xl mx-auto"
             >
               Secure your place in MineChain's AI mining network by purchasing an NFT-backed compute block. No hardware, no setup—just stable USDC rewards.
             </motion.p>
@@ -57,7 +64,7 @@ const HowItWorks = () => {
             >
               <Button 
                 size="lg" 
-                className="bg-[#0A1F33] hover:bg-[#0A1F33]/90 text-white group"
+                className="bg-electric-orange hover:bg-electric-orange/90 text-white group crypto-glow"
                 onClick={() => setIsPaymentModalOpen(true)}
               >
                 Buy a Block Now
@@ -69,90 +76,17 @@ const HowItWorks = () => {
       </section>
       
       {/* How It Works Section */}
-      <section className="py-20 bg-[#2C2F33]">
-        <div className="container mx-auto px-6">
-          <div className="max-w-5xl mx-auto">
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              className="mb-12 text-center"
-            >
-              <motion.h2 
-                custom={0}
-                variants={fadeIn}
-                className="text-3xl md:text-4xl font-bold mb-8"
-              >
-                How It Works
-              </motion.h2>
-              
-              <motion.p 
-                custom={1}
-                variants={fadeIn}
-                className="text-lg text-[#41474D] mb-12"
-              >
-                Join MineChain's AI mining revolution in <span className="text-[#29B6F6]">three simple steps</span>
-              </motion.p>
-            </motion.div>
-            
-            <div className="grid md:grid-cols-3 gap-12">
-              {/* Step 1 */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="flex flex-col items-center text-center"
-              >
-                <div className="w-16 h-16 rounded-full bg-[#0A1F33] flex items-center justify-center mb-6">
-                  <CreditCard className="w-8 h-8 text-[#29B6F6]" />
-                </div>
-                <h3 className="text-xl font-bold mb-4">1. Purchase a Block</h3>
-                <p className="text-[#41474D]">
-                  Buy a MineChain NFT, which represents your share of AI compute power. Pay with USDC only through Coinbase Commerce for stable earnings.
-                </p>
-              </motion.div>
-              
-              {/* Step 2 */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="flex flex-col items-center text-center"
-              >
-                <div className="w-16 h-16 rounded-full bg-[#0A1F33] flex items-center justify-center mb-6">
-                  <Server className="w-8 h-8 text-[#29B6F6]" />
-                </div>
-                <h3 className="text-xl font-bold mb-4">2. AI Workloads Run</h3>
-                <p className="text-[#41474D]">
-                  Your block is part of MineChain's enterprise AI mining infrastructure. GPUs process AI workloads, generating real revenue from AI compute.
-                </p>
-              </motion.div>
-              
-              {/* Step 3 */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="flex flex-col items-center text-center"
-              >
-                <div className="w-16 h-16 rounded-full bg-[#0A1F33] flex items-center justify-center mb-6">
-                  <Coins className="w-8 h-8 text-[#29B6F6]" />
-                </div>
-                <h3 className="text-xl font-bold mb-4">3. Earn Rewards in USDC</h3>
-                <p className="text-[#41474D]">
-                  Receive USDC payouts as your share of AI mining profits. No volatility, no maintenance—just stable, predictable earnings.
-                </p>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HowItWorksSteps />
       
       {/* Why Own a Block Section */}
-      <section className="py-20 bg-[#131516]">
+      <section className="py-20 bg-[#101520] relative overflow-hidden">
+        {/* Background pattern and image overlay */}
+        <div className="absolute inset-0 bg-neural-pattern opacity-10 mix-blend-overlay pointer-events-none" />
+        <div 
+          className="absolute inset-0 opacity-10 pointer-events-none bg-cover bg-center"
+          style={{ backgroundImage: "url('/lovable-uploads/dad08f3d-6bd9-4c95-8728-83fb420e7863.png')" }}
+        />
+        
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto">
             <motion.div 
@@ -164,7 +98,7 @@ const HowItWorks = () => {
               <motion.h2 
                 custom={0}
                 variants={fadeIn}
-                className="text-3xl md:text-4xl font-bold mb-8"
+                className="text-3xl md:text-4xl font-bold mb-8 gold-text"
               >
                 Why Own a Block?
               </motion.h2>
@@ -176,11 +110,11 @@ const HowItWorks = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="bg-[#2C2F33] p-8 rounded-lg border border-[#41474D]/20"
+                className="glass p-8 rounded-lg border border-white/5 hover:border-electric-orange/20 transition-all duration-300 hover:crypto-glow"
               >
-                <Server className="w-12 h-12 text-[#29B6F6] mb-6" />
+                <Server className="w-12 h-12 text-neon-cyan mb-6" />
                 <h3 className="text-xl font-bold mb-4">AI Compute Power, Tokenized</h3>
-                <p className="text-[#41474D]">Own part of an AI mining network with full rights to your share of compute power.</p>
+                <p className="text-white/70">Own part of an AI mining network with full rights to your share of compute power.</p>
               </motion.div>
               
               <motion.div 
@@ -188,11 +122,11 @@ const HowItWorks = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="bg-[#2C2F33] p-8 rounded-lg border border-[#41474D]/20"
+                className="glass p-8 rounded-lg border border-white/5 hover:border-electric-orange/20 transition-all duration-300 hover:crypto-glow"
               >
-                <Coins className="w-12 h-12 text-[#29B6F6] mb-6" />
+                <Coins className="w-12 h-12 text-neon-cyan mb-6" />
                 <h3 className="text-xl font-bold mb-4">Earn in USDC Only</h3>
-                <p className="text-[#41474D]">No price swings, just stable rewards delivered directly to your wallet.</p>
+                <p className="text-white/70">No price swings, just stable rewards delivered directly to your wallet.</p>
               </motion.div>
               
               <motion.div 
@@ -200,11 +134,11 @@ const HowItWorks = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="bg-[#2C2F33] p-8 rounded-lg border border-[#41474D]/20"
+                className="glass p-8 rounded-lg border border-white/5 hover:border-electric-orange/20 transition-all duration-300 hover:crypto-glow"
               >
-                <CreditCard className="w-12 h-12 text-[#29B6F6] mb-6" />
+                <CreditCard className="w-12 h-12 text-neon-cyan mb-6" />
                 <h3 className="text-xl font-bold mb-4">No Hardware Needed</h3>
-                <p className="text-[#41474D]">We handle the infrastructure, you collect earnings without any technical complexity.</p>
+                <p className="text-white/70">We handle the infrastructure, you collect earnings without any technical complexity.</p>
               </motion.div>
             </div>
             
@@ -217,7 +151,7 @@ const HowItWorks = () => {
             >
               <Button 
                 size="lg" 
-                className="bg-[#29B6F6] hover:bg-[#29B6F6]/90 text-white"
+                className="bg-neon-cyan hover:bg-neon-cyan/90 text-white crypto-glow"
                 onClick={() => setIsPaymentModalOpen(true)}
               >
                 Buy a Block Now
