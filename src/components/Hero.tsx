@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
@@ -46,7 +47,7 @@ const Hero = () => {
                   className="px-8 py-6 text-lg font-bold bg-[#8B5CF6] text-white rounded-md border-none shadow-lg shadow-cosmic-purple/30 transition-all duration-300 hover:bg-cosmic-purple"
                 >
                   <Gem className="mr-2 h-5 w-5 text-white" />
-                  BUY A BLOCK NOW
+                  MINE BLOCKS
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                 </Button>
               </motion.div>
