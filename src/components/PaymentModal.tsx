@@ -4,10 +4,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ExternalLink, Check, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import axios from 'axios';
+import { toast } from 'sonner';
 
 // Payment modal props type
 interface PaymentModalProps {
   onClose: () => void;
+  simulationMode?: boolean;
 }
 
 // Enumerated payment stages
@@ -19,7 +21,7 @@ enum PaymentStage {
   ERROR = 'error'
 }
 
-export function PaymentModal({ onClose }: PaymentModalProps) {
+export function PaymentModal({ onClose, simulationMode = false }: PaymentModalProps) {
   // State management
   const [stage, setStage] = useState<PaymentStage>(PaymentStage.INITIAL);
   const [chargeId, setChargeId] = useState<string | null>(null);
@@ -33,6 +35,18 @@ export function PaymentModal({ onClose }: PaymentModalProps) {
   // Create a payment charge
   const initiatePayment = async () => {
     setStage(PaymentStage.PROCESSING);
+    
+    if (simulationMode) {
+      // Simulate a charge creation delay
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      setChargeId('sim_' + Math.random().toString(36).substring(2, 15));
+      setChargeUrl('#simulation');
+      setStage(PaymentStage.AWAITING_PAYMENT);
+      toast.info("Simulation mode active", {
+        description: "Using simulated payments instead of real Coinbase Commerce"
+      });
+      return;
+    }
     
     try {
       const response = await axios.post('/api/create-charge', {
@@ -55,7 +69,7 @@ export function PaymentModal({ onClose }: PaymentModalProps) {
       pollPaymentStatus(response.data.id);
     } catch (err) {
       console.error("Error creating charge:", err);
-      setError("Failed to create payment. Please try again.");
+      setError("Failed to create payment. Please try again or use simulation mode.");
       setStage(PaymentStage.ERROR);
     }
   };
@@ -63,6 +77,17 @@ export function PaymentModal({ onClose }: PaymentModalProps) {
   // Poll for payment status updates
   const pollPaymentStatus = async (id: string) => {
     try {
+      if (simulationMode) {
+        // Simulate payment completion after 5 seconds
+        setTimeout(() => {
+          setStage(PaymentStage.COMPLETED);
+          toast.success("Simulation completed", {
+            description: "Your simulated payment has been processed successfully"
+          });
+        }, 5000);
+        return;
+      }
+      
       const checkStatus = async () => {
         const response = await axios.get(`/api/check-charge?id=${id}`);
         console.log("Payment status:", response.data);
@@ -71,6 +96,9 @@ export function PaymentModal({ onClose }: PaymentModalProps) {
             response.data.status === 'CONFIRMED' || 
             response.data.status === 'RESOLVED') {
           setStage(PaymentStage.COMPLETED);
+          toast.success("Payment confirmed", {
+            description: "Your payment has been processed successfully"
+          });
           return true;
         }
         return false;
@@ -93,6 +121,16 @@ export function PaymentModal({ onClose }: PaymentModalProps) {
     }
   };
   
+  // Simulation handler for testing without Coinbase
+  const handleSimulatedPayment = () => {
+    if (simulationMode && stage === PaymentStage.AWAITING_PAYMENT) {
+      setStage(PaymentStage.COMPLETED);
+      toast.success("Simulation completed", {
+        description: "Your simulated payment has been processed successfully"
+      });
+    }
+  };
+  
   return (
     <AnimatePresence>
       <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
@@ -104,7 +142,9 @@ export function PaymentModal({ onClose }: PaymentModalProps) {
         >
           {/* Modal header */}
           <div className="flex justify-between items-center p-6 border-b border-white/10">
-            <h3 className="text-xl font-bold text-white">Purchase a Block</h3>
+            <h3 className="text-xl font-bold text-white">
+              {simulationMode ? "Purchase a Block (Simulation)" : "Purchase a Block"}
+            </h3>
             <button 
               onClick={onClose}
               className="text-white/70 hover:text-white transition-colors"
@@ -147,11 +187,13 @@ export function PaymentModal({ onClose }: PaymentModalProps) {
                   onClick={initiatePayment}
                   className="w-full bg-electric-orange hover:bg-electric-orange/90 text-white crypto-glow"
                 >
-                  Pay with Crypto
+                  {simulationMode ? "Simulate Payment" : "Pay with Crypto"}
                 </Button>
                 
                 <p className="text-xs text-center text-white/50">
-                  Secure payment processing by Coinbase Commerce
+                  {simulationMode ? 
+                    "Simulation mode - no real payment will be processed" : 
+                    "Secure payment processing by Coinbase Commerce"}
                 </p>
               </div>
             )}
@@ -173,22 +215,36 @@ export function PaymentModal({ onClose }: PaymentModalProps) {
                   </div>
                   <h4 className="text-lg font-bold text-white">Awaiting Payment</h4>
                   <p className="text-white/70 mt-2">
-                    Complete your purchase using the Coinbase payment window
+                    {simulationMode 
+                      ? "This is a simulation. Click the button below to simulate payment completion." 
+                      : "Complete your purchase using the Coinbase payment window"}
                   </p>
                 </div>
                 
-                <Button 
-                  onClick={() => window.open(chargeUrl, '_blank')}
-                  className="w-full bg-neon-cyan hover:bg-neon-cyan/90 text-white"
-                >
-                  Open Payment Window
-                  <ExternalLink size={16} className="ml-2" />
-                </Button>
+                {simulationMode ? (
+                  <Button 
+                    onClick={handleSimulatedPayment}
+                    className="w-full bg-neon-cyan hover:bg-neon-cyan/90 text-white"
+                  >
+                    Simulate Successful Payment
+                  </Button>
+                ) : (
+                  <Button 
+                    onClick={() => window.open(chargeUrl, '_blank')}
+                    className="w-full bg-neon-cyan hover:bg-neon-cyan/90 text-white"
+                  >
+                    Open Payment Window
+                    <ExternalLink size={16} className="ml-2" />
+                  </Button>
+                )}
                 
                 <div className="bg-[#121C2D] border border-white/5 rounded-lg p-4 text-sm text-white/70">
                   <p>
-                    <span className="font-medium text-white">Tip:</span> Keep this window open 
-                    to automatically detect when your payment is complete
+                    <span className="font-medium text-white">
+                      {simulationMode ? "Note:" : "Tip:"}
+                    </span> {simulationMode 
+                      ? "This is a simulation for testing purposes only." 
+                      : "Keep this window open to automatically detect when your payment is complete."}
                   </p>
                 </div>
               </div>
@@ -200,7 +256,9 @@ export function PaymentModal({ onClose }: PaymentModalProps) {
                   <Check size={32} className="text-green-500" />
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold text-white">Payment Complete!</h4>
+                  <h4 className="text-xl font-bold text-white">
+                    {simulationMode ? "Simulation Completed!" : "Payment Complete!"}
+                  </h4>
                   <p className="text-white/70 mt-2">
                     Your MineChain Block is now ready
                   </p>
@@ -231,6 +289,20 @@ export function PaymentModal({ onClose }: PaymentModalProps) {
                 >
                   Try Again
                 </Button>
+                {!simulationMode && (
+                  <Button 
+                    onClick={() => {
+                      setStage(PaymentStage.INITIAL);
+                      setError(null);
+                      setChargeId(null);
+                      setChargeUrl(null);
+                    }}
+                    variant="outline"
+                    className="w-full text-white"
+                  >
+                    Use Simulation Mode
+                  </Button>
+                )}
               </div>
             )}
           </div>
