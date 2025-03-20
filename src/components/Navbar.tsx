@@ -39,7 +39,7 @@ const Navbar = () => {
         
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
-          <Link to="/about" className="text-white/80 hover:text-white transition-colors">About</Link>
+          <Link to="/about" className="text-white/80 hover:text-white transition-colors">Full-Stack Miners™</Link>
           <Link to="/how-it-works" className="text-white/80 hover:text-white transition-colors">How It Works</Link>
           <Link to="/roadmap" className="text-white/80 hover:text-white transition-colors">Roadmap</Link>
           <a 
@@ -76,7 +76,7 @@ const Navbar = () => {
               className="text-white/80 hover:text-white transition-colors" 
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              About
+              Full-Stack Miners™
             </Link>
             <Link 
               to="/how-it-works" 
