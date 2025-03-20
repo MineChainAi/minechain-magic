@@ -9,7 +9,6 @@ const Hero = () => {
 
   return (
     <section className="min-h-screen w-full pt-28 pb-16 relative flex items-center">
-      {/* Simplified background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 -left-20 w-60 h-60 bg-cosmic-purple/20 rounded-full filter blur-3xl animate-pulse-slow"></div>
         <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-neon-cyan/10 rounded-full filter blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
@@ -17,7 +16,6 @@ const Hero = () => {
 
       <div className="container mx-auto px-6 z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
-          {/* Text content - simplified */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -45,14 +43,12 @@ const Hero = () => {
               >
                 <Button
                   onClick={() => setIsPaymentModalOpen(true)}
-                  className="px-8 py-6 text-lg font-medium bg-gradient-to-r from-cosmic-purple to-[#9b87f5] hover:from-[#9b87f5] hover:to-cosmic-purple text-white rounded-md border-none transition-all duration-300 relative overflow-hidden group button-shine"
+                  className="px-8 py-6 text-lg font-bold bg-[#8B5CF6] text-white rounded-md border-none shadow-lg shadow-cosmic-purple/30 transition-all duration-300 hover:bg-cosmic-purple"
                 >
-                  <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-cosmic-purple/20 to-[#9b87f5]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                  <Gem className="mr-2 h-5 w-5 text-white animate-pulse" />
-                  <span className="font-bold">BUY A BLOCK NOW</span>
+                  <Gem className="mr-2 h-5 w-5 text-white" />
+                  BUY A BLOCK NOW
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                 </Button>
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-cosmic-purple to-[#8B5CF6] rounded-lg blur opacity-40 group-hover:opacity-70 transition duration-500 group-hover:duration-200 animate-glow-pulse"></div>
               </motion.div>
               <Button
                 variant="outline"
@@ -62,7 +58,6 @@ const Hero = () => {
               </Button>
             </motion.div>
 
-            {/* What is MineChain - simplified */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -105,7 +100,6 @@ const Hero = () => {
             </motion.div>
           </motion.div>
 
-          {/* AI Miner Visualization - simplified */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -142,7 +136,6 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Why MineChain - simplified */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
