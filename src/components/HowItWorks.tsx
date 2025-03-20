@@ -1,6 +1,6 @@
 
 import { motion } from 'framer-motion';
-import { ShoppingCart, Coins, Cpu } from 'lucide-react';
+import { ShoppingCart, Server, Coins } from 'lucide-react';
 
 const HowItWorks = () => {
   const sectionVariants = {
@@ -56,9 +56,9 @@ const HowItWorks = () => {
               >
                 <div className="md:w-1/2 md:pr-12 mb-8 md:mb-0 md:text-right">
                   <span className="text-sm font-semibold text-blue-400 mb-2 block">Step 1</span>
-                  <h3 className="text-2xl font-bold mb-3 text-white">Own a Virtual Miner</h3>
+                  <h3 className="text-2xl font-bold mb-3 text-white">Purchase a Block</h3>
                   <p className="text-white/70">
-                    Purchase your virtual miner using Coinbase Commerce with USDC, BTC, ETH, SOL, DOGE, and other supported assets.
+                    Buy a MineChain NFT, which represents your share of AI compute power using USDC through Coinbase Commerce.
                   </p>
                 </div>
                 <div className="md:w-12 relative flex items-center justify-center">
@@ -70,15 +70,15 @@ const HowItWorks = () => {
                   <ul className="space-y-2 text-white/80">
                     <li className="flex items-start">
                       <div className="mr-2 mt-1 flex-shrink-0 w-2 h-2 rounded-full bg-blue-400" />
-                      <span>NFT-based AI compute leasing</span>
+                      <span>NFT-based AI compute ownership</span>
                     </li>
                     <li className="flex items-start">
                       <div className="mr-2 mt-1 flex-shrink-0 w-2 h-2 rounded-full bg-blue-400" />
-                      <span>Secure payments through Coinbase Commerce</span>
+                      <span>USDC-only payments for stability</span>
                     </li>
                     <li className="flex items-start">
                       <div className="mr-2 mt-1 flex-shrink-0 w-2 h-2 rounded-full bg-blue-400" />
-                      <span>Multiple virtual miners = higher rewards</span>
+                      <span>Secure transactions via Coinbase Commerce</span>
                     </li>
                   </ul>
                 </div>
@@ -93,28 +93,28 @@ const HowItWorks = () => {
                   <ul className="space-y-2 text-white/80">
                     <li className="flex items-start">
                       <div className="mr-2 mt-1 flex-shrink-0 w-2 h-2 rounded-full bg-indigo-400" />
-                      <span>Daily USDC rewards distribution</span>
+                      <span>Enterprise-grade AI infrastructure</span>
                     </li>
                     <li className="flex items-start">
                       <div className="mr-2 mt-1 flex-shrink-0 w-2 h-2 rounded-full bg-indigo-400" />
-                      <span>$MINE tokens to participate in governance</span>
+                      <span>Optimized for high-value AI workloads</span>
                     </li>
                     <li className="flex items-start">
                       <div className="mr-2 mt-1 flex-shrink-0 w-2 h-2 rounded-full bg-indigo-400" />
-                      <span>Performance-based reward system</span>
+                      <span>Zero maintenance or technical knowledge needed</span>
                     </li>
                   </ul>
                 </div>
                 <div className="md:w-12 relative flex items-center justify-center">
                   <div className="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center relative z-10">
-                    <Coins className="w-6 h-6 text-white" />
+                    <Server className="w-6 h-6 text-white" />
                   </div>
                 </div>
                 <div className="md:w-1/2 md:pl-12 mb-8 md:mb-0 md:text-left">
                   <span className="text-sm font-semibold text-indigo-400 mb-2 block">Step 2</span>
-                  <h3 className="text-2xl font-bold mb-3 text-white">Earn AI Rewards</h3>
+                  <h3 className="text-2xl font-bold mb-3 text-white">AI Workloads Run</h3>
                   <p className="text-white/70">
-                    Receive regular payouts in USDC and $MINE tokens based on your virtual miner's contribution to the network.
+                    Your block is part of MineChain's enterprise AI mining infrastructure, processing AI workloads and generating real revenue.
                   </p>
                 </div>
               </motion.div>
@@ -126,29 +126,29 @@ const HowItWorks = () => {
               >
                 <div className="md:w-1/2 md:pr-12 mb-8 md:mb-0 md:text-right">
                   <span className="text-sm font-semibold text-purple-400 mb-2 block">Step 3</span>
-                  <h3 className="text-2xl font-bold mb-3 text-white">Powering AI with GPUs</h3>
+                  <h3 className="text-2xl font-bold mb-3 text-white">Earn Rewards in USDC</h3>
                   <p className="text-white/70">
-                    Your virtual miners contribute to a decentralized GPU network that powers cutting-edge AI applications.
+                    Receive USDC payouts directly to your wallet as your share of AI mining profits, with no volatility risk.
                   </p>
                 </div>
                 <div className="md:w-12 relative flex items-center justify-center">
                   <div className="w-12 h-12 rounded-full bg-purple-600 flex items-center justify-center relative z-10">
-                    <Cpu className="w-6 h-6 text-white" />
+                    <Coins className="w-6 h-6 text-white" />
                   </div>
                 </div>
                 <div className="md:w-1/2 md:pl-12 glass p-6 rounded-xl md:mt-0 mt-6">
                   <ul className="space-y-2 text-white/80">
                     <li className="flex items-start">
                       <div className="mr-2 mt-1 flex-shrink-0 w-2 h-2 rounded-full bg-purple-400" />
-                      <span>Proof of Work meets Cosmos scaling</span>
+                      <span>Stable USDC rewards, no crypto volatility</span>
                     </li>
                     <li className="flex items-start">
                       <div className="mr-2 mt-1 flex-shrink-0 w-2 h-2 rounded-full bg-purple-400" />
-                      <span>High-performance AI compute network</span>
+                      <span>Predictable earnings from AI compute</span>
                     </li>
                     <li className="flex items-start">
                       <div className="mr-2 mt-1 flex-shrink-0 w-2 h-2 rounded-full bg-purple-400" />
-                      <span>Sustainable, efficient operation</span>
+                      <span>Passive income with zero maintenance</span>
                     </li>
                   </ul>
                 </div>

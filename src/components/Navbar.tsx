@@ -40,7 +40,7 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
           <Link to="/about" className="text-white/80 hover:text-white transition-colors">About</Link>
-          <a href="#how-it-works" className="text-white/80 hover:text-white transition-colors">How It Works</a>
+          <Link to="/how-it-works" className="text-white/80 hover:text-white transition-colors">How It Works</Link>
           <a href="#roadmap" className="text-white/80 hover:text-white transition-colors">Roadmap</a>
           <Button
             className="bg-[#0A1F33] hover:bg-[#0A1F33]/90 text-white border-none"
@@ -69,13 +69,13 @@ const Navbar = () => {
             >
               About
             </Link>
-            <a 
-              href="#how-it-works" 
+            <Link 
+              to="/how-it-works" 
               className="text-white/80 hover:text-white transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               How It Works
-            </a>
+            </Link>
             <a 
               href="#roadmap" 
               className="text-white/80 hover:text-white transition-colors"
