@@ -41,7 +41,7 @@ const Navbar = () => {
         <div className="hidden md:flex items-center space-x-8">
           <Link to="/about" className="text-white/80 hover:text-white transition-colors">About</Link>
           <Link to="/how-it-works" className="text-white/80 hover:text-white transition-colors">How It Works</Link>
-          <a href="#roadmap" className="text-white/80 hover:text-white transition-colors">Roadmap</a>
+          <Link to="/roadmap" className="text-white/80 hover:text-white transition-colors">Roadmap</Link>
           <Button
             className="bg-[#0A1F33] hover:bg-[#0A1F33]/90 text-white border-none"
           >
@@ -76,13 +76,13 @@ const Navbar = () => {
             >
               How It Works
             </Link>
-            <a 
-              href="#roadmap" 
+            <Link 
+              to="/roadmap" 
               className="text-white/80 hover:text-white transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Roadmap
-            </a>
+            </Link>
             <Button
               className="bg-[#0A1F33] hover:bg-[#0A1F33]/90 text-white w-full border-none"
             >
