@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { X, CheckCircle2, Bitcoin, CreditCard, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -22,10 +21,6 @@ export const PaymentModal = ({ onClose }: PaymentModalProps) => {
   const [chargeId, setChargeId] = useState<string | null>(null);
   const [coinbaseWindow, setCoinbaseWindow] = useState<Window | null>(null);
   
-  // This should be replaced with your actual Coinbase Commerce API key
-  // In production, this should be handled by a backend service
-  const COINBASE_API_KEY = 'your-coinbase-commerce-api-key';
-  
   const minerOptions = [
     { id: 'basic', name: 'Basic Miner', price: 99, power: '1x Mining Power' },
     { id: 'pro', name: 'Pro Miner', price: 299, power: '3.5x Mining Power' },
@@ -37,13 +32,8 @@ export const PaymentModal = ({ onClose }: PaymentModalProps) => {
     setPaymentStep('processing');
     
     try {
-      // In a real implementation, this would be a call to your backend API which then uses Coinbase Commerce API
-      // For demo purposes, we're showing how the API would be called, but this should not be done client-side
-      console.log('Creating Coinbase Commerce charge for', product, 'at $', priceUSD);
-      
-      /* 
-      // This is how you would create a charge with a backend API
-      const response = await fetch('YOUR_BACKEND_API/create-charge', {
+      // In production, call the Netlify function to create a charge
+      const response = await fetch('/.netlify/functions/create-charge', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -61,23 +51,13 @@ export const PaymentModal = ({ onClose }: PaymentModalProps) => {
         }),
       });
       
+      if (!response.ok) {
+        throw new Error('Failed to create payment charge');
+      }
+      
       const charge = await response.json();
       setChargeId(charge.id);
       return charge;
-      */
-      
-      // For demo purposes, we'll simulate a successful charge creation after a delay
-      return new Promise<CoinbaseCharge>((resolve) => {
-        setTimeout(() => {
-          const simulatedCharge = {
-            id: `CHARGE_${Math.random().toString(36).substring(2, 10)}`,
-            hosted_url: 'https://commerce.coinbase.com/charges/example',
-            code: Math.random().toString(36).substring(2, 10)
-          };
-          setChargeId(simulatedCharge.id);
-          resolve(simulatedCharge);
-        }, 1500);
-      });
     } catch (error) {
       console.error('Error creating charge:', error);
       setPaymentStep('error');
@@ -93,63 +73,81 @@ export const PaymentModal = ({ onClose }: PaymentModalProps) => {
     const selectedOption = minerOptions.find(option => option.price === selectedAmount);
     if (!selectedOption) return;
     
+    // For development/preview environments without the Netlify function setup yet
+    if (window.location.hostname === 'localhost' || window.location.hostname.includes('preview')) {
+      // Simulate the payment process in development
+      setPaymentStep('processing');
+      setTimeout(() => {
+        if (Math.random() > 0.1) {
+          setPaymentStep('success');
+          toast.success('Demo payment successful!');
+        } else {
+          setPaymentStep('error');
+          toast.error('Demo payment failed. Please try again.');
+        }
+      }, 2000);
+      return;
+    }
+    
     const charge = await createCharge(selectedOption.name, selectedOption.price);
     
     if (charge) {
-      // In a real implementation, open the Coinbase Commerce hosted page
-      // const coinbaseWindow = window.open(charge.hosted_url, '_blank');
-      // setCoinbaseWindow(coinbaseWindow);
+      // Open the Coinbase Commerce hosted page
+      const coinbaseWindow = window.open(charge.hosted_url, '_blank');
+      setCoinbaseWindow(coinbaseWindow);
       
-      // For demo purposes, we'll simulate the payment process
-      setTimeout(() => {
-        // Simulate successful payment 90% of the time
-        if (Math.random() > 0.1) {
-          setPaymentStep('success');
-          toast.success('Payment successful!');
-        } else {
-          setPaymentStep('error');
-          toast.error('Payment failed. Please try again.');
-        }
-      }, 2000);
+      // Start polling for payment status
+      checkPaymentStatus(charge.id);
     }
   };
   
   // Check payment status
-  useEffect(() => {
-    if (!chargeId || paymentStep !== 'processing') return;
-    
-    // In a real implementation, you would poll the Coinbase Commerce API to check the payment status
-    const checkPaymentStatus = async () => {
-      try {
-        /*
-        const response = await fetch(`YOUR_BACKEND_API/check-charge/${chargeId}`, {
+  const checkPaymentStatus = async (id: string) => {
+    try {
+      const checkStatus = async () => {
+        const response = await fetch(`/.netlify/functions/check-charge?id=${id}`, {
           headers: {
             'Content-Type': 'application/json',
           },
         });
         
+        if (!response.ok) {
+          throw new Error('Failed to check payment status');
+        }
+        
         const data = await response.json();
         
-        if (data.status === 'COMPLETED') {
+        if (data.status === 'COMPLETED' || data.status === 'RESOLVED') {
           setPaymentStep('success');
           if (coinbaseWindow) {
             coinbaseWindow.close();
           }
+          toast.success('Payment completed successfully!');
+          return true;
         } else if (data.status === 'CANCELED' || data.status === 'EXPIRED') {
           setPaymentStep('error');
+          toast.error('Payment was canceled or expired.');
+          return true;
         }
-        */
-      } catch (error) {
-        console.error('Error checking payment status:', error);
-      }
-    };
-    
-    // For a real implementation, you would use a polling mechanism
-    /*
-    const interval = setInterval(checkPaymentStatus, 2000);
-    return () => clearInterval(interval);
-    */
-  }, [chargeId, paymentStep, coinbaseWindow]);
+        
+        return false;
+      };
+      
+      // Poll every 3 seconds until we get a final status
+      const interval = setInterval(async () => {
+        const isDone = await checkStatus().catch(() => false);
+        if (isDone) {
+          clearInterval(interval);
+        }
+      }, 3000);
+      
+      // Clear interval after 10 minutes (maximum time to wait)
+      setTimeout(() => clearInterval(interval), 10 * 60 * 1000);
+      
+    } catch (error) {
+      console.error('Error checking payment status:', error);
+    }
+  };
   
   return (
     <motion.div
