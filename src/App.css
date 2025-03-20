@@ -37,6 +37,15 @@
   }
 }
 
+@keyframes gold-shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
@@ -52,4 +61,24 @@
 
 .read-the-docs {
   color: rgba(255, 255, 255, 0.5);
+}
+
+.gold-text {
+  background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 200% auto;
+  animation: gold-shimmer 3s linear infinite;
+}
+
+.crypto-glow {
+  box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.3);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #FF6700, #29B6F6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }

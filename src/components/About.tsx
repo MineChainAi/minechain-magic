@@ -15,7 +15,7 @@ const About = () => {
   return (
     <section id="about" className="py-24 relative">
       {/* Background accent */}
-      <div className="absolute inset-0 bg-gradient-radial from-blue-900/10 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-radial from-electric-orange/5 to-transparent pointer-events-none" />
       
       <div className="container mx-auto px-6">
         <div className="max-w-5xl mx-auto">
@@ -27,14 +27,14 @@ const About = () => {
           >
             <motion.span 
               variants={fadeIn} 
-              className="inline-block py-1 px-3 rounded-full text-sm font-medium bg-white/10 text-blue-300 mb-4"
+              className="inline-block py-1 px-3 rounded-full text-sm font-medium bg-white/10 text-neon-cyan mb-4"
             >
               About MineChain
             </motion.span>
             
             <motion.h2 
               variants={fadeIn}
-              className="text-3xl md:text-4xl font-bold mb-6 text-white"
+              className="text-3xl md:text-4xl font-bold mb-6 text-white text-gradient"
             >
               Web3 AI Mining Company
             </motion.h2>
@@ -54,9 +54,9 @@ const About = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="glass rounded-2xl p-8 flex flex-col items-center text-center"
+              className="glass rounded-2xl p-8 flex flex-col items-center text-center border border-white/5 hover:border-electric-orange/20 transition-all duration-300 hover:glow-orange"
             >
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-blue-600 to-blue-400 flex items-center justify-center mb-6">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-electric-orange to-electric-orange/70 flex items-center justify-center mb-6">
                 <Cpu className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-white">Virtual Miners</h3>
@@ -70,9 +70,9 @@ const About = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="glass rounded-2xl p-8 flex flex-col items-center text-center"
+              className="glass rounded-2xl p-8 flex flex-col items-center text-center border border-white/5 hover:border-electric-orange/20 transition-all duration-300 hover:glow-orange"
             >
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-indigo-600 to-indigo-400 flex items-center justify-center mb-6">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-neon-cyan to-neon-cyan/70 flex items-center justify-center mb-6">
                 <Server className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-white">AI Compute</h3>
@@ -86,9 +86,9 @@ const About = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="glass rounded-2xl p-8 flex flex-col items-center text-center"
+              className="glass rounded-2xl p-8 flex flex-col items-center text-center border border-white/5 hover:border-electric-orange/20 transition-all duration-300 hover:glow-orange"
             >
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-purple-600 to-purple-400 flex items-center justify-center mb-6">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-cosmic-purple to-cosmic-purple/70 flex items-center justify-center mb-6">
                 <Network className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-white">Web3 Rewards</h3>
