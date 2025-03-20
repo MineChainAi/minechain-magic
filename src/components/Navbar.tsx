@@ -4,10 +4,12 @@ import { Menu, X, FileText, Sparkle, Zap, Gem } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
+import { PaymentModal } from './PaymentModal';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   
   useEffect(() => {
     const handleScroll = () => {
@@ -78,6 +80,7 @@ const Navbar = () => {
           
           <Button
             className="bg-[#8B5CF6] hover:bg-[#7c4ef5] text-white border-none font-semibold px-5 py-2 shadow-lg shadow-cosmic-purple/30"
+            onClick={() => setIsPaymentModalOpen(true)}
           >
             <Gem className="mr-2 h-4 w-4" />
             MINE BLOCKS
@@ -133,6 +136,10 @@ const Navbar = () => {
             </a>
             <Button
               className="bg-[#8B5CF6] hover:bg-[#7c4ef5] text-white w-full border-none font-semibold shadow-lg shadow-cosmic-purple/30 flex items-center justify-center"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                setIsPaymentModalOpen(true);
+              }}
             >
               <Gem className="mr-2 h-4 w-4" />
               MINE BLOCKS
@@ -140,6 +147,9 @@ const Navbar = () => {
           </div>
         </div>
       )}
+
+      {/* Payment Modal */}
+      {isPaymentModalOpen && <PaymentModal onClose={() => setIsPaymentModalOpen(false)} />}
     </nav>
   );
 };
