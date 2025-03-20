@@ -1,0 +1,23 @@
+
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "functions": {
+    "api/create-charge.js": {
+      "memory": 1024,
+      "maxDuration": 10
+    },
+    "api/check-charge.js": {
+      "memory": 1024,
+      "maxDuration": 10
+    },
+    "api/coinbase-webhook.js": {
+      "memory": 1024,
+      "maxDuration": 10
+    }
+  }
+}
