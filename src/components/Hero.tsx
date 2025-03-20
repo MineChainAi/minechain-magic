@@ -139,36 +139,47 @@ const Hero = () => {
                 <rect x="0" y="0" width="100%" height="100%" fill="url(#circuit)" />
               </div>
               
-              {/* Server component */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-3/4 h-2/3 bg-dark-steel/60 rounded-lg border border-cosmic-purple/20 p-4 flex flex-col">
-                  {/* Server lights */}
-                  <div className="flex justify-between mb-3">
-                    <div className="w-2 h-2 rounded-full bg-neon-cyan animate-pulse"></div>
-                    <div className="w-2 h-2 rounded-full bg-electric-orange animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-                    <div className="w-2 h-2 rounded-full bg-cosmic-purple animate-pulse" style={{ animationDelay: '1s' }}></div>
+              {/* MineChain AI Miner Visualization */}
+              <div className="absolute inset-0 flex items-center justify-center p-4">
+                <div className="w-full h-full relative rounded-xl overflow-hidden border border-cosmic-purple/30 group">
+                  {/* The futuristic miner image */}
+                  <img 
+                    src="/lovable-uploads/dad08f3d-6bd9-4c95-8728-83fb420e7863.png" 
+                    alt="MineChain AI Miner" 
+                    className="w-full h-full object-cover rounded-xl transition-transform duration-700 group-hover:scale-105"
+                  />
+                  
+                  {/* Overlay with scanning effect */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-midnight-navy/90"></div>
+                  
+                  {/* Laser scan line effect */}
+                  <div className="absolute inset-0 overflow-hidden">
+                    <div className="w-full h-2 bg-electric-orange/60 blur-sm absolute top-0 animate-[scanline_4s_linear_infinite]"></div>
                   </div>
                   
-                  {/* Server slots */}
-                  <div className="flex-1 flex flex-col justify-around">
-                    {[...Array(4)].map((_, i) => (
-                      <div key={i} className="w-full h-6 bg-midnight-navy rounded border border-cosmic-purple/20 flex items-center px-2">
-                        <div className="w-full h-1 bg-gradient-to-r from-neon-cyan to-cosmic-purple rounded">
-                          <div 
-                            className="h-full bg-neon-cyan rounded animate-pulse" 
-                            style={{ 
-                              width: `${Math.random() * 100}%`,
-                              animationDuration: `${2 + Math.random() * 2}s`
-                            }}
-                          ></div>
-                        </div>
+                  {/* Status indicators */}
+                  <div className="absolute bottom-0 left-0 right-0 p-3 bg-midnight-navy/80 backdrop-blur-sm border-t border-cosmic-purple/30">
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-neon-cyan animate-pulse"></div>
+                        <p className="text-xs font-mono text-neon-cyan">ONLINE</p>
                       </div>
-                    ))}
+                      <p className="text-xs text-white/70 font-mono">MineChain FullStack-01</p>
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-electric-orange animate-pulse"></div>
+                        <p className="text-xs font-mono text-electric-orange">MINING</p>
+                      </div>
+                    </div>
                   </div>
                   
-                  {/* Server name */}
-                  <div className="mt-3 text-center">
-                    <p className="text-xs text-neon-cyan font-mono">MineChain FullStack-01</p>
+                  {/* HUD elements */}
+                  <div className="absolute top-3 right-3 flex flex-col items-end gap-2">
+                    <div className="px-2 py-1 bg-midnight-navy/70 backdrop-blur-sm rounded-md border border-neon-cyan/30">
+                      <p className="text-xs font-mono text-neon-cyan">GPU LOAD: 98.7%</p>
+                    </div>
+                    <div className="px-2 py-1 bg-midnight-navy/70 backdrop-blur-sm rounded-md border border-electric-orange/30">
+                      <p className="text-xs font-mono text-electric-orange">AI MODEL: ACTIVE</p>
+                    </div>
                   </div>
                 </div>
               </div>
