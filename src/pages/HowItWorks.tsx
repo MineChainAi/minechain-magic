@@ -1,3 +1,4 @@
+
 import { motion } from 'framer-motion';
 import { ArrowRight, CreditCard, Server, Coins } from 'lucide-react';
 import { useState } from 'react';
@@ -43,7 +44,7 @@ const HowItWorks = () => {
               transition={{ duration: 0.7 }}
               className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 gold-text"
             >
-              Own a Block. Mine AI. Earn USDC.
+              Claim a Block. Mine AI. Earn USDC.
             </motion.h1>
             
             <motion.p
@@ -76,7 +77,7 @@ const HowItWorks = () => {
       {/* How It Works Section - removing background image in HowItWorksSteps component */}
       <HowItWorksSteps />
       
-      {/* Why Own a Block Section - removing background image */}
+      {/* Why Claim a Block Section - removing background image */}
       <section className="py-20 bg-[#101520] relative overflow-hidden">
         
         <div className="container mx-auto px-6">
@@ -92,7 +93,7 @@ const HowItWorks = () => {
                 variants={fadeIn}
                 className="text-3xl md:text-4xl font-bold mb-8 gold-text"
               >
-                Why Own a Block?
+                Why Claim a Block?
               </motion.h2>
             </motion.div>
             
@@ -106,7 +107,7 @@ const HowItWorks = () => {
               >
                 <Server className="w-12 h-12 text-neon-cyan mb-6" />
                 <h3 className="text-xl font-bold mb-4">AI Compute Power, Tokenized</h3>
-                <p className="text-white/70">Own part of an AI mining network with full rights to your share of compute power.</p>
+                <p className="text-white/70">Claim part of an AI mining network with full rights to your share of compute power.</p>
               </motion.div>
               
               <motion.div 

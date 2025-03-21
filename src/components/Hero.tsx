@@ -167,7 +167,7 @@ const Hero = () => {
             <div className="p-6 rounded-xl glass border border-cosmic-purple/20">
               <Server size={32} className="text-neon-cyan mb-4" />
               <h3 className="text-xl font-semibold text-white mb-2">AI Compute Power</h3>
-              <p className="text-white/70">Own a share of enterprise-grade AI mining infrastructure.</p>
+              <p className="text-white/70">Claim a share of enterprise-grade AI mining infrastructure.</p>
             </div>
             
             <div className="p-6 rounded-xl glass border border-cosmic-purple/20">

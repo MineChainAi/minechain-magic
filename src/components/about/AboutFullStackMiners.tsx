@@ -52,7 +52,7 @@ const AboutFullStackMiners = () => {
               className="glass rounded-xl p-8 border border-white/5 hover:border-electric-orange/20 transition-all duration-300 hover:glow-orange"
             >
               <Cpu className="w-12 h-12 text-neon-cyan mb-6" />
-              <h3 className="text-xl font-bold mb-4">Own AI Compute Power</h3>
+              <h3 className="text-xl font-bold mb-4">Claim AI Compute Power</h3>
               <p className="text-white/70">Virtual miners backed by real AI infrastructure.</p>
             </motion.div>
             

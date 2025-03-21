@@ -14,7 +14,7 @@ export function HeroTitle() {
       </span>
       <span className="bg-clip-text text-transparent bg-gradient-to-br from-white via-white/90 to-white/70 block mb-2">
         <span className="relative inline-block">
-          Own 
+          Claim 
         </span>
         <span className="mx-2">a</span>
         <span className="relative inline-block">

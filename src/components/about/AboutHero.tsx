@@ -45,7 +45,7 @@ const AboutHero = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="text-base md:text-lg text-white/70 mb-12 max-w-3xl mx-auto leading-relaxed px-4 sm:px-6"
           >
-            MineChain operates full-stack AI miners, providing enterprise-grade compute power for AI workloads. Own a virtual miner, earn rewards, and be part of the decentralized AI revolution.
+            MineChain operates full-stack AI miners, providing enterprise-grade compute power for AI workloads. Claim a virtual miner, earn rewards, and be part of the decentralized AI revolution.
           </motion.p>
           
           {/* Feature Cards */}
@@ -70,7 +70,7 @@ const AboutHero = () => {
             >
               <Server className="w-10 h-10 text-neon-cyan mb-4 mx-auto" />
               <h3 className="font-bold text-xl mb-2">Tokenized Compute</h3>
-              <p className="text-white/70 text-sm">Own a share of our mining network and receive stable USDC rewards</p>
+              <p className="text-white/70 text-sm">Claim a share of our mining network and receive stable USDC rewards</p>
             </motion.div>
             
             <motion.div
