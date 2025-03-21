@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
@@ -74,12 +75,7 @@ const Hero = () => {
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                 </Button>
               </motion.div>
-              <Button
-                variant="outline"
-                className="px-8 py-6 text-lg font-medium bg-transparent border border-cosmic-purple/30 text-white hover:bg-cosmic-purple/10 rounded-md transition-all duration-300"
-              >
-                Learn More
-              </Button>
+              {/* Removed the "Learn More" button */}
             </motion.div>
 
             <motion.div
