@@ -32,7 +32,7 @@ const Hero = () => {
               >
                 <span className="inline-flex items-center">
                   <Gem className="h-8 w-8 md:h-10 md:w-10 mr-2 text-neon-cyan animate-pulse-slow" />
-                  Own a Block.
+                  Claim Your Block.
                 </span>
               </motion.span>
               
@@ -44,7 +44,7 @@ const Hero = () => {
               >
                 <span className="inline-flex items-center">
                   <Coins className="h-8 w-8 md:h-10 md:w-10 mr-2 text-electric-orange animate-pulse-slow" />
-                  Mine USDC.
+                  Proof in Workload.
                 </span>
               </motion.span>
               
@@ -56,7 +56,7 @@ const Hero = () => {
               >
                 <span className="inline-flex items-center">
                   <Sparkles className="h-8 w-8 md:h-10 md:w-10 mr-2 text-cosmic-purple animate-pulse-slow" />
-                  Proof of AI.
+                  Paid in USDC.
                 </span>
               </motion.span>
             </h1>
