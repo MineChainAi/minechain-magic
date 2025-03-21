@@ -45,7 +45,7 @@ const Navbar = () => {
           
           {/* Desktop Menu */}
           {!isMobile && (
-            <div className="flex items-center space-x-5">
+            <div className="hidden md:flex items-center space-x-5">
               <Link to="/about" className="relative group text-white/80 hover:text-white transition-colors font-medium">
                 <span className="flex items-center gap-1">
                   <Gem className="w-4 h-4 text-[#9b87f5]" />
