@@ -1,5 +1,5 @@
 
-import { Sparkles, Gem } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 export function HeroTitle() {
   return (
@@ -15,9 +15,6 @@ export function HeroTitle() {
       <span className="bg-clip-text text-transparent bg-gradient-to-br from-white via-white/90 to-white/70 block mb-2">
         <span className="relative inline-block">
           Own 
-          <span className="absolute -top-6 -right-6 text-neon-cyan text-sm">
-            <Gem className="h-5 w-5" />
-          </span>
         </span>
         <span className="mx-2">a</span>
         <span className="relative inline-block">
