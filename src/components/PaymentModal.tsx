@@ -10,6 +10,7 @@ import { toast } from 'sonner';
 interface PaymentModalProps {
   onClose: () => void;
   simulationMode?: boolean;
+  paymentCurrency?: 'USDC' | 'BTC' | 'ETH';
 }
 
 // Enumerated payment stages
@@ -24,14 +25,14 @@ enum PaymentStage {
 // Define the charge status type
 type ChargeStatus = 'NEW' | 'PENDING' | 'COMPLETED' | 'EXPIRED' | 'UNRESOLVED' | 'RESOLVED' | 'CANCELED' | 'CONFIRMED';
 
-export function PaymentModal({ onClose, simulationMode = false }: PaymentModalProps) {
+export function PaymentModal({ onClose, simulationMode = false, paymentCurrency = 'USDC' }: PaymentModalProps) {
   // State management
   const [stage, setStage] = useState<PaymentStage>(PaymentStage.INITIAL);
   const [chargeId, setChargeId] = useState<string | null>(null);
   const [chargeUrl, setChargeUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   
-  // Changed the type from number to NodeJS.Timeout | number | null to handle both setTimeout and setInterval
+  // Changed the type from number to NodeJS.Timeout | null to handle both setTimeout and setInterval
   const [pollInterval, setPollInterval] = useState<NodeJS.Timeout | null>(null);
   
   // Price settings - Updated to $495 to maintain consistency
@@ -72,6 +73,7 @@ export function PaymentModal({ onClose, simulationMode = false }: PaymentModalPr
           amount: usdPrice.toString(),
           currency: "USD"
         },
+        preferred_currency: paymentCurrency, // Add preferred currency option
         redirect_url: window.location.origin + "/dashboard",
         cancel_url: window.location.origin,
         customer_id: localStorage.getItem('userId') || 'anonymous'
@@ -207,7 +209,13 @@ export function PaymentModal({ onClose, simulationMode = false }: PaymentModalPr
                   <p className="text-white/70 mb-2">Total price:</p>
                   <div className="flex justify-between items-center">
                     <div className="text-2xl font-bold text-white">${usdPrice} USD</div>
-                    <div className="text-sm text-white/60">≈ {blockPrice} BTC</div>
+                    <div className="text-sm text-white/60">
+                      {paymentCurrency === 'USDC' ? 
+                        '≈ ' + usdPrice + ' USDC' : 
+                        paymentCurrency === 'BTC' ? 
+                          '≈ ' + blockPrice + ' BTC' : 
+                          '≈ ETH equivalent'}
+                    </div>
                   </div>
                 </div>
                 
@@ -233,7 +241,9 @@ export function PaymentModal({ onClose, simulationMode = false }: PaymentModalPr
                   onClick={initiatePayment}
                   className="w-full bg-electric-orange hover:bg-electric-orange/90 text-white crypto-glow"
                 >
-                  {simulationMode ? "Simulate Payment" : "Pay with Crypto"}
+                  {simulationMode ? 
+                    "Simulate Payment" : 
+                    `Pay with ${paymentCurrency === 'USDC' ? 'USDC' : paymentCurrency}`}
                 </Button>
                 
                 <p className="text-xs text-center text-white/50">
@@ -263,7 +273,7 @@ export function PaymentModal({ onClose, simulationMode = false }: PaymentModalPr
                   <p className="text-white/70 mt-2">
                     {simulationMode 
                       ? "This is a simulation. Click the button below to simulate payment completion." 
-                      : "Complete your purchase using the Coinbase payment window"}
+                      : `Complete your purchase using ${paymentCurrency} via Coinbase payment window`}
                   </p>
                 </div>
                 

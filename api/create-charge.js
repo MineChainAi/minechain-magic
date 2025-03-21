@@ -22,26 +22,36 @@ module.exports = async (req, res) => {
       name: data.name,
       description: data.description,
       pricing_type: data.pricing_type,
-      local_price: data.local_price
+      local_price: data.local_price,
+      preferred_currency: data.preferred_currency || 'USDC'
     });
+    
+    // Create charge request object
+    const chargeRequest = {
+      name: data.name,
+      description: data.description,
+      pricing_type: data.pricing_type,
+      local_price: data.local_price,
+      redirect_url: data.redirect_url,
+      cancel_url: data.cancel_url,
+      metadata: {
+        customer_id: data.customer_id || 'anonymous',
+        app_id: 'minechain-app',
+        timestamp: new Date().toISOString(),
+        environment: process.env.NODE_ENV || 'production',
+        preferred_currency: data.preferred_currency || 'USDC'
+      }
+    };
+    
+    // If a preferred currency is specified, add it to the request
+    if (data.preferred_currency) {
+      chargeRequest.preferred_currency = data.preferred_currency;
+    }
     
     // Create a charge with Coinbase Commerce API
     const response = await axios.post(
       'https://api.commerce.coinbase.com/charges',
-      {
-        name: data.name,
-        description: data.description,
-        pricing_type: data.pricing_type,
-        local_price: data.local_price,
-        redirect_url: data.redirect_url,
-        cancel_url: data.cancel_url,
-        metadata: {
-          customer_id: data.customer_id || 'anonymous',
-          app_id: 'minechain-app',
-          timestamp: new Date().toISOString(),
-          environment: process.env.NODE_ENV || 'production'
-        }
-      },
+      chargeRequest,
       {
         headers: {
           'X-CC-Api-Key': apiKey,

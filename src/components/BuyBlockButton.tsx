@@ -10,6 +10,7 @@ interface BuyBlockButtonProps {
   price?: number;
   showPrice?: boolean;
   buttonText?: string;
+  paymentCurrency?: 'USDC' | 'BTC' | 'ETH';
 }
 
 export function BuyBlockButton({ 
@@ -17,11 +18,16 @@ export function BuyBlockButton({
   className = '',
   price = 495,
   showPrice = false,
-  buttonText
+  buttonText,
+  paymentCurrency = 'USDC'
 }: BuyBlockButtonProps) {
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   
-  const defaultText = simulationMode ? 'Simulate Purchase' : showPrice ? `Mint a Block • $${price}` : 'Mint a Block';
+  const defaultText = simulationMode 
+    ? 'Simulate Purchase' 
+    : showPrice 
+      ? `Mint a Block • $${price}` 
+      : 'Mint a Block';
   const displayText = buttonText || defaultText;
 
   return (
@@ -38,6 +44,7 @@ export function BuyBlockButton({
         <PaymentModal 
           onClose={() => setShowPaymentModal(false)} 
           simulationMode={simulationMode}
+          paymentCurrency={paymentCurrency}
         />
       )}
     </>

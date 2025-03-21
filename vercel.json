@@ -21,6 +21,8 @@
     }
   },
   "env": {
-    "NODE_ENV": "production"
+    "NODE_ENV": "production",
+    "COINBASE_COMMERCE_API_KEY": "@coinbase_commerce_api_key",
+    "COINBASE_COMMERCE_WEBHOOK_SECRET": "@coinbase_commerce_webhook_secret"
   }
 }
