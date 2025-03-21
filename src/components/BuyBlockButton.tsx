@@ -32,13 +32,16 @@ export function BuyBlockButton({
   const displayText = buttonText || defaultText;
 
   const handlePaymentClick = () => {
-    // Check for Coinbase Commerce availability - this is just a mock check
-    const isCoinbaseAvailable = true;
+    // In a production environment, we would check for Coinbase Commerce API key
+    // This is a simplified check for demonstration purposes
+    const apiKeyExists = process.env.NODE_ENV === 'development' || 
+                         process.env.COINBASE_COMMERCE_API_KEY || 
+                         simulationMode;
     
-    if (!isCoinbaseAvailable && !simulationMode) {
+    if (!apiKeyExists && !simulationMode) {
       toast({
         title: "Payment provider unavailable",
-        description: "Coinbase Commerce is currently unavailable. Please try again later or use simulation mode.",
+        description: "Coinbase Commerce is not configured. Please set up your COINBASE_COMMERCE_API_KEY in Vercel or use simulation mode.",
         variant: "destructive"
       });
       return;
