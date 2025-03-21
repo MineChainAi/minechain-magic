@@ -1,5 +1,5 @@
 
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from '@/components/ui/toaster';
 import Index from './pages/Index';
 import Auth from './pages/Auth';
@@ -16,11 +16,15 @@ import { AuthProvider } from './contexts/AuthContext';
 import './App.css';
 
 function App() {
+  console.log('App component rendering');
+  
   return (
     <BrowserRouter>
       <AuthProvider>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/index" element={<Navigate to="/" replace />} />
+          <Route path="/home" element={<Navigate to="/" replace />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/create-account" element={<CreateAccount />} />
           <Route path="/about" element={<About />} />

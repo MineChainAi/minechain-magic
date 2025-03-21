@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X, Sparkle, Gem, Package, Clock, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { PaymentModal } from './PaymentModal';
 import { UserProfileButton } from './UserProfileButton';
 
@@ -11,6 +11,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+  const location = useLocation();
   
   useEffect(() => {
     const handleScroll = () => {
@@ -21,10 +22,15 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Add a console log to verify the component is updated
+  // Close mobile menu when route changes
   useEffect(() => {
-    console.log('Navbar component mounted - updated version 1.1');
-  }, []);
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  // Add debug info
+  useEffect(() => {
+    console.log('Navbar component mounted - current path:', location.pathname);
+  }, [location.pathname]);
 
   return (
     <nav 
@@ -83,6 +89,7 @@ const Navbar = () => {
           <button 
             className="text-white"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
