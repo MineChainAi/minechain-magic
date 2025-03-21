@@ -25,7 +25,7 @@ const Navbar = () => {
     <nav 
       className={cn(
         "fixed top-0 z-50 w-full transition-all duration-300",
-        isScrolled ? "py-3 bg-[#131516]/90 backdrop-blur-md border-b border-[#41474D]/20" : "py-6"
+        isScrolled ? "py-2 bg-[#131516]/90 backdrop-blur-md border-b border-[#41474D]/20" : "py-4"
       )}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
@@ -34,43 +34,43 @@ const Navbar = () => {
         </Link>
         
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
-          <Link to="/about" className="relative group text-white/80 hover:text-white transition-colors font-medium">
-            <span className="flex items-center gap-1.5">
-              <Gem className="w-4 h-4 text-[#9b87f5]" />
+        <div className="hidden md:flex items-center space-x-3 lg:space-x-5">
+          <Link to="/about" className="relative group text-white/80 hover:text-white transition-colors font-medium text-sm lg:text-base">
+            <span className="flex items-center gap-1">
+              <Gem className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-[#9b87f5]" />
               <span>Full-Stack Miners™</span>
             </span>
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#9b87f5] to-[#D946EF] group-hover:w-full transition-all duration-300"></span>
           </Link>
           
-          <Link to="/how-it-works" className="relative group text-white/80 hover:text-white transition-colors font-medium">
-            <span className="flex items-center gap-1.5">
-              <Sparkle className="w-4 h-4 text-[#D946EF]" />
+          <Link to="/how-it-works" className="relative group text-white/80 hover:text-white transition-colors font-medium text-sm lg:text-base">
+            <span className="flex items-center gap-1">
+              <Sparkle className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-[#D946EF]" />
               <span>How It Works</span>
             </span>
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#D946EF] to-[#F97316] group-hover:w-full transition-all duration-300"></span>
           </Link>
           
-          <Link to="/block-cycle" className="relative group text-white/80 hover:text-white transition-colors font-medium">
-            <span className="flex items-center gap-1.5">
-              <Clock className="w-4 h-4 text-[#F97316]" />
-              <span>The Block Cycle</span>
+          <Link to="/block-cycle" className="relative group text-white/80 hover:text-white transition-colors font-medium text-sm lg:text-base">
+            <span className="flex items-center gap-1">
+              <Clock className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-[#F97316]" />
+              <span>Block Cycle</span>
             </span>
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#F97316] to-[#0EA5E9] group-hover:w-full transition-all duration-300"></span>
           </Link>
           
-          <Link to="/roadmap" className="relative group text-white/80 hover:text-white transition-colors font-medium">
-            <span className="flex items-center gap-1.5">
-              <Zap className="w-4 h-4 text-[#F97316]" />
+          <Link to="/roadmap" className="relative group text-white/80 hover:text-white transition-colors font-medium text-sm lg:text-base">
+            <span className="flex items-center gap-1">
+              <Zap className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-[#F97316]" />
               <span>Roadmap</span>
             </span>
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#F97316] to-[#0EA5E9] group-hover:w-full transition-all duration-300"></span>
           </Link>
           
-          <Link to="/block" className="relative group text-white/80 hover:text-white transition-colors font-medium">
-            <span className="flex items-center gap-1.5">
-              <Package className="w-4 h-4 text-[#0EA5E9]" />
-              <span>Stable-23 Block</span>
+          <Link to="/block" className="relative group text-white/80 hover:text-white transition-colors font-medium text-sm lg:text-base">
+            <span className="flex items-center gap-1">
+              <Package className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-[#0EA5E9]" />
+              <span>Stable-23</span>
             </span>
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0EA5E9] to-[#9b87f5] group-hover:w-full transition-all duration-300"></span>
           </Link>
@@ -79,16 +79,18 @@ const Navbar = () => {
             href="/whitepaper.pdf" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="relative group text-white/80 hover:text-white transition-colors font-medium flex items-center"
+            className="relative group text-white/80 hover:text-white transition-colors font-medium text-sm lg:text-base"
           >
-            <span className="flex items-center gap-1.5">
-              <FileText className="w-4 h-4 text-[#0EA5E9]" />
+            <span className="flex items-center gap-1">
+              <FileText className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-[#0EA5E9]" />
               <span>Whitepaper</span>
             </span>
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0EA5E9] to-[#9b87f5] group-hover:w-full transition-all duration-300"></span>
           </a>
           
-          <UserProfileButton />
+          <div className="ml-2">
+            <UserProfileButton />
+          </div>
         </div>
         
         {/* Mobile Menu Button */}
@@ -129,7 +131,7 @@ const Navbar = () => {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <Clock className="w-4 h-4 text-[#F97316]" />
-              The Block Cycle
+              Block Cycle
             </Link>
             <Link 
               to="/roadmap" 

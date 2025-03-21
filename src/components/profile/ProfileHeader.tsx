@@ -26,8 +26,10 @@ export const ProfileHeader = ({
         onAvatarChange={onAvatarChange}
       />
       
-      <h1 className="text-2xl font-bold">Your Profile</h1>
-      <p className="text-white/70 text-sm">{email}</p>
+      <div className="text-center">
+        <h1 className="text-2xl font-bold">Your Profile</h1>
+        <p className="text-white/70 text-sm mt-1">{email}</p>
+      </div>
     </div>
   );
 };
