@@ -35,7 +35,7 @@ const AboutHero = () => {
               Proof of AI
             </span>
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-cosmic-purple via-white to-electric-orange text-3xl md:text-4xl lg:text-5xl">
-              with Full-Stack Miners™
+              Buy Full-Stack Miners™
             </span>
           </motion.h1>
           
