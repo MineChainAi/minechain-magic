@@ -24,7 +24,7 @@ const Hero = () => {
             className="max-w-2xl"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/80 leading-tight">
-              Own a Block. Mine AI. Earn Rewards.
+              Own a Block. Mine AI. Proof of AI.
             </h1>
 
             <p className="text-lg md:text-xl text-white/70 mb-8">
