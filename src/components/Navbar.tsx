@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Menu, X, FileText, Sparkle, Zap, Gem } from 'lucide-react';
+import { Menu, X, FileText, Sparkle, Zap, Gem, Package } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
@@ -66,6 +66,14 @@ const Navbar = () => {
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#F97316] to-[#0EA5E9] group-hover:w-full transition-all duration-300"></span>
           </Link>
           
+          <Link to="/block" className="relative group text-white/80 hover:text-white transition-colors font-medium">
+            <span className="flex items-center gap-1.5">
+              <Package className="w-4 h-4 text-[#0EA5E9]" />
+              <span>Stable-23 Block</span>
+            </span>
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0EA5E9] to-[#9b87f5] group-hover:w-full transition-all duration-300"></span>
+          </Link>
+          
           <a 
             href="/whitepaper.pdf" 
             target="_blank" 
@@ -129,6 +137,14 @@ const Navbar = () => {
             >
               <Zap className="w-4 h-4 text-[#F97316]" />
               Roadmap
+            </Link>
+            <Link 
+              to="/block" 
+              className="text-white/80 hover:text-white transition-colors flex items-center gap-2"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <Package className="w-4 h-4 text-[#0EA5E9]" />
+              Stable-23 Block
             </Link>
             <a 
               href="/whitepaper.pdf" 

@@ -8,6 +8,7 @@ import HowItWorks from './pages/HowItWorks';
 import Roadmap from './pages/Roadmap';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
+import Block from './pages/Block';
 import NotFound from './pages/NotFound';
 import { AuthProvider } from './contexts/AuthContext';
 import './App.css';
@@ -24,6 +25,7 @@ function App() {
           <Route path="/roadmap" element={<Roadmap />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/block" element={<Block />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Toaster />
