@@ -17,18 +17,19 @@ export function UserProfileButton() {
   const { user, signOut } = useAuth();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   
+  // If no user is logged in, show the Sign In button
   if (!user) {
     return (
       <Button
         className="bg-cosmic-purple hover:bg-cosmic-purple/90"
-        asChild
         size="sm"
       >
-        <Link to="/auth">Sign In</Link>
+        <Link to="/auth" className="text-white">Sign In</Link>
       </Button>
     );
   }
 
+  // User is logged in, show avatar and dropdown
   const userInitials = user.email 
     ? user.email.substring(0, 2).toUpperCase()
     : 'U';

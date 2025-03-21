@@ -44,43 +44,41 @@ const Navbar = () => {
           </Link>
           
           {/* Desktop Menu */}
-          {!isMobile && (
-            <div className="hidden md:flex items-center space-x-5">
-              <Link to="/about" className="relative group text-white/80 hover:text-white transition-colors font-medium">
-                <span className="flex items-center gap-1">
-                  <Gem className="w-4 h-4 text-[#9b87f5]" />
-                  <span>Full-Stack Miners™</span>
-                </span>
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#9b87f5] to-[#D946EF] group-hover:w-full transition-all duration-300"></span>
-              </Link>
-              
-              <Link to="/how-it-works" className="relative group text-white/80 hover:text-white transition-colors font-medium">
-                <span className="flex items-center gap-1">
-                  <Sparkle className="w-4 h-4 text-[#D946EF]" />
-                  <span>How It Works</span>
-                </span>
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#D946EF] to-[#F97316] group-hover:w-full transition-all duration-300"></span>
-              </Link>
-              
-              <Link to="/block-cycle" className="relative group text-white/80 hover:text-white transition-colors font-medium">
-                <span className="flex items-center gap-1">
-                  <Clock className="w-4 h-4 text-[#F97316]" />
-                  <span>Block Cycle</span>
-                </span>
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#F97316] to-[#0EA5E9] group-hover:w-full transition-all duration-300"></span>
-              </Link>
-              
-              <Link to="/block" className="relative group text-white/80 hover:text-white transition-colors font-medium">
-                <span className="flex items-center gap-1">
-                  <Package className="w-4 h-4 text-[#0EA5E9]" />
-                  <span>Stable-23</span>
-                </span>
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0EA5E9] to-[#9b87f5] group-hover:w-full transition-all duration-300"></span>
-              </Link>
-            </div>
-          )}
+          <div className="hidden md:flex items-center space-x-5">
+            <Link to="/about" className="relative group text-white/80 hover:text-white transition-colors font-medium">
+              <span className="flex items-center gap-1">
+                <Gem className="w-4 h-4 text-[#9b87f5]" />
+                <span>Full-Stack Miners™</span>
+              </span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#9b87f5] to-[#D946EF] group-hover:w-full transition-all duration-300"></span>
+            </Link>
+            
+            <Link to="/how-it-works" className="relative group text-white/80 hover:text-white transition-colors font-medium">
+              <span className="flex items-center gap-1">
+                <Sparkle className="w-4 h-4 text-[#D946EF]" />
+                <span>How It Works</span>
+              </span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#D946EF] to-[#F97316] group-hover:w-full transition-all duration-300"></span>
+            </Link>
+            
+            <Link to="/block-cycle" className="relative group text-white/80 hover:text-white transition-colors font-medium">
+              <span className="flex items-center gap-1">
+                <Clock className="w-4 h-4 text-[#F97316]" />
+                <span>Block Cycle</span>
+              </span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#F97316] to-[#0EA5E9] group-hover:w-full transition-all duration-300"></span>
+            </Link>
+            
+            <Link to="/block" className="relative group text-white/80 hover:text-white transition-colors font-medium">
+              <span className="flex items-center gap-1">
+                <Package className="w-4 h-4 text-[#0EA5E9]" />
+                <span>Stable-23</span>
+              </span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0EA5E9] to-[#9b87f5] group-hover:w-full transition-all duration-300"></span>
+            </Link>
+          </div>
           
-          {/* Right Side - Auth Button or User Profile */}
+          {/* User Profile / Sign In Button - Always visible */}
           <div className="flex items-center">
             <UserProfileButton />
             
