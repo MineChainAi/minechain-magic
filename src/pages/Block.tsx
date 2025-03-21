@@ -15,7 +15,6 @@ export default function Block() {
   const [showSpecs, setShowSpecs] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   
-  // Animation variants for staggered animations
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -40,7 +39,6 @@ export default function Block() {
       <Navbar />
       
       <main className="container mx-auto px-4 pt-28 pb-16">
-        {/* Hero Section */}
         <section className="mb-16">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -48,7 +46,6 @@ export default function Block() {
             transition={{ duration: 0.7 }}
             className="flex flex-col md:flex-row items-center gap-8 md:gap-12"
           >
-            {/* NFT Image */}
             <div className="w-full md:w-1/2 mb-8 md:mb-0">
               <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -72,7 +69,6 @@ export default function Block() {
               </motion.div>
             </div>
             
-            {/* Text Content */}
             <div className="w-full md:w-1/2 text-center md:text-left max-w-2xl">
               <div className="flex justify-center md:justify-start mb-6">
                 <div className="relative w-16 h-16 bg-gradient-to-br from-purple-500 via-indigo-500 to-blue-500 rounded-2xl p-0.5 shadow-lg shadow-purple-500/20">
@@ -110,7 +106,6 @@ export default function Block() {
           </motion.div>
         </section>
         
-        {/* Block Description */}
         <motion.section
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -200,7 +195,6 @@ export default function Block() {
           </div>
         </motion.section>
         
-        {/* Block Features */}
         <section id="features" className="mb-16">
           <div className="text-center mb-12">
             <motion.h2 
@@ -256,7 +250,6 @@ export default function Block() {
           </motion.div>
         </section>
         
-        {/* Exclusive Benefits */}
         <section className="mb-16">
           <div className="mb-8">
             <motion.div 
@@ -380,7 +373,6 @@ export default function Block() {
           )}
         </section>
         
-        {/* NFT Showcase */}
         <motion.section 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -428,7 +420,7 @@ export default function Block() {
             <div className="rounded-xl overflow-hidden border border-purple-500/20 shadow-lg shadow-purple-900/20">
               <AspectRatio ratio={16/9}>
                 <img 
-                  src="/lovable-uploads/8eb19d76-390b-442e-a54a-09f26cc6dd40.png" 
+                  src="/lovable-uploads/4d42f032-108d-4b78-89ba-aa44190c6c01.png" 
                   alt="MineChain AI Mining Hardware" 
                   className="w-full h-full object-cover"
                 />
@@ -437,7 +429,6 @@ export default function Block() {
           </div>
         </motion.section>
         
-        {/* Call to Action */}
         <motion.section 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -459,7 +450,6 @@ export default function Block() {
       
       <Footer />
       
-      {/* Payment Modal */}
       {showPaymentModal && (
         <PaymentModal 
           onClose={() => setShowPaymentModal(false)}
@@ -469,7 +459,6 @@ export default function Block() {
   );
 }
 
-// Custom coin icon component
 function Check(props: any) {
   return (
     <svg
@@ -489,7 +478,6 @@ function Check(props: any) {
   );
 }
 
-// Custom coin icon component
 function CoinIcon(props: any) {
   return (
     <svg
