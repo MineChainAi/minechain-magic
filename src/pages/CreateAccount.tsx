@@ -5,492 +5,459 @@ import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { 
+  Card, 
+  CardHeader, 
+  CardTitle, 
+  CardDescription, 
+  CardContent,
+  CardFooter 
+} from '@/components/ui/card';
 import { toast } from '@/hooks/use-toast';
 import { motion } from 'framer-motion';
-import { Loader2, ArrowRight, Check } from 'lucide-react';
-import { 
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage 
-} from '@/components/ui/form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import * as z from 'zod';
-import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ArrowLeft, ArrowRight, Check, Loader2 } from 'lucide-react';
 
-// Form validation schema
-const formSchema = z.object({
-  email: z.string().email({ message: "Please enter a valid email address" }),
-  password: z.string()
-    .min(8, { message: "Password must be at least 8 characters" })
-    .regex(/[A-Z]/, { message: "Password must contain at least one uppercase letter" })
-    .regex(/[0-9]/, { message: "Password must contain at least one number" }),
-  fullName: z.string().min(2, { message: "Full name must be at least 2 characters" }),
-  username: z.string()
-    .min(3, { message: "Username must be at least 3 characters" })
-    .regex(/^[a-zA-Z0-9_]+$/, { message: "Username can only contain letters, numbers and underscores" }),
-  companyName: z.string().optional(),
-  companySize: z.string().optional(),
-  interests: z.string().optional(),
-});
-
-type FormValues = z.infer<typeof formSchema>;
-
-// Account creation steps
-enum CreationStep {
-  ACCOUNT_INFO = 0,
-  PROFILE_INFO = 1,
-  COMPANY_INFO = 2,
-  CREATING = 3,
-  COMPLETE = 4,
-}
-
-const stepLabels = [
-  "Account Information",
-  "Profile Setup",
-  "Company Details",
-  "Creating Account",
-  "Complete"
-];
+type Step = 'account' | 'wallets' | 'contact' | 'complete';
 
 const CreateAccount = () => {
-  const [step, setStep] = useState<CreationStep>(CreationStep.ACCOUNT_INFO);
   const navigate = useNavigate();
+  
+  // Form state
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [fullName, setFullName] = useState('');
+  const [username, setUsername] = useState('');
+  const [companyName, setCompanyName] = useState('');
+  const [usdcAddress, setUsdcAddress] = useState('');
+  const [btcAddress, setBtcAddress] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  
+  // UI state
+  const [currentStep, setCurrentStep] = useState<Step>('account');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      email: '',
-      password: '',
-      fullName: '',
-      username: '',
-      companyName: '',
-      companySize: '',
-      interests: '',
-    },
-  });
+  const resetError = () => setError(null);
 
-  const onSubmit = async (values: FormValues) => {
+  const handleSignUp = async () => {
+    setLoading(true);
+    setError(null);
+    
     try {
-      setStep(CreationStep.CREATING);
-      
-      // Sign up the user with Supabase
-      const { error: signUpError } = await supabase.auth.signUp({
-        email: values.email,
-        password: values.password,
+      // Create the user
+      const { error: signUpError, data } = await supabase.auth.signUp({
+        email,
+        password,
         options: {
           data: {
-            full_name: values.fullName,
-            username: values.username,
-            company_name: values.companyName,
-            company_size: values.companySize,
-            interests: values.interests,
+            full_name: fullName,
           },
         },
       });
-
+      
       if (signUpError) throw signUpError;
       
-      // Success - account created
-      setStep(CreationStep.COMPLETE);
+      // Update additional profile information
+      if (data.user) {
+        const { error: profileError } = await supabase
+          .from('profiles')
+          .update({
+            username,
+            full_name: fullName,
+            usdc_address: usdcAddress,
+            btc_address: btcAddress,
+            phone_number: phoneNumber,
+            ...(companyName ? { company_name: companyName } : {})
+          })
+          .eq('id', data.user.id);
+        
+        if (profileError) throw profileError;
+      }
       
       toast({
-        title: "Account created successfully",
-        description: "Please check your email to confirm your account.",
+        title: "Account created successfully!",
+        description: "Welcome to MineChain. You can now sign in.",
       });
       
+      setCurrentStep('complete');
     } catch (error: any) {
-      setStep(CreationStep.ACCOUNT_INFO);
+      console.error('Error creating account:', error);
+      setError(error.message || 'An error occurred while creating your account');
       toast({
         title: "Error creating account",
         description: error.message || "An unexpected error occurred",
         variant: "destructive",
       });
+    } finally {
+      setLoading(false);
     }
   };
 
-  const nextStep = () => {
-    let canProceed = false;
+  const validateWalletForm = () => {
+    resetError();
     
-    // Validate current step fields
-    if (step === CreationStep.ACCOUNT_INFO) {
-      const emailValid = form.getFieldState('email').invalid === false;
-      const passwordValid = form.getFieldState('password').invalid === false;
-      canProceed = emailValid && passwordValid;
-    } else if (step === CreationStep.PROFILE_INFO) {
-      const fullNameValid = form.getFieldState('fullName').invalid === false;
-      const usernameValid = form.getFieldState('username').invalid === false;
-      canProceed = fullNameValid && usernameValid;
-    } else {
-      canProceed = true; // Company info is optional
+    // Optional validation for wallet addresses
+    if (usdcAddress && !usdcAddress.match(/^(0x)?[0-9a-fA-F]{40}$/)) {
+      setError('Please enter a valid USDC wallet address (ERC20 or Base)');
+      return false;
     }
     
-    if (canProceed) {
-      setStep(prev => prev + 1);
-    } else {
-      // Trigger validation for all fields in the current step
-      if (step === CreationStep.ACCOUNT_INFO) {
-        form.trigger(['email', 'password']);
-      } else if (step === CreationStep.PROFILE_INFO) {
-        form.trigger(['fullName', 'username']);
-      }
+    if (btcAddress && !btcAddress.match(/^(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39}$/)) {
+      setError('Please enter a valid BTC wallet address');
+      return false;
+    }
+    
+    return true;
+  };
+
+  const validateContactForm = () => {
+    resetError();
+    
+    // Phone validation
+    if (phoneNumber && !phoneNumber.match(/^\+?[0-9\s\-()]{7,20}$/)) {
+      setError('Please enter a valid phone number');
+      return false;
+    }
+    
+    return true;
+  };
+
+  const validateAccountForm = () => {
+    resetError();
+
+    if (!email) {
+      setError('Email is required');
+      return false;
+    }
+    
+    if (!password) {
+      setError('Password is required');
+      return false;
+    }
+    
+    if (password.length < 8) {
+      setError('Password must be at least 8 characters');
+      return false;
+    }
+    
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      return false;
+    }
+    
+    if (!fullName) {
+      setError('Full name is required');
+      return false;
+    }
+    
+    if (!username) {
+      setError('Username is required');
+      return false;
+    }
+    
+    return true;
+  };
+
+  const handleNext = () => {
+    if (currentStep === 'account') {
+      if (validateAccountForm()) setCurrentStep('wallets');
+    } else if (currentStep === 'wallets') {
+      if (validateWalletForm()) setCurrentStep('contact');
+    } else if (currentStep === 'contact') {
+      if (validateContactForm()) handleSignUp();
     }
   };
 
-  const prevStep = () => {
-    setStep(prev => prev - 1);
+  const handleBack = () => {
+    if (currentStep === 'wallets') setCurrentStep('account');
+    else if (currentStep === 'contact') setCurrentStep('wallets');
   };
 
-  const goToLogin = () => {
-    navigate('/auth');
-  };
-
-  const goToDashboard = () => {
-    navigate('/');
-  };
-
-  // Render progress indicator
-  const renderProgress = () => (
-    <div className="flex justify-between mb-8 px-4">
-      {stepLabels.slice(0, -1).map((label, index) => (
+  const StepIndicator = () => (
+    <div className="flex justify-center mb-6">
+      <div className="flex items-center space-x-2">
         <div 
-          key={index} 
-          className="flex flex-col items-center"
-        >
-          <div 
-            className={`w-8 h-8 rounded-full flex items-center justify-center ${
-              index < step 
-                ? 'bg-cosmic-purple text-white' 
-                : index === step 
-                  ? 'bg-electric-orange text-white' 
-                  : 'bg-gray-700 text-gray-300'
-            }`}
-          >
-            {index < step ? <Check size={16} /> : index + 1}
-          </div>
-          <span 
-            className={`text-xs mt-2 text-center max-w-[80px] ${
-              index === step ? 'text-white' : 'text-white/50'
-            }`}
-          >
-            {label}
-          </span>
-        </div>
-      ))}
+          className={`h-3 w-3 rounded-full ${
+            currentStep === 'account' 
+              ? 'bg-cosmic-purple' 
+              : 'bg-white'
+          }`}
+        />
+        <div className="h-px w-8 bg-white/30" />
+        <div 
+          className={`h-3 w-3 rounded-full ${
+            currentStep === 'wallets' 
+              ? 'bg-cosmic-purple' 
+              : currentStep === 'contact' || currentStep === 'complete' 
+                ? 'bg-white' 
+                : 'bg-white/30'
+          }`}
+        />
+        <div className="h-px w-8 bg-white/30" />
+        <div 
+          className={`h-3 w-3 rounded-full ${
+            currentStep === 'contact' 
+              ? 'bg-cosmic-purple' 
+              : currentStep === 'complete' 
+                ? 'bg-white' 
+                : 'bg-white/30'
+          }`}
+        />
+        <div className="h-px w-8 bg-white/30" />
+        <div 
+          className={`h-3 w-3 rounded-full ${
+            currentStep === 'complete' 
+              ? 'bg-cosmic-purple' 
+              : 'bg-white/30'
+          }`}
+        />
+      </div>
     </div>
   );
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       className="min-h-screen pt-28 pb-16 flex items-center justify-center"
     >
-      <div className="w-full max-w-2xl p-8 space-y-8 bg-midnight-navy/80 backdrop-blur-sm rounded-xl border border-cosmic-purple/20">
-        {step < CreationStep.CREATING && (
-          <>
-            <div className="text-center mb-6">
-              <h2 className="text-2xl font-bold mb-2">
-                Create Your Account
-              </h2>
+      <Card className="w-full max-w-md bg-midnight-navy/80 backdrop-blur-sm border border-cosmic-purple/20">
+        <CardHeader>
+          <CardTitle className="text-2xl font-bold text-center">
+            {currentStep === 'account' && 'Create Your Account'}
+            {currentStep === 'wallets' && 'Wallet Addresses'}
+            {currentStep === 'contact' && 'Contact Information'}
+            {currentStep === 'complete' && 'Account Created!'}
+          </CardTitle>
+          <CardDescription className="text-center">
+            {currentStep === 'account' && 'Enter your account information to get started'}
+            {currentStep === 'wallets' && 'Add wallet addresses to receive rewards and bonus drops'}
+            {currentStep === 'contact' && 'Add your contact information'}
+            {currentStep === 'complete' && 'Your account has been created successfully'}
+          </CardDescription>
+          <StepIndicator />
+        </CardHeader>
+        
+        <CardContent className="space-y-4">
+          {error && (
+            <div className="p-3 mb-4 text-sm rounded-md bg-red-900/30 border border-red-700/50 text-red-200">
+              {error}
+            </div>
+          )}
+          
+          {currentStep === 'account' && (
+            <>
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@example.com"
+                  required
+                  className="bg-background/50 border-cosmic-purple/30"
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  required
+                  className="bg-background/50 border-cosmic-purple/30"
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="confirmPassword">Confirm Password</Label>
+                <Input
+                  id="confirmPassword"
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  placeholder="••••••••"
+                  required
+                  className="bg-background/50 border-cosmic-purple/30"
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="fullName">Full Name</Label>
+                <Input
+                  id="fullName"
+                  type="text"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  placeholder="John Doe"
+                  required
+                  className="bg-background/50 border-cosmic-purple/30"
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="username">Username</Label>
+                <Input
+                  id="username"
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  placeholder="johndoe"
+                  required
+                  className="bg-background/50 border-cosmic-purple/30"
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="companyName">Company Name (Optional)</Label>
+                <Input
+                  id="companyName"
+                  type="text"
+                  value={companyName}
+                  onChange={(e) => setCompanyName(e.target.value)}
+                  placeholder="Acme Inc."
+                  className="bg-background/50 border-cosmic-purple/30"
+                />
+              </div>
+            </>
+          )}
+          
+          {currentStep === 'wallets' && (
+            <>
+              <div className="p-3 mb-2 text-sm rounded-md bg-electric-orange/10 border border-electric-orange/20">
+                Add your wallet addresses to receive rewards (USDC) and bonus drops (BTC)
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="usdcAddress">USDC Receive Address (ERC20 or Base)</Label>
+                <Input
+                  id="usdcAddress"
+                  type="text"
+                  value={usdcAddress}
+                  onChange={(e) => setUsdcAddress(e.target.value)}
+                  placeholder="0x..."
+                  className="bg-background/50 border-cosmic-purple/30"
+                />
+                <p className="text-xs text-white/50">
+                  For receiving USDC rewards
+                </p>
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="btcAddress">BTC Receive Address</Label>
+                <Input
+                  id="btcAddress"
+                  type="text"
+                  value={btcAddress}
+                  onChange={(e) => setBtcAddress(e.target.value)}
+                  placeholder="bc1..."
+                  className="bg-background/50 border-cosmic-purple/30"
+                />
+                <p className="text-xs text-white/50">
+                  For receiving BTC bonus drops
+                </p>
+              </div>
+            </>
+          )}
+          
+          {currentStep === 'contact' && (
+            <>
+              <div className="p-3 mb-2 text-sm rounded-md bg-neon-cyan/10 border border-neon-cyan/20">
+                Add your contact information for important updates
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={email}
+                  disabled
+                  className="bg-background/20 border-cosmic-purple/30"
+                />
+                <p className="text-xs text-white/50">
+                  Already provided in previous step
+                </p>
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="phoneNumber">Phone Number</Label>
+                <Input
+                  id="phoneNumber"
+                  type="tel"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  placeholder="+1 (555) 123-4567"
+                  className="bg-background/50 border-cosmic-purple/30"
+                />
+                <p className="text-xs text-white/50">
+                  For important security alerts and updates
+                </p>
+              </div>
+            </>
+          )}
+          
+          {currentStep === 'complete' && (
+            <div className="text-center py-6 space-y-4">
+              <div className="mx-auto h-16 w-16 flex items-center justify-center rounded-full bg-cosmic-purple/20 border border-cosmic-purple">
+                <Check className="h-8 w-8 text-cosmic-purple" />
+              </div>
+              <h3 className="text-xl font-medium text-white">Welcome to MineChain!</h3>
               <p className="text-white/70">
-                Join MineChain and claim your AI mining block
+                Your account has been created. You can now sign in and start claiming compute power on the MineChain network.
               </p>
             </div>
-            
-            {renderProgress()}
-          </>
-        )}
-
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            {/* Step 1: Account Information */}
-            {step === CreationStep.ACCOUNT_INFO && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="space-y-4"
-              >
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input 
-                          {...field} 
-                          placeholder="you@example.com" 
-                          className="bg-background/50 border-cosmic-purple/30"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Password</FormLabel>
-                      <FormControl>
-                        <Input 
-                          {...field} 
-                          type="password" 
-                          placeholder="••••••••" 
-                          className="bg-background/50 border-cosmic-purple/30"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                      <p className="text-xs text-white/50 mt-1">
-                        Must be at least 8 characters with one uppercase letter and one number
-                      </p>
-                    </FormItem>
-                  )}
-                />
-              </motion.div>
-            )}
-
-            {/* Step 2: Profile Information */}
-            {step === CreationStep.PROFILE_INFO && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="space-y-4"
-              >
-                <FormField
-                  control={form.control}
-                  name="fullName"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Full Name</FormLabel>
-                      <FormControl>
-                        <Input 
-                          {...field} 
-                          placeholder="John Doe" 
-                          className="bg-background/50 border-cosmic-purple/30"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <FormField
-                  control={form.control}
-                  name="username"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Username</FormLabel>
-                      <FormControl>
-                        <Input 
-                          {...field} 
-                          placeholder="johndoe" 
-                          className="bg-background/50 border-cosmic-purple/30"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                      <p className="text-xs text-white/50 mt-1">
-                        Choose a unique username with only letters, numbers and underscores
-                      </p>
-                    </FormItem>
-                  )}
-                />
-              </motion.div>
-            )}
-
-            {/* Step 3: Company Information */}
-            {step === CreationStep.COMPANY_INFO && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="space-y-4"
-              >
-                <FormField
-                  control={form.control}
-                  name="companyName"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Company Name (Optional)</FormLabel>
-                      <FormControl>
-                        <Input 
-                          {...field} 
-                          placeholder="Acme Inc" 
-                          className="bg-background/50 border-cosmic-purple/30"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <FormField
-                  control={form.control}
-                  name="companySize"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Company Size (Optional)</FormLabel>
-                      <Select 
-                        onValueChange={field.onChange} 
-                        defaultValue={field.value}
-                      >
-                        <FormControl>
-                          <SelectTrigger className="bg-background/50 border-cosmic-purple/30">
-                            <SelectValue placeholder="Select company size" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="1-10">1-10 employees</SelectItem>
-                          <SelectItem value="11-50">11-50 employees</SelectItem>
-                          <SelectItem value="51-200">51-200 employees</SelectItem>
-                          <SelectItem value="201-1000">201-1000 employees</SelectItem>
-                          <SelectItem value="1000+">1000+ employees</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <FormField
-                  control={form.control}
-                  name="interests"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>What are you interested in? (Optional)</FormLabel>
-                      <FormControl>
-                        <Textarea 
-                          {...field} 
-                          placeholder="Tell us what you're looking to achieve with AI mining blocks..." 
-                          className="bg-background/50 border-cosmic-purple/30 min-h-[100px]"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </motion.div>
-            )}
-
-            {/* Creating Account */}
-            {step === CreationStep.CREATING && (
-              <div className="py-12 flex flex-col items-center justify-center">
-                <Loader2 className="w-12 h-12 text-electric-orange animate-spin mb-6" />
-                <h3 className="text-xl font-bold mb-2">Creating Your Account</h3>
-                <p className="text-white/70 text-center">
-                  Please wait while we set up your account...
-                </p>
-              </div>
-            )}
-
-            {/* Account Created */}
-            {step === CreationStep.COMPLETE && (
-              <div className="py-12 flex flex-col items-center justify-center">
-                <div className="w-16 h-16 bg-cosmic-purple rounded-full flex items-center justify-center mb-6">
-                  <Check className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">Account Created Successfully!</h3>
-                <p className="text-white/70 text-center mb-8">
-                  Please check your email to confirm your account before signing in.
-                </p>
-                <div className="flex space-x-4">
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={goToLogin}
-                  >
-                    Sign In
-                  </Button>
-                  <Button
-                    type="button"
-                    className="bg-cosmic-purple hover:bg-cosmic-purple/90"
-                    onClick={goToDashboard}
-                  >
-                    Go to Dashboard
-                  </Button>
-                </div>
-              </div>
-            )}
-
-            {/* Step Navigation */}
-            {step < CreationStep.COMPANY_INFO && (
-              <div className="flex justify-end">
-                <Button
-                  type="button"
-                  onClick={nextStep}
-                  className="bg-cosmic-purple hover:bg-cosmic-purple/90 group"
-                >
-                  Next
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </div>
-            )}
-
-            {step === CreationStep.COMPANY_INFO && (
-              <div className="flex justify-between">
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={prevStep}
-                >
-                  Back
-                </Button>
-                <Button
-                  type="submit"
-                  className="bg-cosmic-purple hover:bg-cosmic-purple/90"
-                >
-                  Create Account
-                </Button>
-              </div>
-            )}
-
-            {step > CreationStep.ACCOUNT_INFO && step < CreationStep.COMPANY_INFO && (
-              <div className="flex justify-between">
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={prevStep}
-                >
-                  Back
-                </Button>
-                <Button
-                  type="button"
-                  onClick={nextStep}
-                  className="bg-cosmic-purple hover:bg-cosmic-purple/90 group"
-                >
-                  Next
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </div>
-            )}
-          </form>
-        </Form>
-
-        {step < CreationStep.CREATING && (
-          <div className="text-center pt-4 border-t border-white/10">
-            <p className="text-sm text-white/70">
-              Already have an account?{" "}
-              <button 
-                type="button"
-                onClick={goToLogin}
-                className="text-cosmic-purple hover:underline"
-              >
-                Sign in
-              </button>
-            </p>
-          </div>
-        )}
-      </div>
+          )}
+        </CardContent>
+        
+        <CardFooter className={`flex ${currentStep !== 'account' && currentStep !== 'complete' ? 'justify-between' : 'justify-end'}`}>
+          {currentStep !== 'account' && currentStep !== 'complete' && (
+            <Button 
+              variant="outline" 
+              onClick={handleBack}
+              className="border-cosmic-purple/30 text-white"
+              disabled={loading}
+            >
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back
+            </Button>
+          )}
+          
+          {currentStep !== 'complete' ? (
+            <Button
+              onClick={handleNext}
+              className="bg-cosmic-purple hover:bg-cosmic-purple/90"
+              disabled={loading}
+            >
+              {loading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Processing...
+                </>
+              ) : (
+                <>
+                  {currentStep === 'contact' ? 'Create Account' : 'Next'}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </>
+              )}
+            </Button>
+          ) : (
+            <Button
+              onClick={() => navigate('/auth')}
+              className="bg-cosmic-purple hover:bg-cosmic-purple/90"
+            >
+              Sign In
+            </Button>
+          )}
+        </CardFooter>
+      </Card>
     </motion.div>
   );
 };

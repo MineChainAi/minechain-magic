@@ -16,6 +16,9 @@ type Profile = {
   username: string | null;
   full_name: string | null;
   avatar_url: string | null;
+  usdc_address: string | null;
+  btc_address: string | null;
+  phone_number: string | null;
 };
 
 const Profile = () => {
@@ -28,6 +31,9 @@ const Profile = () => {
   const [username, setUsername] = useState('');
   const [fullName, setFullName] = useState('');
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+  const [usdcAddress, setUsdcAddress] = useState('');
+  const [btcAddress, setBtcAddress] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -57,6 +63,9 @@ const Profile = () => {
         setUsername(data.username || '');
         setFullName(data.full_name || '');
         setAvatarUrl(data.avatar_url);
+        setUsdcAddress(data.usdc_address || '');
+        setBtcAddress(data.btc_address || '');
+        setPhoneNumber(data.phone_number || '');
       }
       
       setLoading(false);
@@ -77,6 +86,9 @@ const Profile = () => {
       username,
       full_name: fullName,
       avatar_url: avatarUrl,
+      usdc_address: usdcAddress,
+      btc_address: btcAddress,
+      phone_number: phoneNumber,
       updated_at: new Date().toISOString(),
     };
     
@@ -242,6 +254,49 @@ const Profile = () => {
               placeholder="Full Name"
               className="bg-background/50 border-cosmic-purple/30"
             />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="phoneNumber">Phone Number</Label>
+            <Input
+              id="phoneNumber"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              placeholder="+1 (555) 123-4567"
+              className="bg-background/50 border-cosmic-purple/30"
+            />
+          </div>
+
+          <div className="pt-2 border-t border-cosmic-purple/20">
+            <h3 className="text-md font-medium mb-4">Wallet Addresses</h3>
+            
+            <div className="space-y-2">
+              <Label htmlFor="usdcAddress">USDC Receive Address (ERC20 or Base)</Label>
+              <Input
+                id="usdcAddress"
+                value={usdcAddress}
+                onChange={(e) => setUsdcAddress(e.target.value)}
+                placeholder="0x..."
+                className="bg-background/50 border-cosmic-purple/30"
+              />
+              <p className="text-xs text-white/50">
+                For receiving USDC rewards
+              </p>
+            </div>
+            
+            <div className="space-y-2 mt-4">
+              <Label htmlFor="btcAddress">BTC Receive Address</Label>
+              <Input
+                id="btcAddress"
+                value={btcAddress}
+                onChange={(e) => setBtcAddress(e.target.value)}
+                placeholder="bc1..."
+                className="bg-background/50 border-cosmic-purple/30"
+              />
+              <p className="text-xs text-white/50">
+                For receiving BTC bonus drops
+              </p>
+            </div>
           </div>
 
           <Button

@@ -66,7 +66,7 @@ const Auth = () => {
           </h2>
           <p className="mt-2 text-white/70">
             {isSignUp 
-              ? 'Sign up to start mining AI blocks' 
+              ? 'Sign up to start claiming AI blocks' 
               : 'Sign in to your MineChain account'}
           </p>
         </div>
