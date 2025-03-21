@@ -18,6 +18,12 @@ module.exports = async (req, res) => {
   try {
     // Parse the request body
     const data = req.body;
+    console.log("Creating new charge with data:", {
+      name: data.name,
+      description: data.description,
+      pricing_type: data.pricing_type,
+      local_price: data.local_price
+    });
     
     // Create a charge with Coinbase Commerce API
     const response = await axios.post(
@@ -30,8 +36,10 @@ module.exports = async (req, res) => {
         redirect_url: data.redirect_url,
         cancel_url: data.cancel_url,
         metadata: {
-          customer_id: 'anonymous',
-          app_id: 'minechain-app'
+          customer_id: data.customer_id || 'anonymous',
+          app_id: 'minechain-app',
+          timestamp: new Date().toISOString(),
+          environment: process.env.NODE_ENV || 'production'
         }
       },
       {
@@ -43,10 +51,11 @@ module.exports = async (req, res) => {
       }
     );
     
+    console.log("Charge created successfully with ID:", response.data.data.id);
     return res.status(200).json(response.data.data);
   } catch (error) {
     console.error("Error creating Coinbase Commerce charge:", error.response?.data || error.message);
-    return res.status(500).json({ 
+    return res.status(error.response?.status || 500).json({ 
       message: "Error creating charge",
       error: error.response?.data || error.message
     });

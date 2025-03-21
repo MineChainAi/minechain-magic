@@ -1,7 +1,6 @@
-
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink, Check, Loader2 } from 'lucide-react';
+import { X, ExternalLink, Check, Loader2, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import axios from 'axios';
 import { toast } from 'sonner';
@@ -21,16 +20,29 @@ enum PaymentStage {
   ERROR = 'error'
 }
 
+// Define the charge status type
+type ChargeStatus = 'NEW' | 'PENDING' | 'COMPLETED' | 'EXPIRED' | 'UNRESOLVED' | 'RESOLVED' | 'CANCELED';
+
 export function PaymentModal({ onClose, simulationMode = false }: PaymentModalProps) {
   // State management
   const [stage, setStage] = useState<PaymentStage>(PaymentStage.INITIAL);
   const [chargeId, setChargeId] = useState<string | null>(null);
   const [chargeUrl, setChargeUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [pollInterval, setPollInterval] = useState<number | null>(null);
   
   // Price settings - Updated to $495 to maintain consistency
   const blockPrice = 0.015; // Price in BTC
-  const usdPrice = 495; // USD equivalent - Fixed from $695 to $495
+  const usdPrice = 495; // USD equivalent
+  
+  // Cleanup polling on unmount
+  useEffect(() => {
+    return () => {
+      if (pollInterval) {
+        clearInterval(pollInterval);
+      }
+    };
+  }, [pollInterval]);
   
   // Create a payment charge
   const initiatePayment = async () => {
@@ -58,7 +70,8 @@ export function PaymentModal({ onClose, simulationMode = false }: PaymentModalPr
           currency: "USD"
         },
         redirect_url: window.location.origin + "/dashboard",
-        cancel_url: window.location.origin
+        cancel_url: window.location.origin,
+        customer_id: localStorage.getItem('userId') || 'anonymous'
       });
       
       setChargeId(response.data.id);
@@ -69,8 +82,15 @@ export function PaymentModal({ onClose, simulationMode = false }: PaymentModalPr
       pollPaymentStatus(response.data.id);
     } catch (err) {
       console.error("Error creating charge:", err);
-      setError("Failed to create payment. Please try again or use simulation mode.");
+      const errorMessage = axios.isAxiosError(err) && err.response?.data?.message
+        ? err.response.data.message
+        : "Failed to create payment. Please try again or use simulation mode.";
+      
+      setError(errorMessage);
       setStage(PaymentStage.ERROR);
+      toast.error("Payment error", {
+        description: errorMessage
+      });
     }
   };
   
@@ -79,29 +99,43 @@ export function PaymentModal({ onClose, simulationMode = false }: PaymentModalPr
     try {
       if (simulationMode) {
         // Simulate payment completion after 5 seconds
-        setTimeout(() => {
+        const timeout = setTimeout(() => {
           setStage(PaymentStage.COMPLETED);
           toast.success("Simulation completed", {
             description: "Your simulated payment has been processed successfully"
           });
         }, 5000);
+        
+        // Store the timeout ID so we can clear it on unmount
+        setPollInterval(timeout as unknown as number);
         return;
       }
       
       const checkStatus = async () => {
-        const response = await axios.get(`/api/check-charge?id=${id}`);
-        console.log("Payment status:", response.data);
-        
-        if (response.data.status === 'COMPLETED' || 
-            response.data.status === 'CONFIRMED' || 
-            response.data.status === 'RESOLVED') {
-          setStage(PaymentStage.COMPLETED);
-          toast.success("Payment confirmed", {
-            description: "Your payment has been processed successfully"
-          });
-          return true;
+        try {
+          const response = await axios.get(`/api/check-charge?id=${id}`);
+          console.log("Payment status:", response.data);
+          
+          const status = response.data.status as ChargeStatus;
+          
+          if (status === 'COMPLETED' || 
+              status === 'CONFIRMED' || 
+              status === 'RESOLVED') {
+            setStage(PaymentStage.COMPLETED);
+            toast.success("Payment confirmed", {
+              description: "Your payment has been processed successfully"
+            });
+            return true;
+          } else if (status === 'EXPIRED' || status === 'CANCELED') {
+            setError(`Payment ${status.toLowerCase()}. Please try again.`);
+            setStage(PaymentStage.ERROR);
+            return true;
+          }
+          return false;
+        } catch (err) {
+          console.error("Error checking payment status:", err);
+          return false;
         }
-        return false;
       };
       
       // Check immediately
@@ -113,11 +147,20 @@ export function PaymentModal({ onClose, simulationMode = false }: PaymentModalPr
           if (complete) clearInterval(interval);
         }, 3000);
         
+        // Store the interval ID so we can clear it on unmount
+        setPollInterval(interval);
+        
         // Cleanup interval after 10 minutes
-        setTimeout(() => clearInterval(interval), 10 * 60 * 1000);
+        setTimeout(() => {
+          clearInterval(interval);
+          if (stage === PaymentStage.AWAITING_PAYMENT) {
+            setError("Payment session timed out. Please try again.");
+            setStage(PaymentStage.ERROR);
+          }
+        }, 10 * 60 * 1000);
       }
     } catch (err) {
-      console.error("Error checking payment status:", err);
+      console.error("Error in poll payment status:", err);
     }
   };
   
@@ -275,7 +318,7 @@ export function PaymentModal({ onClose, simulationMode = false }: PaymentModalPr
             {stage === PaymentStage.ERROR && (
               <div className="text-center py-8 space-y-6">
                 <div className="w-16 h-16 rounded-full bg-red-500/20 flex items-center justify-center mx-auto">
-                  <X size={32} className="text-red-500" />
+                  <AlertTriangle size={32} className="text-red-500" />
                 </div>
                 <div>
                   <h4 className="text-xl font-bold text-white">Payment Error</h4>
@@ -300,7 +343,7 @@ export function PaymentModal({ onClose, simulationMode = false }: PaymentModalPr
                     variant="outline"
                     className="w-full text-white"
                   >
-                    Use Simulation Mode
+                    Start Over
                   </Button>
                 )}
               </div>
