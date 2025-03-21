@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
@@ -8,7 +7,6 @@ import { Button } from '@/components/ui/button';
 import { AreaChart, Area, XAxis, YAxis, ResponsiveContainer, LineChart, Line, BarChart, Bar } from 'recharts';
 import { Cpu, Zap, Server, ArrowRight, RefreshCw, Database, TrendingUp, Coins } from 'lucide-react';
 
-// Simulate live data - in a real app, this would come from an API
 const generateRandomData = () => {
   const now = new Date();
   const hours = now.getHours();
@@ -24,7 +22,6 @@ const generateRandomData = () => {
   };
 };
 
-// Generate historical data for charts
 const generateHistoricalData = () => {
   const data = [];
   const now = new Date();
@@ -51,7 +48,6 @@ const ComputePowerDashboard = () => {
   const [chartData, setChartData] = useState(generateHistoricalData());
   const [isUpdating, setIsUpdating] = useState(false);
   
-  // Simulate real-time updates
   useEffect(() => {
     const interval = setInterval(() => {
       const newData = generateRandomData();
@@ -62,7 +58,6 @@ const ComputePowerDashboard = () => {
         return newChartData;
       });
       
-      // Simulate brief "updating" state
       setIsUpdating(true);
       setTimeout(() => setIsUpdating(false), 800);
     }, 5000);
@@ -70,7 +65,6 @@ const ComputePowerDashboard = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Format large numbers with commas
   const formatNumber = (num: number) => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
@@ -82,14 +76,12 @@ const ComputePowerDashboard = () => {
       transition={{ duration: 0.8 }}
       className="py-16 relative"
     >
-      {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 -left-20 w-60 h-60 bg-cosmic-purple/10 rounded-full filter blur-3xl animate-pulse-slow"></div>
         <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-neon-cyan/5 rounded-full filter blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
       </div>
       
       <div className="container mx-auto px-4">
-        {/* Dashboard Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/90">
             Real-Time AI Compute Power
@@ -116,9 +108,7 @@ const ComputePowerDashboard = () => {
           </div>
         </div>
         
-        {/* Main Dashboard */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          {/* Live Metrics */}
           <Card className="lg:col-span-8 glass border-cosmic-purple/20">
             <CardHeader className="pb-0">
               <div className="flex justify-between items-center">
@@ -138,7 +128,6 @@ const ComputePowerDashboard = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="pt-6">
-              {/* GPU Load Chart */}
               <div className="mb-8 h-64">
                 <ChartContainer
                   className="h-full"
@@ -199,7 +188,6 @@ const ComputePowerDashboard = () => {
                 </ChartContainer>
               </div>
               
-              {/* Key Metrics */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="p-4 rounded-lg glass border border-cosmic-purple/20">
                   <div className="flex items-center justify-between mb-2">
@@ -207,7 +195,7 @@ const ComputePowerDashboard = () => {
                     <Cpu size={18} className="text-neon-cyan" />
                   </div>
                   <div className="flex items-baseline">
-                    <span className="text-2xl font-bold text-white">{(89.6 + Math.random() * 10).toFixed(1)}</span>
+                    <span className="text-2xl font-bold text-white">{((89.6 + Math.random() * 10) * 10).toFixed(1)}</span>
                     <span className="ml-1 text-xl text-neon-cyan">PFLOPS</span>
                   </div>
                   <Progress className="h-1.5 mt-2" value={liveData.gpuLoad} />
@@ -240,7 +228,6 @@ const ComputePowerDashboard = () => {
             </CardContent>
           </Card>
 
-          {/* USDC Rewards Tracker */}
           <Card className="lg:col-span-4 glass border-cosmic-purple/20">
             <CardHeader>
               <CardTitle className="text-xl text-white">
@@ -297,7 +284,6 @@ const ComputePowerDashboard = () => {
             </CardContent>
           </Card>
           
-          {/* AI Compute Details */}
           <Card className="lg:col-span-4 glass border-cosmic-purple/20">
             <CardHeader>
               <CardTitle className="text-xl text-white">
@@ -342,7 +328,6 @@ const ComputePowerDashboard = () => {
             </CardContent>
           </Card>
           
-          {/* AI Inferences */}
           <Card className="lg:col-span-8 glass border-cosmic-purple/20">
             <CardHeader className="pb-0">
               <CardTitle className="text-xl text-white">
