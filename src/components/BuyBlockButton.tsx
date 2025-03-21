@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { PaymentModal } from '@/components/PaymentModal';
 import { Gem } from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
 
 interface BuyBlockButtonProps {
   simulationMode?: boolean;
@@ -30,10 +31,26 @@ export function BuyBlockButton({
       : 'Mint a Block';
   const displayText = buttonText || defaultText;
 
+  const handlePaymentClick = () => {
+    // Check for Coinbase Commerce availability - this is just a mock check
+    const isCoinbaseAvailable = true;
+    
+    if (!isCoinbaseAvailable && !simulationMode) {
+      toast({
+        title: "Payment provider unavailable",
+        description: "Coinbase Commerce is currently unavailable. Please try again later or use simulation mode.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    setShowPaymentModal(true);
+  };
+
   return (
     <>
       <Button 
-        onClick={() => setShowPaymentModal(true)}
+        onClick={handlePaymentClick}
         className={`bg-electric-orange hover:bg-electric-orange/90 text-white ${className}`}
       >
         <Gem className="mr-2 h-4 w-4" />

@@ -3,8 +3,13 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Gem } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { BuyBlockButton } from '@/components/BuyBlockButton';
+import { useState } from 'react';
+import { PaymentModal } from '@/components/PaymentModal';
 
 export function BlockCycleCallToAction() {
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  
   return (
     <motion.section 
       initial={{ opacity: 0, y: 20 }}
@@ -22,7 +27,7 @@ export function BlockCycleCallToAction() {
           </div>
           
           <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-4">
               Claim Your Block in the Cycle
             </h2>
             
@@ -48,16 +53,23 @@ export function BlockCycleCallToAction() {
               </div>
             </div>
             
-            <Link to="/block">
-              <Button 
-                size="lg" 
-                className="bg-[#8B5CF6] hover:bg-[#7c4ef5] text-white border-none font-semibold px-8 py-6 text-lg shadow-lg shadow-cosmic-purple/30 relative overflow-hidden group"
-              >
-                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-[#8B5CF6] to-[#7c4ef5] opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                <Gem className="mr-2 h-5 w-5 relative z-10" />
-                <span className="relative z-10">MINE YOUR BLOCK NOW</span>
-              </Button>
-            </Link>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <BuyBlockButton 
+                showPrice={true} 
+                className="bg-[#8B5CF6] hover:bg-[#7c4ef5] text-white border-none font-semibold px-8 py-6 text-lg shadow-lg shadow-cosmic-purple/30 relative overflow-hidden"
+                paymentCurrency="USDC"
+              />
+              
+              <Link to="/block">
+                <Button 
+                  variant="outline"
+                  size="lg" 
+                  className="border-white/20 text-white hover:bg-white/10 px-8 py-6 text-lg"
+                >
+                  Learn More
+                </Button>
+              </Link>
+            </div>
             
             <p className="mt-4 text-sm text-white/50">
               Secure payment options available • Limited quantity • One-time purchase
@@ -65,6 +77,13 @@ export function BlockCycleCallToAction() {
           </div>
         </div>
       </div>
+      
+      {showPaymentModal && (
+        <PaymentModal 
+          onClose={() => setShowPaymentModal(false)} 
+          paymentCurrency="USDC"
+        />
+      )}
     </motion.section>
   );
 }
