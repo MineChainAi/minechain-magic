@@ -23,7 +23,7 @@ const Navbar = () => {
 
   // Add a console log to verify the component is updated
   useEffect(() => {
-    console.log('Navbar component mounted - updated version');
+    console.log('Navbar component mounted - updated version 1.1');
   }, []);
 
   return (
@@ -33,13 +33,13 @@ const Navbar = () => {
         isScrolled ? "py-2 bg-[#131516]/90 backdrop-blur-md border-b border-[#41474D]/20" : "py-4"
       )}
     >
-      <div className="container mx-auto px-4 flex items-center justify-between">
-        <Link to="/" className="flex items-center space-x-3">
+      <div className="container mx-auto px-4 flex items-center">
+        <Link to="/" className="flex items-center">
           <span className="text-white font-semibold text-xl">MineChain<span className="text-[#29B6F6]">.ai</span></span>
         </Link>
         
-        {/* Desktop Menu - Simplified */}
-        <div className="hidden md:flex items-center space-x-3 lg:space-x-5">
+        {/* Desktop Menu - Improved Alignment */}
+        <div className="hidden md:flex items-center ml-8 space-x-4 lg:space-x-5">
           <Link to="/about" className="relative group text-white/80 hover:text-white transition-colors font-medium text-sm lg:text-base">
             <span className="flex items-center gap-1">
               <Gem className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-[#9b87f5]" />
@@ -71,15 +71,15 @@ const Navbar = () => {
             </span>
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0EA5E9] to-[#9b87f5] group-hover:w-full transition-all duration-300"></span>
           </Link>
-          
-          <div className="ml-2">
-            <UserProfileButton />
-          </div>
+        </div>
+        
+        {/* Push UserProfileButton to the right */}
+        <div className="ml-auto">
+          <UserProfileButton />
         </div>
         
         {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center gap-4">
-          <UserProfileButton />
+        <div className="md:hidden ml-4">
           <button 
             className="text-white"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
