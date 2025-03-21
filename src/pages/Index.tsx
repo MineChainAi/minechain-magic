@@ -11,6 +11,11 @@ import Roadmap from '@/components/Roadmap';
 import Newsletter from '@/components/Newsletter';
 import Footer from '@/components/Footer';
 import { EdgeFunctionTest } from '@/components/EdgeFunctionTest';
+import { BlockHero } from '@/components/BlockHero';
+import { BlockHowItWorks } from '@/components/BlockHowItWorks';
+import { BlockBoard } from '@/components/BlockBoard';
+import { BlockPoweringFuture } from '@/components/BlockPoweringFuture';
+import { BlockCallToAction } from '@/components/BlockCallToAction';
 
 const Index = () => {
   // Smooth scrolling for anchor links
@@ -44,15 +49,56 @@ const Index = () => {
         className="min-h-screen overflow-x-hidden"
       >
         <Navbar />
-        <main>
+        <main className="container mx-auto px-4 py-12 md:py-16">
           <Hero />
-          <ComputePowerDashboard />
-          <AIWorkloadsBoard />
-          <About />
-          <HowItWorks />
-          <Roadmap />
-          <Newsletter />
-          <EdgeFunctionTest />
+          
+          <div className="mt-16 md:mt-24">
+            <BlockHero />
+          </div>
+          
+          <div className="mt-16 md:mt-24" id="block-board">
+            <BlockBoard className="mb-16" />
+          </div>
+          
+          <div className="mt-16 md:mt-24" id="features">
+            <BlockHowItWorks />
+          </div>
+          
+          <div className="mt-16 md:mt-24">
+            <BlockPoweringFuture />
+          </div>
+          
+          <div className="mt-16 md:mt-24">
+            <BlockCallToAction className="mb-16" />
+          </div>
+          
+          <div className="mt-16 md:mt-24">
+            <ComputePowerDashboard />
+          </div>
+          
+          <div className="mt-16 md:mt-24">
+            <AIWorkloadsBoard />
+          </div>
+          
+          <div className="mt-16 md:mt-24">
+            <About />
+          </div>
+          
+          <div className="mt-16 md:mt-24">
+            <HowItWorks />
+          </div>
+          
+          <div className="mt-16 md:mt-24">
+            <Roadmap />
+          </div>
+          
+          <div className="mt-16 md:mt-24">
+            <Newsletter />
+          </div>
+          
+          <div className="mt-16 md:mt-24">
+            <EdgeFunctionTest />
+          </div>
         </main>
         <Footer />
         
