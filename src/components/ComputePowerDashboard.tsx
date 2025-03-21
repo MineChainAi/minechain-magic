@@ -113,7 +113,7 @@ const ComputePowerDashboard = () => {
             <CardHeader className="pb-0">
               <div className="flex justify-between items-center">
                 <CardTitle className="text-xl text-white">
-                  Live AI Compute Stats
+                  Fleet Monitoring
                 </CardTitle>
                 <div className="flex items-center gap-2">
                   <span className={`h-2 w-2 rounded-full ${isUpdating ? 'bg-neon-cyan animate-pulse' : 'bg-electric-orange'}`}></span>
@@ -124,7 +124,7 @@ const ComputePowerDashboard = () => {
                 </div>
               </div>
               <CardDescription className="text-white/60">
-                Monitoring 96 NVIDIA RTX 4090 GPUs in real-time
+                Enterprise GPU infrastructure in real-time
               </CardDescription>
             </CardHeader>
             <CardContent className="pt-6">
