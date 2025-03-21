@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Menu, X, Sparkle, Gem, Package, Clock, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -23,7 +22,7 @@ const Navbar = () => {
 
   // Add a console log to verify the component is updated
   useEffect(() => {
-    console.log('Navbar component mounted - updated version 1.1');
+    console.log('Navbar component mounted - updated version 1.2');
   }, []);
 
   return (
@@ -39,7 +38,7 @@ const Navbar = () => {
         </Link>
         
         {/* Desktop Menu - Improved Alignment */}
-        <div className="hidden md:flex items-center ml-8 space-x-4 lg:space-x-5">
+        <div className="hidden md:flex items-center ml-6 space-x-4 lg:space-x-5">
           <Link to="/about" className="relative group text-white/80 hover:text-white transition-colors font-medium text-sm lg:text-base">
             <span className="flex items-center gap-1">
               <Gem className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-[#9b87f5]" />
@@ -73,8 +72,8 @@ const Navbar = () => {
           </Link>
         </div>
         
-        {/* Push UserProfileButton to the right */}
-        <div className="ml-auto">
+        {/* Push UserProfileButton to the right but bring it slightly closer */}
+        <div className="ml-auto md:ml-6">
           <UserProfileButton />
         </div>
         
@@ -89,7 +88,7 @@ const Navbar = () => {
         </div>
       </div>
       
-      {/* Mobile Menu - Updated */}
+      {/* Mobile Menu - Keep Existing */}
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-[#131516]/90 backdrop-blur-md border-b border-[#41474D]/20">
           <div className="container mx-auto flex flex-col p-6 space-y-4">

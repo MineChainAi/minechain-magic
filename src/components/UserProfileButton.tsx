@@ -20,7 +20,8 @@ export function UserProfileButton() {
   if (!user) {
     return (
       <Button
-        className="bg-cosmic-purple hover:bg-cosmic-purple/90"
+        className="bg-cosmic-purple hover:bg-cosmic-purple/90 scale-90"
+        size="sm"
         asChild
       >
         <Link to="/auth">Sign In</Link>
