@@ -22,6 +22,7 @@ export function UserProfileButton() {
       <Button
         className="bg-cosmic-purple hover:bg-cosmic-purple/90"
         asChild
+        size="sm"
       >
         <Link to="/auth">Sign In</Link>
       </Button>
@@ -41,10 +42,10 @@ export function UserProfileButton() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="relative h-10 w-10 rounded-full">
-          <Avatar className="h-10 w-10">
+        <Button variant="ghost" className="relative h-8 w-8 rounded-full p-0">
+          <Avatar className="h-8 w-8">
             <AvatarImage src={user.user_metadata?.avatar_url} alt={user.email || ''} />
-            <AvatarFallback className="bg-cosmic-purple/30 text-white">
+            <AvatarFallback className="bg-cosmic-purple/30 text-white text-sm">
               {userInitials}
             </AvatarFallback>
           </Avatar>

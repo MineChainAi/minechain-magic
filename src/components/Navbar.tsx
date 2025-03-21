@@ -29,11 +29,6 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
 
-  // Add debug info
-  useEffect(() => {
-    console.log('Navbar component mounted - current path:', location.pathname);
-  }, [location.pathname]);
-
   return (
     <nav 
       className={cn(
@@ -49,45 +44,47 @@ const Navbar = () => {
           </Link>
           
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-5">
-            <Link to="/about" className="relative group text-white/80 hover:text-white transition-colors font-medium">
-              <span className="flex items-center gap-1">
-                <Gem className="w-4 h-4 text-[#9b87f5]" />
-                <span>Full-Stack Miners™</span>
-              </span>
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#9b87f5] to-[#D946EF] group-hover:w-full transition-all duration-300"></span>
-            </Link>
-            
-            <Link to="/how-it-works" className="relative group text-white/80 hover:text-white transition-colors font-medium">
-              <span className="flex items-center gap-1">
-                <Sparkle className="w-4 h-4 text-[#D946EF]" />
-                <span>How It Works</span>
-              </span>
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#D946EF] to-[#F97316] group-hover:w-full transition-all duration-300"></span>
-            </Link>
-            
-            <Link to="/block-cycle" className="relative group text-white/80 hover:text-white transition-colors font-medium">
-              <span className="flex items-center gap-1">
-                <Clock className="w-4 h-4 text-[#F97316]" />
-                <span>Block Cycle</span>
-              </span>
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#F97316] to-[#0EA5E9] group-hover:w-full transition-all duration-300"></span>
-            </Link>
-            
-            <Link to="/block" className="relative group text-white/80 hover:text-white transition-colors font-medium">
-              <span className="flex items-center gap-1">
-                <Package className="w-4 h-4 text-[#0EA5E9]" />
-                <span>Stable-23</span>
-              </span>
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0EA5E9] to-[#9b87f5] group-hover:w-full transition-all duration-300"></span>
-            </Link>
-          </div>
+          {!isMobile && (
+            <div className="flex items-center space-x-5">
+              <Link to="/about" className="relative group text-white/80 hover:text-white transition-colors font-medium">
+                <span className="flex items-center gap-1">
+                  <Gem className="w-4 h-4 text-[#9b87f5]" />
+                  <span>Full-Stack Miners™</span>
+                </span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#9b87f5] to-[#D946EF] group-hover:w-full transition-all duration-300"></span>
+              </Link>
+              
+              <Link to="/how-it-works" className="relative group text-white/80 hover:text-white transition-colors font-medium">
+                <span className="flex items-center gap-1">
+                  <Sparkle className="w-4 h-4 text-[#D946EF]" />
+                  <span>How It Works</span>
+                </span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#D946EF] to-[#F97316] group-hover:w-full transition-all duration-300"></span>
+              </Link>
+              
+              <Link to="/block-cycle" className="relative group text-white/80 hover:text-white transition-colors font-medium">
+                <span className="flex items-center gap-1">
+                  <Clock className="w-4 h-4 text-[#F97316]" />
+                  <span>Block Cycle</span>
+                </span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#F97316] to-[#0EA5E9] group-hover:w-full transition-all duration-300"></span>
+              </Link>
+              
+              <Link to="/block" className="relative group text-white/80 hover:text-white transition-colors font-medium">
+                <span className="flex items-center gap-1">
+                  <Package className="w-4 h-4 text-[#0EA5E9]" />
+                  <span>Stable-23</span>
+                </span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0EA5E9] to-[#9b87f5] group-hover:w-full transition-all duration-300"></span>
+              </Link>
+            </div>
+          )}
           
-          {/* User Profile Button or Sign In Button */}
+          {/* Right Side - Auth Button or User Profile */}
           <div className="flex items-center">
             <UserProfileButton />
             
-            {/* Mobile Menu Button - Only show on mobile */}
+            {/* Mobile Menu Button */}
             {isMobile && (
               <button 
                 className="ml-4 text-white"
@@ -101,51 +98,55 @@ const Navbar = () => {
         </div>
       </div>
       
-      {/* Mobile Menu - Updated */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-[#131516]/90 backdrop-blur-md border-b border-[#41474D]/20">
-          <div className="container mx-auto flex flex-col p-6 space-y-4">
+      {/* Mobile Menu Overlay */}
+      {isMobile && isMobileMenuOpen && (
+        <div className="absolute top-full left-0 right-0 bg-[#131516]/90 backdrop-blur-md border-b border-[#41474D]/20 z-50">
+          <div className="container mx-auto p-4 flex flex-col space-y-4">
             <Link 
               to="/about" 
-              className="text-white/80 hover:text-white transition-colors flex items-center gap-2" 
+              className="text-white/80 hover:text-white transition-colors flex items-center gap-2 py-2" 
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <Gem className="w-4 h-4 text-[#9b87f5]" />
-              Full-Stack Miners™
+              <span>Full-Stack Miners™</span>
             </Link>
+            
             <Link 
               to="/how-it-works" 
-              className="text-white/80 hover:text-white transition-colors flex items-center gap-2"
+              className="text-white/80 hover:text-white transition-colors flex items-center gap-2 py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <Sparkle className="w-4 h-4 text-[#D946EF]" />
-              How It Works
+              <span>How It Works</span>
             </Link>
+            
             <Link 
               to="/block-cycle" 
-              className="text-white/80 hover:text-white transition-colors flex items-center gap-2"
+              className="text-white/80 hover:text-white transition-colors flex items-center gap-2 py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <Clock className="w-4 h-4 text-[#F97316]" />
-              Block Cycle
+              <span>Block Cycle</span>
             </Link>
+            
             <Link 
               to="/block" 
-              className="text-white/80 hover:text-white transition-colors flex items-center gap-2"
+              className="text-white/80 hover:text-white transition-colors flex items-center gap-2 py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <Package className="w-4 h-4 text-[#0EA5E9]" />
-              Stable-23 Block
+              <span>Stable-23 Block</span>
             </Link>
+            
             <a 
               href="/whitepaper.pdf" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="text-white/80 hover:text-white transition-colors flex items-center gap-2"
+              className="text-white/80 hover:text-white transition-colors flex items-center gap-2 py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <FileText className="w-4 h-4 text-[#0EA5E9]" />
-              Whitepaper
+              <span>Whitepaper</span>
             </a>
           </div>
         </div>
