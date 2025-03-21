@@ -24,19 +24,12 @@ const Navbar = () => {
   return (
     <nav 
       className={cn(
-        "fixed top-0 z-50 w-full transition-all duration-300 px-6 md:px-10",
+        "fixed top-0 z-50 w-full transition-all duration-300 px-4 md:px-6 lg:px-8",
         isScrolled ? "py-3 bg-[#131516]/90 backdrop-blur-md border-b border-[#41474D]/20" : "py-6"
       )}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+      <div className="w-full flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-3">
-          <div className="relative w-10 h-10 overflow-hidden rounded-full">
-            <img 
-              src="/lovable-uploads/caa8d77a-a6e6-4c81-a123-ab5eceeaf154.png" 
-              alt="MineChain Logo" 
-              className="w-full h-full object-cover"
-            />
-          </div>
           <span className="text-white font-semibold text-xl">MineChain<span className="text-[#29B6F6]">.ai</span></span>
         </Link>
         
