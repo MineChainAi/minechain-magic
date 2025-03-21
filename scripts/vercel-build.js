@@ -10,6 +10,8 @@ const path = require('path');
 const buildInfo = {
   buildTime: new Date().toISOString(),
   buildId: Math.random().toString(36).substring(2, 15),
+  buildCommit: process.env.VERCEL_GIT_COMMIT_SHA || 'local',
+  buildEnvironment: process.env.VERCEL_ENV || 'development'
 };
 
 // Create the build info directory if it doesn't exist
