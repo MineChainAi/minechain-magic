@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
@@ -53,7 +52,7 @@ const Hero = () => {
             </h1>
 
             <p className="text-lg md:text-xl text-white/70 mb-8">
-              MineChain operates full-stack AI miners, allowing you to own a share of enterprise-grade AI compute and earn stable USDC rewards.
+              MineChain operates full-stack AI miners, allowing you to claim a share of enterprise-grade AI compute and earn stable USDC rewards.
             </p>
 
             <motion.div
