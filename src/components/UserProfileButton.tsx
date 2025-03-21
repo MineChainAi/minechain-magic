@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -16,6 +16,7 @@ import { User, LogOut, Settings } from 'lucide-react';
 export function UserProfileButton() {
   const { user, signOut } = useAuth();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const navigate = useNavigate();
   
   // If no user is logged in, show the Sign In button
   if (!user) {
@@ -23,8 +24,9 @@ export function UserProfileButton() {
       <Button
         className="bg-cosmic-purple hover:bg-cosmic-purple/90"
         size="sm"
+        onClick={() => navigate('/auth')}
       >
-        <Link to="/auth" className="text-white">Sign In</Link>
+        Sign In
       </Button>
     );
   }
@@ -61,17 +63,13 @@ export function UserProfileButton() {
           </div>
         </div>
         <DropdownMenuSeparator />
-        <DropdownMenuItem asChild>
-          <Link to="/profile" className="flex items-center gap-2 cursor-pointer">
-            <User className="w-4 h-4" />
-            <span>Profile</span>
-          </Link>
+        <DropdownMenuItem onClick={() => navigate('/profile')} className="flex items-center gap-2 cursor-pointer">
+          <User className="w-4 h-4" />
+          <span>Profile</span>
         </DropdownMenuItem>
-        <DropdownMenuItem asChild>
-          <Link to="/settings" className="flex items-center gap-2 cursor-pointer">
-            <Settings className="w-4 h-4" />
-            <span>Settings</span>
-          </Link>
+        <DropdownMenuItem onClick={() => navigate('/settings')} className="flex items-center gap-2 cursor-pointer">
+          <Settings className="w-4 h-4" />
+          <span>Settings</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem 
