@@ -1,3 +1,4 @@
+
 import { supabase } from "@/integrations/supabase/client";
 
 /**
@@ -28,13 +29,4 @@ export async function invokeEdgeFunction<T = any, P = any>(
     console.error(`Error in edge function ${functionName}:`, error);
     throw error;
   }
-}
-
-/**
- * Send welcome email to newsletter subscriber
- * @param email - Email address of the subscriber
- * @returns Promise with the function response
- */
-export async function sendWelcomeEmail(email: string): Promise<any> {
-  return invokeEdgeFunction('send-welcome-email', { email });
 }
