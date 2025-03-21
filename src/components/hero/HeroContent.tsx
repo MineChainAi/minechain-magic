@@ -1,6 +1,6 @@
 
 import { motion } from 'framer-motion';
-import { Package, Zap, ArrowRight } from 'lucide-react';
+import { Package, Zap, ArrowRight, Sparkles, CreditCard, Gem } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { BuyBlockButton } from '@/components/BuyBlockButton';
 
@@ -23,7 +23,7 @@ export function HeroContent() {
         <motion.div 
           whileHover={{ scale: 1.1, rotate: 10 }}
           transition={{ type: "spring", stiffness: 300 }}
-          className="relative w-16 h-16 bg-gradient-to-br from-purple-500 via-indigo-500 to-blue-500 rounded-2xl p-0.5 shadow-lg shadow-purple-500/20 z-10"
+          className="relative w-16 h-16 bg-gradient-to-br from-electric-orange via-cosmic-purple to-neon-cyan rounded-2xl p-0.5 shadow-lg shadow-electric-orange/30 z-10"
         >
           <div className="absolute inset-0 bg-[#0F1724] rounded-2xl m-0.5 flex items-center justify-center">
             <Package className="w-8 h-8 text-white" />
@@ -35,33 +35,81 @@ export function HeroContent() {
         variants={itemVariants}
         className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 relative"
       >
-        <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-[#9b87f5] via-[#D946EF] to-[#0EA5E9]">
-          Stable Block Drop – Own a Piece of the Future
-        </span>
-        <motion.span 
-          className="absolute -top-4 right-10 text-neon-cyan text-xs font-mono"
-          animate={{ opacity: [0, 1, 0] }}
-          transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="absolute -top-12 right-1/4 transform rotate-12 bg-electric-orange/80 text-white text-xs px-3 py-1 rounded-lg flex items-center gap-1 shadow-lg shadow-electric-orange/20"
         >
-          ✧ EXCLUSIVE ✧
-        </motion.span>
+          <Sparkles className="h-3 w-3" />
+          <span>EXCLUSIVE</span>
+        </motion.div>
+        
+        <span className="bg-clip-text text-transparent bg-gradient-to-r from-electric-orange via-neon-cyan to-cosmic-purple block mb-2">
+          Stable Block Drop
+        </span>
+        <span className="bg-clip-text text-transparent bg-gradient-to-br from-white via-white/90 to-white/70 block mb-2">
+          <span className="relative inline-block">
+            Own 
+            <motion.span
+              animate={{ 
+                opacity: [0.7, 1, 0.7],
+                scale: [1, 1.05, 1]
+              }}
+              transition={{ 
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut" 
+              }}
+              className="absolute -top-6 -right-6 text-neon-cyan text-sm"
+            >
+              <Gem className="h-5 w-5" />
+            </motion.span>
+          </span>
+          <span className="mx-2">a</span>
+          <span className="relative inline-block">
+            Piece 
+            <motion.span
+              animate={{ 
+                rotate: [0, 10, 0]
+              }}
+              transition={{ 
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="absolute -top-6 -right-6"
+            >
+              ✨
+            </motion.span>
+          </span>
+        </span>
+        <span className="bg-clip-text text-transparent bg-gradient-to-r from-neon-cyan via-electric-orange to-cosmic-purple">
+          of the Future
+        </span>
       </motion.h1>
       
       <motion.p 
         variants={itemVariants}
-        className="text-xl text-white/70 mb-8 relative"
+        className="text-xl text-white/80 mb-8 relative glass px-4 py-3 rounded-lg border border-white/10"
       >
-        <span className="bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent font-semibold">
+        <motion.span
+          animate={{ 
+            scale: [1, 1.1, 1],
+            opacity: [0.8, 1, 0.8]
+          }}
+          transition={{ 
+            duration: 3, 
+            repeat: Infinity,
+            ease: "easeInOut" 
+          }}
+          className="absolute -top-3 -right-2 text-electric-orange"
+        >
+          <CreditCard className="h-5 w-5" />
+        </motion.span>
+        <span className="bg-gradient-to-r from-white to-white/90 bg-clip-text text-transparent font-semibold">
           243 Blocks | $495 Each | Limited Supply
         </span>
-        <motion.span 
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: [0, 1.2, 1], opacity: [0, 1, 1] }}
-          transition={{ delay: 1.8, duration: 0.5 }}
-          className="absolute -right-2 top-0 text-electric-orange text-lg"
-        >
-          ★
-        </motion.span>
       </motion.p>
       
       <motion.div 
@@ -71,10 +119,25 @@ export function HeroContent() {
         <motion.div
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          className="relative"
         >
+          {/* Animated glow effect behind button */}
+          <motion.div 
+            animate={{ 
+              opacity: [0.5, 0.8, 0.5],
+              scale: [0.9, 1, 0.9]
+            }}
+            transition={{ 
+              duration: 2, 
+              repeat: Infinity,
+              ease: "easeInOut" 
+            }}
+            className="absolute inset-0 bg-electric-orange/20 rounded-md filter blur-md"
+          />
+          
           <BuyBlockButton 
             showPrice={true} 
-            className="px-8 py-6 text-lg relative group overflow-hidden"
+            className="px-8 py-6 text-lg relative group overflow-hidden z-10"
             buttonText="Mint a Block • $495"
           />
         </motion.div>
@@ -86,7 +149,7 @@ export function HeroContent() {
           <Button 
             variant="outline" 
             size="lg"
-            className="border-white/20 hover:bg-white/5 text-white px-8 py-6 text-lg group"
+            className="border-white/20 hover:bg-white/5 bg-white/5 backdrop-blur-sm text-white px-8 py-6 text-lg group"
             onClick={() => document.getElementById('block-board')?.scrollIntoView({ behavior: 'smooth' })}
           >
             <Zap className="mr-2 h-5 w-5 text-neon-cyan group-hover:animate-pulse" />
@@ -111,26 +174,38 @@ function HeroFeatureTags() {
     >
       <div className="flex flex-wrap justify-center md:justify-start gap-4">
         <motion.div 
-          whileHover={{ y: -5 }}
+          whileHover={{ y: -5, scale: 1.05 }}
           className="flex items-center gap-2 bg-gradient-to-r from-cosmic-purple/20 to-cosmic-purple/5 backdrop-blur-sm px-3 py-1.5 rounded-full border border-cosmic-purple/30"
         >
-          <span className="w-2 h-2 rounded-full bg-neon-cyan animate-pulse"></span>
+          <motion.span 
+            animate={{ scale: [1, 1.3, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="w-2 h-2 rounded-full bg-neon-cyan"
+          ></motion.span>
           <span className="text-xs text-white/80">High Performance AI</span>
         </motion.div>
         
         <motion.div 
-          whileHover={{ y: -5 }}
+          whileHover={{ y: -5, scale: 1.05 }}
           className="flex items-center gap-2 bg-gradient-to-r from-electric-orange/20 to-electric-orange/5 backdrop-blur-sm px-3 py-1.5 rounded-full border border-electric-orange/30"
         >
-          <span className="w-2 h-2 rounded-full bg-electric-orange animate-pulse"></span>
+          <motion.span 
+            animate={{ scale: [1, 1.3, 1] }}
+            transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
+            className="w-2 h-2 rounded-full bg-electric-orange"
+          ></motion.span>
           <span className="text-xs text-white/80">USDC Rewards</span>
         </motion.div>
         
         <motion.div 
-          whileHover={{ y: -5 }}
+          whileHover={{ y: -5, scale: 1.05 }}
           className="flex items-center gap-2 bg-gradient-to-r from-neon-cyan/20 to-neon-cyan/5 backdrop-blur-sm px-3 py-1.5 rounded-full border border-neon-cyan/30"
         >
-          <span className="w-2 h-2 rounded-full bg-cosmic-purple animate-pulse"></span>
+          <motion.span 
+            animate={{ scale: [1, 1.3, 1] }}
+            transition={{ duration: 2, repeat: Infinity, delay: 0.6 }}
+            className="w-2 h-2 rounded-full bg-cosmic-purple"
+          ></motion.span>
           <span className="text-xs text-white/80">100% Passive</span>
         </motion.div>
       </div>
