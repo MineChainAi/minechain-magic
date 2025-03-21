@@ -40,7 +40,34 @@ export function BlockHero() {
           className="w-full md:w-1/2 mb-8 md:mb-0"
         >
           <div className="relative">
-            {/* Animated glow effect around the image */}
+            {/* Animated border effect */}
+            <div className="absolute -inset-1 rounded-xl overflow-hidden">
+              <motion.div 
+                animate={{ 
+                  background: [
+                    'linear-gradient(45deg, #9b87f5 0%, #D946EF 25%, #0EA5E9 50%, #0EA5E9 75%, #9b87f5 100%)',
+                    'linear-gradient(45deg, #D946EF 0%, #0EA5E9 25%, #9b87f5 50%, #D946EF 75%, #0EA5E9 100%)',
+                    'linear-gradient(45deg, #0EA5E9 0%, #9b87f5 25%, #D946EF 50%, #0EA5E9 75%, #9b87f5 100%)',
+                  ],
+                  backgroundSize: ['200% 200%', '200% 200%', '200% 200%'],
+                  backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
+                }}
+                transition={{ 
+                  duration: 8, 
+                  repeat: Infinity,
+                  ease: "linear" 
+                }}
+                className="w-full h-full opacity-90"
+              />
+            </div>
+            
+            {/* Animated corners */}
+            <div className="absolute -top-1 -left-1 w-8 h-8 border-t-4 border-l-4 border-neon-cyan rounded-tl-xl" />
+            <div className="absolute -top-1 -right-1 w-8 h-8 border-t-4 border-r-4 border-cosmic-purple rounded-tr-xl" />
+            <div className="absolute -bottom-1 -left-1 w-8 h-8 border-b-4 border-l-4 border-electric-orange rounded-bl-xl" />
+            <div className="absolute -bottom-1 -right-1 w-8 h-8 border-b-4 border-r-4 border-neon-cyan rounded-br-xl" />
+            
+            {/* Animated glow effect */}
             <motion.div 
               animate={{ 
                 boxShadow: [
@@ -48,29 +75,29 @@ export function BlockHero() {
                   '0 0 25px 5px rgba(75, 0, 130, 0.7)', 
                   '0 0 15px 2px rgba(75, 0, 130, 0.4)'
                 ],
-                transition: { 
-                  duration: 3, 
-                  repeat: Infinity,
-                  ease: "easeInOut" 
-                }
               }}
-              className="absolute -inset-1 rounded-xl opacity-70 blur-sm"
-            ></motion.div>
+              transition={{ 
+                duration: 3, 
+                repeat: Infinity,
+                ease: "easeInOut" 
+              }}
+              className="absolute -inset-1 rounded-xl opacity-70 blur-sm z-0"
+            />
             
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="relative rounded-xl overflow-hidden border border-purple-500/30 shadow-lg shadow-purple-500/20 z-10"
+              className="relative rounded-xl overflow-hidden border border-purple-500/30 shadow-lg shadow-purple-500/20 z-10 p-1.5 bg-[#0F1724]"
             >
-              <AspectRatio ratio={1/1} className="bg-black/20">
+              <AspectRatio ratio={1/1} className="bg-black/20 rounded-lg overflow-hidden">
                 <img 
                   src="/lovable-uploads/8eb19d76-390b-442e-a54a-09f26cc6dd40.png" 
                   alt="MineChain Block NFT - AI Mining Rig" 
                   className="object-cover w-full h-full"
                 />
               </AspectRatio>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-lg"></div>
               <div className="absolute bottom-0 left-0 right-0 p-4 flex justify-between items-center">
                 <span className="bg-electric-orange/90 text-white text-sm font-bold px-3 py-1 rounded-full flex items-center gap-1">
                   <Sparkles className="h-3 w-3" />
@@ -88,7 +115,7 @@ export function BlockHero() {
               </div>
             </motion.div>
             
-            {/* Floating elements animation */}
+            {/* Animated floating elements */}
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
@@ -104,6 +131,23 @@ export function BlockHero() {
             >
               <Zap className="h-5 w-5 text-white" />
             </motion.div>
+            
+            {/* Pulsing dots animation */}
+            <motion.div
+              animate={{ scale: [1, 1.5, 1], opacity: [0.7, 1, 0.7] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-1/4 -left-3 h-2 w-2 rounded-full bg-neon-cyan z-20"
+            />
+            <motion.div
+              animate={{ scale: [1, 1.5, 1], opacity: [0.7, 1, 0.7] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              className="absolute top-3/4 -right-3 h-2 w-2 rounded-full bg-electric-orange z-20"
+            />
+            <motion.div
+              animate={{ scale: [1, 1.5, 1], opacity: [0.7, 1, 0.7] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              className="absolute bottom-1/4 -left-3 h-2 w-2 rounded-full bg-cosmic-purple z-20"
+            />
           </div>
         </motion.div>
         
