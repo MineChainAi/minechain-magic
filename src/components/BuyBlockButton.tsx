@@ -14,7 +14,7 @@ interface BuyBlockButtonProps {
 export function BuyBlockButton({ 
   simulationMode = false, 
   className = '',
-  price = 695,
+  price = 495,
   showPrice = false
 }: BuyBlockButtonProps) {
   const [showPaymentModal, setShowPaymentModal] = useState(false);

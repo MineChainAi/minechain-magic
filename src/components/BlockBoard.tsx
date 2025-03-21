@@ -94,7 +94,7 @@ export function BlockBoard({ className = '' }: BlockBoardProps) {
         <div className="relative bg-gradient-to-br from-purple-900/20 to-blue-900/20 p-1 md:p-2 rounded-xl border border-purple-500/30 shadow-xl shadow-purple-500/10 overflow-hidden">
           {/* Caption for the Super Block */}
           <div className="absolute top-0 left-0 right-0 text-center bg-gradient-to-r from-purple-900/80 via-indigo-900/80 to-blue-900/80 p-2 text-white text-sm font-bold z-10">
-            MineChain Super Block - 243 Blocks
+            MineChain Super Block - 243 Blocks Inside 1 Super Block
           </div>
           
           {/* Main grid of blocks */}
@@ -169,7 +169,7 @@ export function BlockBoard({ className = '' }: BlockBoardProps) {
                               }}
                             >
                               <ShoppingCart className="w-4 h-4 mr-1" />
-                              Mint Block #{block.id}
+                              Mint Block #{block.id} • $495
                             </Button>
                           </div>
                         )}
@@ -195,16 +195,16 @@ export function BlockBoard({ className = '' }: BlockBoardProps) {
         <div className="flex justify-center gap-6 mt-4">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 bg-green-500/70 rounded-full"></div>
-            <span className="text-sm text-white/70">Available</span>
+            <span className="text-sm text-white/70">Available • 195 Blocks</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 bg-red-500/70 rounded-full"></div>
-            <span className="text-sm text-white/70">Sold</span>
+            <span className="text-sm text-white/70">Sold • 48 MineChain Reserve</span>
           </div>
         </div>
         
         <div className="text-center mt-4 text-sm text-white/50">
-          Click on an available block to mint • Hover for details
+          Click on an available block to mint for $495 • Hover for details
         </div>
       </motion.div>
       

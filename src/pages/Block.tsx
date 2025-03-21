@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Gem, Package, Zap, ChevronDown, Sparkle } from 'lucide-react';
@@ -12,6 +11,7 @@ import { PaymentModal } from '@/components/PaymentModal';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { BuyBlockButton } from '@/components/BuyBlockButton';
 import { BlockBoard } from '@/components/BlockBoard';
+import { InvestorROIBreakdown } from '@/components/InvestorROIBreakdown';
 
 export default function Block() {
   const [showSpecs, setShowSpecs] = useState(false);
@@ -196,6 +196,11 @@ export default function Block() {
             </Card>
           </div>
         </motion.section>
+        
+        {/* Investor ROI Breakdown Section */}
+        <section className="mb-16">
+          <InvestorROIBreakdown />
+        </section>
         
         {/* Block Board Section */}
         <section id="block-board" className="mb-16">
