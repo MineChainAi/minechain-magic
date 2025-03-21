@@ -43,7 +43,7 @@ const About = () => {
               transition={{ duration: 0.7 }}
               className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-gradient leading-tight"
             >
-              Full-Stack Miners - Powering the Future of AI
+              Proof of AI
             </motion.h1>
             
             <motion.p
