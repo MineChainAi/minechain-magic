@@ -6,6 +6,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { invokeEdgeFunction } from "@/utils/supabase-edge-functions";
 import { Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { MarketDataDisplay } from "./MarketDataDisplay";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface HelloResponse {
   message: string;
@@ -42,47 +44,62 @@ export function EdgeFunctionTest() {
   };
 
   return (
-    <Card className="w-full max-w-lg mx-auto">
-      <CardHeader>
-        <CardTitle>Edge Function Test</CardTitle>
-        <CardDescription>
-          Test your Supabase Edge Functions by entering a name and clicking the button
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <div className="flex space-x-2">
-          <Input
-            placeholder="Enter your name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            disabled={loading}
-          />
-          <Button onClick={handleTestFunction} disabled={loading}>
-            {loading ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Testing...
-              </>
-            ) : (
-              "Test Function"
-            )}
-          </Button>
-        </div>
+    <div className="w-full max-w-5xl mx-auto space-y-8">
+      <Tabs defaultValue="market" className="w-full">
+        <TabsList className="grid w-full grid-cols-2">
+          <TabsTrigger value="market">Market Data</TabsTrigger>
+          <TabsTrigger value="test">Test Function</TabsTrigger>
+        </TabsList>
+        
+        <TabsContent value="market" className="mt-6">
+          <MarketDataDisplay />
+        </TabsContent>
+        
+        <TabsContent value="test">
+          <Card className="w-full">
+            <CardHeader>
+              <CardTitle>Edge Function Test</CardTitle>
+              <CardDescription>
+                Test your Supabase Edge Functions by entering a name and clicking the button
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex space-x-2">
+                <Input
+                  placeholder="Enter your name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  disabled={loading}
+                />
+                <Button onClick={handleTestFunction} disabled={loading}>
+                  {loading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Testing...
+                    </>
+                  ) : (
+                    "Test Function"
+                  )}
+                </Button>
+              </div>
 
-        {response && (
-          <div className="bg-slate-900 text-white p-4 rounded-md">
-            <p className="font-mono text-sm">{response.message}</p>
-            <p className="font-mono text-sm text-slate-400 mt-2">
-              Time: {response.timestamp}
-            </p>
-            <p className="font-mono text-sm text-slate-400">
-              Environment: {response.environment}
-            </p>
-          </div>
-        )}
-      </CardContent>
-      <CardFooter className="text-sm text-muted-foreground">
-        Edge Functions provide serverless backend functionality for your application.
-      </CardFooter>
-    </Card>
+              {response && (
+                <div className="bg-slate-900 text-white p-4 rounded-md">
+                  <p className="font-mono text-sm">{response.message}</p>
+                  <p className="font-mono text-sm text-slate-400 mt-2">
+                    Time: {response.timestamp}
+                  </p>
+                  <p className="font-mono text-sm text-slate-400">
+                    Environment: {response.environment}
+                  </p>
+                </div>
+              )}
+            </CardContent>
+            <CardFooter className="text-sm text-muted-foreground">
+              Edge Functions provide serverless backend functionality for your application.
+            </CardFooter>
+          </Card>
+        </TabsContent>
+      </Tabs>
+    </div>
   );
 }
