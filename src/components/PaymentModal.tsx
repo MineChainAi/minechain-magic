@@ -30,7 +30,9 @@ export function PaymentModal({ onClose, simulationMode = false }: PaymentModalPr
   const [chargeId, setChargeId] = useState<string | null>(null);
   const [chargeUrl, setChargeUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [pollInterval, setPollInterval] = useState<number | null>(null);
+  
+  // Changed the type from number to NodeJS.Timeout | number | null to handle both setTimeout and setInterval
+  const [pollInterval, setPollInterval] = useState<NodeJS.Timeout | null>(null);
   
   // Price settings - Updated to $495 to maintain consistency
   const blockPrice = 0.015; // Price in BTC
@@ -40,7 +42,7 @@ export function PaymentModal({ onClose, simulationMode = false }: PaymentModalPr
   useEffect(() => {
     return () => {
       if (pollInterval) {
-        clearInterval(pollInterval);
+        clearTimeout(pollInterval);
       }
     };
   }, [pollInterval]);
@@ -107,9 +109,8 @@ export function PaymentModal({ onClose, simulationMode = false }: PaymentModalPr
           });
         }, 5000);
         
-        // Store the timeout ID so we can clear it on unmount
-        // Fix: Cast the timeout to number type to satisfy TypeScript
-        setPollInterval(Number(timeout));
+        // Store the timeout ID directly without type casting
+        setPollInterval(timeout);
         return;
       }
       
@@ -149,12 +150,12 @@ export function PaymentModal({ onClose, simulationMode = false }: PaymentModalPr
           if (complete) clearInterval(interval);
         }, 3000);
         
-        // Store the interval ID so we can clear it on unmount
+        // Store the interval ID directly
         setPollInterval(interval);
         
         // Cleanup interval after 10 minutes
         setTimeout(() => {
-          clearInterval(interval);
+          if (pollInterval) clearInterval(pollInterval as NodeJS.Timeout);
           if (stage === PaymentStage.AWAITING_PAYMENT) {
             setError("Payment session timed out. Please try again.");
             setStage(PaymentStage.ERROR);
