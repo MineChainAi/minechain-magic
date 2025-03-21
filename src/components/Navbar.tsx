@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Menu, X, Sparkle, Zap, Gem, Package, Clock, FileText } from 'lucide-react';
+import { Menu, X, Sparkle, Gem, Package, Clock, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
@@ -21,6 +21,11 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Add a console log to verify the component is updated
+  useEffect(() => {
+    console.log('Navbar component mounted - updated version');
+  }, []);
+
   return (
     <nav 
       className={cn(
@@ -33,7 +38,7 @@ const Navbar = () => {
           <span className="text-white font-semibold text-xl">MineChain<span className="text-[#29B6F6]">.ai</span></span>
         </Link>
         
-        {/* Desktop Menu */}
+        {/* Desktop Menu - Simplified */}
         <div className="hidden md:flex items-center space-x-3 lg:space-x-5">
           <Link to="/about" className="relative group text-white/80 hover:text-white transition-colors font-medium text-sm lg:text-base">
             <span className="flex items-center gap-1">
@@ -84,7 +89,7 @@ const Navbar = () => {
         </div>
       </div>
       
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Updated */}
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-[#131516]/90 backdrop-blur-md border-b border-[#41474D]/20">
           <div className="container mx-auto flex flex-col p-6 space-y-4">

@@ -24,5 +24,33 @@
     "NODE_ENV": "production",
     "COINBASE_COMMERCE_API_KEY": "@coinbase_commerce_api_key",
     "COINBASE_COMMERCE_WEBHOOK_SECRET": "@coinbase_commerce_webhook_secret"
-  }
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/static/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
 }
