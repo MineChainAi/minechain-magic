@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ExternalLink, Check, Loader2 } from 'lucide-react';
@@ -29,8 +28,8 @@ export function PaymentModal({ onClose, simulationMode = false }: PaymentModalPr
   const [error, setError] = useState<string | null>(null);
   
   // Price settings
-  const blockPrice = 0.0045; // Price in BTC
-  const usdPrice = 199; // USD equivalent
+  const blockPrice = 0.015; // Price in BTC
+  const usdPrice = 695; // USD equivalent
   
   // Create a payment charge
   const initiatePayment = async () => {
@@ -51,7 +50,7 @@ export function PaymentModal({ onClose, simulationMode = false }: PaymentModalPr
     try {
       const response = await axios.post('/api/create-charge', {
         name: "MineChain Block Purchase",
-        description: "Purchase of AI mining block on MineChain",
+        description: "Mint of Stable Block on MineChain",
         pricing_type: "fixed_price",
         local_price: {
           amount: usdPrice.toString(),
@@ -143,7 +142,7 @@ export function PaymentModal({ onClose, simulationMode = false }: PaymentModalPr
           {/* Modal header */}
           <div className="flex justify-between items-center p-6 border-b border-white/10">
             <h3 className="text-xl font-bold text-white">
-              {simulationMode ? "Purchase a Block (Simulation)" : "Purchase a Block"}
+              {simulationMode ? "Mint a Block (Simulation)" : "Mint a Block"}
             </h3>
             <button 
               onClick={onClose}
@@ -170,15 +169,15 @@ export function PaymentModal({ onClose, simulationMode = false }: PaymentModalPr
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <Check size={18} className="text-neon-cyan mr-2 mt-0.5 flex-shrink-0" />
-                      <span className="text-white/70">1 MineChain Block NFT</span>
+                      <span className="text-white/70">1 MineChain Stable Block</span>
                     </li>
                     <li className="flex items-start">
                       <Check size={18} className="text-neon-cyan mr-2 mt-0.5 flex-shrink-0" />
-                      <span className="text-white/70">Monthly USDC rewards from AI mining operations</span>
+                      <span className="text-white/70">USDC Rewards & Bonus BTC Distributions</span>
                     </li>
                     <li className="flex items-start">
                       <Check size={18} className="text-neon-cyan mr-2 mt-0.5 flex-shrink-0" />
-                      <span className="text-white/70">Access to the MineChain owner dashboard</span>
+                      <span className="text-white/70">Access to MineChain Innovation Hub</span>
                     </li>
                   </ul>
                 </div>

@@ -14,7 +14,7 @@ interface BuyBlockButtonProps {
 export function BuyBlockButton({ 
   simulationMode = false, 
   className = '',
-  price = 199,
+  price = 695,
   showPrice = false
 }: BuyBlockButtonProps) {
   const [showPaymentModal, setShowPaymentModal] = useState(false);
@@ -26,7 +26,7 @@ export function BuyBlockButton({
         className={`bg-electric-orange hover:bg-electric-orange/90 text-white ${className}`}
       >
         <Gem className="mr-2 h-4 w-4" />
-        {simulationMode ? 'Simulate Purchase' : showPrice ? `Buy a Block • $${price}` : 'Buy a Block'}
+        {simulationMode ? 'Simulate Purchase' : showPrice ? `Mint a Block • $${price}` : 'Mint a Block'}
       </Button>
 
       {showPaymentModal && (

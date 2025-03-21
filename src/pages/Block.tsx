@@ -56,13 +56,11 @@ export default function Block() {
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gradient bg-clip-text text-transparent bg-gradient-to-r from-[#9b87f5] via-[#D946EF] to-[#0EA5E9]">
-              Stable-23 Block Drop
+              Stable Block Drop – Own a Piece of the Future
             </h1>
             
             <p className="text-xl text-white/70 mb-8 max-w-3xl mx-auto">
-              Own a piece of the future with our limited-edition Stable-23 super block. 
-              242 unique AI mining NFTs, each generating ongoing rewards from our 
-              full-stack AI infrastructure.
+              243 Blocks | $695 Each | Limited Supply
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -72,7 +70,7 @@ export default function Block() {
                 onClick={() => setShowPaymentModal(true)}
               >
                 <Gem className="mr-2 h-5 w-5" />
-                Purchase Block • $695
+                Mint Your Block • $695
               </Button>
               
               <Button 
@@ -88,7 +86,7 @@ export default function Block() {
           </motion.div>
         </section>
         
-        {/* Block Visualization */}
+        {/* Block Description */}
         <motion.section
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -96,10 +94,9 @@ export default function Block() {
           className="mb-16 bg-gradient-to-b from-purple-900/20 to-transparent p-8 rounded-2xl border border-purple-500/20"
         >
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-white mb-4">Super Block Architecture</h2>
+            <h2 className="text-3xl font-bold text-white mb-4">What is the Stable Block Drop?</h2>
             <p className="text-white/70 max-w-3xl mx-auto">
-              Each Stable-23 block contains 242 individual NFTs, representing computation units in our 
-              decentralized AI infrastructure network.
+              The Stable Block Drop is your gateway to AI-powered mining ownership. Each block represents a fractionalized share of MineChain's AI compute infrastructure, generating real yield from AI workloads and secured by decentralized mining power.
             </p>
           </div>
           
@@ -108,21 +105,21 @@ export default function Block() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Gem className="h-5 w-5 text-[#9b87f5]" />
-                  Ownership Benefits
+                  True AI Mining Ownership
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-start gap-2">
                   <Check className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
-                  <p className="text-white/80">Full block ownership via NFT</p>
+                  <p className="text-white/80">Backed by real hardware generating revenue</p>
                 </div>
                 <div className="flex items-start gap-2">
                   <Check className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
-                  <p className="text-white/80">Automatic monthly USDC rewards</p>
+                  <p className="text-white/80">AI workload revenue streams</p>
                 </div>
                 <div className="flex items-start gap-2">
                   <Check className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
-                  <p className="text-white/80">Access to owner dashboard</p>
+                  <p className="text-white/80">Secure, transparent ownership</p>
                 </div>
               </CardContent>
             </Card>
@@ -131,22 +128,22 @@ export default function Block() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Sparkle className="h-5 w-5 text-[#D946EF]" />
-                  Technical Specs
+                  Stable Yield Model
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
                   <div className="flex items-start gap-2">
                     <Zap className="h-5 w-5 text-electric-orange mt-0.5 flex-shrink-0" />
-                    <p className="text-white/80">Enterprise-grade AI hardware</p>
+                    <p className="text-white/80">Earnings paid in USDC</p>
                   </div>
                   <div className="flex items-start gap-2">
                     <Zap className="h-5 w-5 text-electric-orange mt-0.5 flex-shrink-0" />
-                    <p className="text-white/80">242 compute NFTs per super block</p>
+                    <p className="text-white/80">Bonus rewards in Bitcoin (BTC)</p>
                   </div>
                   <div className="flex items-start gap-2">
                     <Zap className="h-5 w-5 text-electric-orange mt-0.5 flex-shrink-0" />
-                    <p className="text-white/80">Optimized for AI training & inference</p>
+                    <p className="text-white/80">Optimized for long-term returns</p>
                   </div>
                 </div>
               </CardContent>
@@ -156,22 +153,22 @@ export default function Block() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Zap className="h-5 w-5 text-[#0EA5E9]" />
-                  Revenue Sharing
+                  No Hardware, No Hassle
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
                   <div className="flex items-start gap-2">
                     <CoinIcon className="h-5 w-5 text-yellow-400 mt-0.5 flex-shrink-0" />
-                    <p className="text-white/80">Monthly USDC distributions</p>
+                    <p className="text-white/80">MineChain handles all setup</p>
                   </div>
                   <div className="flex items-start gap-2">
                     <CoinIcon className="h-5 w-5 text-yellow-400 mt-0.5 flex-shrink-0" />
-                    <p className="text-white/80">Revenue from AI workload fees</p>
+                    <p className="text-white/80">Power, maintenance, & optimization</p>
                   </div>
                   <div className="flex items-start gap-2">
                     <CoinIcon className="h-5 w-5 text-yellow-400 mt-0.5 flex-shrink-0" />
-                    <p className="text-white/80">Transparent distribution model</p>
+                    <p className="text-white/80">Fully managed operation</p>
                   </div>
                 </div>
               </CardContent>
@@ -189,7 +186,7 @@ export default function Block() {
               viewport={{ once: true }}
               className="text-3xl font-bold text-white mb-4"
             >
-              Why Invest in Stable-23 Blocks?
+              How It Works
             </motion.h2>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
@@ -198,7 +195,7 @@ export default function Block() {
               viewport={{ once: true }}
               className="text-white/70 max-w-3xl mx-auto"
             >
-              Our unique model combines the best aspects of physical mining operations with the advantages of digital ownership.
+              A simple, streamlined process to start generating rewards from AI compute infrastructure.
             </motion.p>
           </div>
           
@@ -207,43 +204,35 @@ export default function Block() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
           >
             <motion.div variants={itemVariants} className="bg-[#131A2C] p-6 rounded-lg border border-white/5">
               <div className="bg-gradient-to-br from-purple-500 to-indigo-600 w-12 h-12 rounded-full flex items-center justify-center mb-4">
-                <CoinIcon className="h-6 w-6 text-white" />
+                <Gem className="h-6 w-6 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">Passive Income Stream</h3>
-              <p className="text-white/70">Receive monthly USDC distributions from AI computation revenue, creating a reliable passive income stream.</p>
+              <h3 className="text-xl font-bold text-white mb-2">Mint Your Block</h3>
+              <p className="text-white/70">Secure your AI-powered mining block for $695 and join the MineChain ecosystem.</p>
             </motion.div>
             
             <motion.div variants={itemVariants} className="bg-[#131A2C] p-6 rounded-lg border border-white/5">
               <div className="bg-gradient-to-br from-pink-500 to-purple-600 w-12 h-12 rounded-full flex items-center justify-center mb-4">
-                <Sparkle className="h-6 w-6 text-white" />
+                <CoinIcon className="h-6 w-6 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">AI Infrastructure Exposure</h3>
-              <p className="text-white/70">Gain exposure to the rapidly growing AI infrastructure market without the technical complexities.</p>
+              <h3 className="text-xl font-bold text-white mb-2">Earn Rewards</h3>
+              <p className="text-white/70">Receive stable USDC returns and bonus Bitcoin (BTC) distributions from AI workloads.</p>
             </motion.div>
             
             <motion.div variants={itemVariants} className="bg-[#131A2C] p-6 rounded-lg border border-white/5">
               <div className="bg-gradient-to-br from-blue-500 to-cyan-600 w-12 h-12 rounded-full flex items-center justify-center mb-4">
                 <Package className="h-6 w-6 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">Digital Asset Ownership</h3>
-              <p className="text-white/70">Own a tangible digital asset with real-world utility, backed by physical AI computing infrastructure.</p>
-            </motion.div>
-            
-            <motion.div variants={itemVariants} className="bg-[#131A2C] p-6 rounded-lg border border-white/5">
-              <div className="bg-gradient-to-br from-orange-500 to-red-600 w-12 h-12 rounded-full flex items-center justify-center mb-4">
-                <Zap className="h-6 w-6 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-2">Decentralized AI Revolution</h3>
-              <p className="text-white/70">Be part of the movement to decentralize AI compute infrastructure and democratize access.</p>
+              <h3 className="text-xl font-bold text-white mb-2">Stay Connected</h3>
+              <p className="text-white/70">Track earnings and growth inside the MineChain Innovation Hub with real-time analytics.</p>
             </motion.div>
           </motion.div>
         </section>
         
-        {/* Technical Specifications */}
+        {/* Exclusive Benefits */}
         <section className="mb-16">
           <div className="mb-8">
             <motion.div 
@@ -253,7 +242,7 @@ export default function Block() {
               viewport={{ once: true }}
               className="flex justify-between items-center"
             >
-              <h2 className="text-3xl font-bold text-white">Technical Specifications</h2>
+              <h2 className="text-3xl font-bold text-white">Exclusive Benefits for Block Owners</h2>
               <Button 
                 variant="ghost" 
                 className="text-white/70 hover:text-white hover:bg-white/5"
@@ -344,20 +333,20 @@ export default function Block() {
                     </TableHeader>
                     <TableBody>
                       <TableRow>
-                        <TableCell className="font-medium">Data Center Locations</TableCell>
-                        <TableCell>North America, Europe, Asia</TableCell>
+                        <TableCell className="font-medium">Priority Access</TableCell>
+                        <TableCell>First access to future MineChain expansions</TableCell>
                       </TableRow>
                       <TableRow>
-                        <TableCell className="font-medium">Bandwidth</TableCell>
-                        <TableCell>100Gbps network connectivity</TableCell>
+                        <TableCell className="font-medium">Governance Rights</TableCell>
+                        <TableCell>Voting on ecosystem upgrades and improvements</TableCell>
                       </TableRow>
                       <TableRow>
-                        <TableCell className="font-medium">Security</TableCell>
-                        <TableCell>Enterprise-grade with 24/7 monitoring</TableCell>
+                        <TableCell className="font-medium">AI Compute Leasing</TableCell>
+                        <TableCell>Discounted rates for direct AI compute leasing</TableCell>
                       </TableRow>
                       <TableRow>
-                        <TableCell className="font-medium">Workload Distribution</TableCell>
-                        <TableCell>Intelligent load balancing across nodes</TableCell>
+                        <TableCell className="font-medium">Community Access</TableCell>
+                        <TableCell>Exclusive owner-only community and events</TableCell>
                       </TableRow>
                     </TableBody>
                   </Table>
@@ -375,10 +364,9 @@ export default function Block() {
           viewport={{ once: true }}
           className="text-center bg-gradient-to-r from-purple-900/30 via-indigo-900/30 to-blue-900/30 p-12 rounded-2xl border border-white/10"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Secure Your Stable-23 Block Today</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">🚀 Secure Your Block – Limited to 243 Blocks</h2>
           <p className="text-xl text-white/70 mb-8 max-w-3xl mx-auto">
-            With only a limited number available, the Stable-23 block drop represents a unique 
-            opportunity to be part of the decentralized AI mining revolution.
+            💎 Own AI Infrastructure. Earn USDC. Get Bonus BTC.
           </p>
           <Button 
             size="lg" 
@@ -386,7 +374,7 @@ export default function Block() {
             onClick={() => setShowPaymentModal(true)}
           >
             <Gem className="mr-2 h-5 w-5" />
-            Purchase Block • $695
+            🔗 Mint Your Block Now
           </Button>
           <p className="mt-4 text-sm text-white/50">Secure payment options available • Limited quantity</p>
         </motion.section>
