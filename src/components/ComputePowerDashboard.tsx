@@ -297,8 +297,8 @@ const ComputePowerDashboard = () => {
               <div className="flex flex-col items-center justify-center">
                 <div className="w-24 h-24 rounded-full bg-gradient-to-r from-cosmic-purple/20 to-neon-cyan/20 flex items-center justify-center mb-6 glow-purple">
                   <div className="text-center">
-                    <div className="text-4xl font-bold text-white">96</div>
-                    <div className="text-xs text-white/60">RTX 4090s</div>
+                    <div className="text-4xl font-bold text-white">Fleet</div>
+                    <div className="text-xs text-white/60">Enterprise GPUs</div>
                   </div>
                 </div>
                 
@@ -333,7 +333,7 @@ const ComputePowerDashboard = () => {
                   </div>
                   <div className="flex items-center space-x-2">
                     <div className="h-2 w-2 rounded-full bg-neon-cyan"></div>
-                    <span className="text-sm text-white">96/96 GPUs Operational</span>
+                    <span className="text-sm text-white">All GPUs Operational</span>
                   </div>
                 </div>
               </div>
@@ -406,4 +406,3 @@ const ComputePowerDashboard = () => {
 };
 
 export default ComputePowerDashboard;
-
