@@ -59,14 +59,6 @@ const Navbar = () => {
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#F97316] to-[#0EA5E9] group-hover:w-full transition-all duration-300"></span>
           </Link>
           
-          <Link to="/roadmap" className="relative group text-white/80 hover:text-white transition-colors font-medium text-sm lg:text-base">
-            <span className="flex items-center gap-1">
-              <Zap className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-[#F97316]" />
-              <span>Roadmap</span>
-            </span>
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#F97316] to-[#0EA5E9] group-hover:w-full transition-all duration-300"></span>
-          </Link>
-          
           <Link to="/block" className="relative group text-white/80 hover:text-white transition-colors font-medium text-sm lg:text-base">
             <span className="flex items-center gap-1">
               <Package className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-[#0EA5E9]" />
@@ -119,14 +111,6 @@ const Navbar = () => {
             >
               <Clock className="w-4 h-4 text-[#F97316]" />
               Block Cycle
-            </Link>
-            <Link 
-              to="/roadmap" 
-              className="text-white/80 hover:text-white transition-colors flex items-center gap-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              <Zap className="w-4 h-4 text-[#F97316]" />
-              Roadmap
             </Link>
             <Link 
               to="/block" 
