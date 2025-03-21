@@ -27,7 +27,7 @@ export function BlockCycleCallToAction() {
             </h2>
             
             <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-              Own AI infrastructure. Run real workloads. Earn USDC. 
+              Access AI infrastructure. Run real workloads. Earn USDC. 
               Limited to 243 blocks — secure yours before they're gone.
             </p>
             
