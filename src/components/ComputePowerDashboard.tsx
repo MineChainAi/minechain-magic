@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import { AreaChart, Area, XAxis, YAxis, ResponsiveContainer, LineChart, Line, BarChart, Bar } from 'recharts';
-import { Cpu, Zap, Server, ArrowRight, RefreshCw, Database, TrendingUp, Coins } from 'lucide-react';
+import { Cpu, Zap, Server, ArrowRight, RefreshCw, Database, TrendingUp, Coins, HardDrive, Thermometer } from 'lucide-react';
 
 const generateRandomData = () => {
   const now = new Date();
@@ -294,34 +294,46 @@ const ComputePowerDashboard = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="relative">
-                <div className="absolute -top-12 -left-12 -right-12 -bottom-12 pointer-events-none">
-                  <div className="w-full h-full flex items-center justify-center">
-                    <div className="w-56 h-56 rounded-full border border-cosmic-purple/30 flex items-center justify-center">
-                      <div className="w-44 h-44 rounded-full border border-neon-cyan/20 flex items-center justify-center animate-spin-slow">
-                        <div className="w-32 h-32 rounded-full bg-gradient-to-br from-cosmic-purple/20 to-neon-cyan/20 flex items-center justify-center glow-purple">
-                          <div className="text-center">
-                            <div className="text-4xl font-bold text-white">96</div>
-                            <div className="text-xs text-white/60">RTX 4090s</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+              <div className="flex flex-col items-center justify-center">
+                <div className="w-24 h-24 rounded-full bg-gradient-to-r from-cosmic-purple/20 to-neon-cyan/20 flex items-center justify-center mb-6 glow-purple">
+                  <div className="text-center">
+                    <div className="text-4xl font-bold text-white">96</div>
+                    <div className="text-xs text-white/60">RTX 4090s</div>
                   </div>
                 </div>
                 
-                <div className="flex flex-col items-center justify-center h-72">
-                  <div className="text-center z-10">
-                    <div className="grid grid-cols-2 gap-6 mt-4">
-                      <div className="text-center">
-                        <div className="text-neon-cyan text-sm font-mono">VRAM Usage</div>
-                        <div className="text-white text-lg font-medium">93.7%</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-cosmic-purple text-sm font-mono">Temperature</div>
-                        <div className="text-white text-lg font-medium">62°C</div>
-                      </div>
+                <div className="grid grid-cols-2 gap-8 w-full mt-4">
+                  <div className="p-4 rounded-lg glass border border-cosmic-purple/20">
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="text-sm font-medium text-white/70">VRAM Usage</h3>
+                      <HardDrive size={18} className="text-neon-cyan" />
                     </div>
+                    <div className="flex items-baseline">
+                      <span className="text-2xl font-bold text-white">93.7%</span>
+                    </div>
+                    <Progress className="h-1.5 mt-2" value={93.7} />
+                  </div>
+                  
+                  <div className="p-4 rounded-lg glass border border-cosmic-purple/20">
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="text-sm font-medium text-white/70">Temperature</h3>
+                      <Thermometer size={18} className="text-electric-orange" />
+                    </div>
+                    <div className="flex items-baseline">
+                      <span className="text-2xl font-bold text-white">62°C</span>
+                    </div>
+                    <Progress className="h-1.5 mt-2" value={62} />
+                  </div>
+                </div>
+                
+                <div className="mt-6 w-full p-4 rounded-lg glass border border-cosmic-purple/20">
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="text-sm font-medium text-white/70">Hardware Health</h3>
+                    <Server size={18} className="text-cosmic-purple" />
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <div className="h-2 w-2 rounded-full bg-neon-cyan"></div>
+                    <span className="text-sm text-white">96/96 GPUs Operational</span>
                   </div>
                 </div>
               </div>
@@ -394,3 +406,4 @@ const ComputePowerDashboard = () => {
 };
 
 export default ComputePowerDashboard;
+
