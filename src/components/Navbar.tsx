@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Menu, X, Sparkle, Zap, Gem, Package, Clock } from 'lucide-react';
+import { Menu, X, Sparkle, Zap, Gem, Package, Clock, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
