@@ -54,7 +54,7 @@ const Index = () => {
         <main>
           <Hero />
           
-          <div className="container mx-auto px-4 py-16">
+          <div id="block-board" className="container mx-auto px-4 py-16">
             <BlockBoard className="mb-16" />
             <BlockHowItWorks />
             <BlockPoweringFuture />
