@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'sonner';
@@ -46,6 +45,7 @@ export const usePaymentProcess = ({ simulationMode, paymentCurrency }: UsePaymen
     }
     
     try {
+      // Using Vercel API routes instead of Netlify functions
       const response = await axios.post('/api/create-charge', {
         name: "MineChain Block Purchase",
         description: "Mint of Stable Block on MineChain",
@@ -98,6 +98,7 @@ export const usePaymentProcess = ({ simulationMode, paymentCurrency }: UsePaymen
       
       const checkStatus = async () => {
         try {
+          // Using Vercel API routes instead of Netlify functions
           const response = await axios.get(`/api/check-charge?id=${id}`);
           console.log("Payment status:", response.data);
           

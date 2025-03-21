@@ -1,7 +1,6 @@
 
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Gem } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { BuyBlockButton } from '@/components/BuyBlockButton';
 import { useState } from 'react';
