@@ -10,6 +10,7 @@ import HowItWorks from '@/components/HowItWorks';
 import Roadmap from '@/components/Roadmap';
 import Newsletter from '@/components/Newsletter';
 import Footer from '@/components/Footer';
+import { EdgeFunctionTest } from '@/components/EdgeFunctionTest';
 
 const Index = () => {
   // Smooth scrolling for anchor links
@@ -51,6 +52,7 @@ const Index = () => {
           <HowItWorks />
           <Roadmap />
           <Newsletter />
+          <EdgeFunctionTest />
         </main>
         <Footer />
         
