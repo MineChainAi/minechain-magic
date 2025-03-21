@@ -1,9 +1,8 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { PaymentModal } from './PaymentModal';
-import { Zap, Server, Coins, Shield, ArrowRight, Gem, Sparkles } from 'lucide-react';
+import { Server, Coins, Shield, ArrowRight } from 'lucide-react';
 
 const Hero = () => {
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
@@ -30,10 +29,7 @@ const Hero = () => {
                 transition={{ duration: 0.8, delay: 0.1 }}
                 className="block bg-clip-text text-transparent bg-gradient-to-r from-neon-cyan via-white to-cosmic-purple mb-2"
               >
-                <span className="inline-flex items-center">
-                  <Gem className="h-8 w-8 md:h-10 md:w-10 mr-2 text-neon-cyan animate-pulse-slow" />
-                  Claim Your Block.
-                </span>
+                Claim Your Block.
               </motion.span>
               
               <motion.span 
@@ -42,10 +38,7 @@ const Hero = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="block bg-clip-text text-transparent bg-gradient-to-r from-electric-orange via-white to-neon-cyan mb-2"
               >
-                <span className="inline-flex items-center">
-                  <Coins className="h-8 w-8 md:h-10 md:w-10 mr-2 text-electric-orange animate-pulse-slow" />
-                  Proof in Workload.
-                </span>
+                Proof in Workload.
               </motion.span>
               
               <motion.span 
@@ -54,10 +47,7 @@ const Hero = () => {
                 transition={{ duration: 0.8, delay: 0.5 }}
                 className="block bg-clip-text text-transparent bg-gradient-to-r from-cosmic-purple via-white to-electric-orange"
               >
-                <span className="inline-flex items-center">
-                  <Sparkles className="h-8 w-8 md:h-10 md:w-10 mr-2 text-cosmic-purple animate-pulse-slow" />
-                  Paid in USDC.
-                </span>
+                Paid in USDC.
               </motion.span>
             </h1>
 
