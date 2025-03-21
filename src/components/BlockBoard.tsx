@@ -1,35 +1,12 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  CheckCircle2, 
-  XCircle, 
-  Info, 
-  ShoppingCart 
-} from 'lucide-react';
-import { 
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { 
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
 import { supabase } from '@/integrations/supabase/client';
-import { Button } from '@/components/ui/button';
 import { PaymentModal } from '@/components/PaymentModal';
-
-// Simulated data for blocks
-// In a real application, this would come from your database
-interface BlockData {
-  id: number;
-  status: 'available' | 'sold';
-  purchaseDate?: string;
-  buyerWallet?: string;
-}
+import { BlockGrid } from './block/BlockGrid';
+import { BlockLegend } from './block/BlockLegend';
+import { SuperBlockContainer } from './block/SuperBlockContainer';
+import { BlockData } from './block/types';
 
 // Props for the BlockBoard component
 interface BlockBoardProps {
@@ -50,7 +27,6 @@ export function BlockBoard({ className = '' }: BlockBoardProps) {
   });
 
   // Calculate the grid dimensions for the super block
-  // We want a square-ish grid, so we'll use the square root of the number of blocks
   const gridSize = Math.ceil(Math.sqrt(blocks.length));
   
   // Handler for when a block is clicked
@@ -82,6 +58,10 @@ export function BlockBoard({ className = '' }: BlockBoardProps) {
     }
   };
 
+  // Count of available and sold blocks
+  const availableBlocks = blocks.filter(block => block.status === 'available').length;
+  const soldBlocks = blocks.length - availableBlocks;
+
   return (
     <div className={`${className}`}>
       <motion.div
@@ -90,118 +70,18 @@ export function BlockBoard({ className = '' }: BlockBoardProps) {
         transition={{ duration: 0.5 }}
         className="relative"
       >
-        {/* Super Block Container with 3D-like border effects */}
-        <div className="relative bg-gradient-to-br from-purple-900/20 to-blue-900/20 p-1 md:p-2 rounded-xl border border-purple-500/30 shadow-xl shadow-purple-500/10 overflow-hidden">
-          {/* Caption for the Super Block */}
-          <div className="absolute top-0 left-0 right-0 text-center bg-gradient-to-r from-purple-900/80 via-indigo-900/80 to-blue-900/80 p-2 text-white text-sm font-bold z-10">
-            MineChain Super Block - 243 Blocks Inside 1 Super Block
-          </div>
-          
-          {/* Main grid of blocks */}
-          <div 
-            className="grid gap-1 p-4 md:p-8 mt-10"
-            style={{ 
-              gridTemplateColumns: `repeat(${gridSize}, minmax(0, 1fr))`,
-              gridTemplateRows: `repeat(${Math.ceil(blocks.length / gridSize)}, minmax(0, 1fr))` 
-            }}
-          >
-            <TooltipProvider>
-              {blocks.map((block) => (
-                <motion.div
-                  key={block.id}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3, delay: block.id * 0.001 }}
-                  whileHover={{ scale: 1.05, zIndex: 10 }}
-                  onClick={() => handleBlockClick(block)}
-                  className={`
-                    relative aspect-square rounded-md cursor-pointer flex items-center justify-center
-                    ${block.status === 'available' 
-                      ? 'bg-green-500/20 hover:bg-green-500/30 border border-green-500/50' 
-                      : 'bg-red-500/20 hover:bg-red-500/30 border border-red-500/50'}
-                    transition-all duration-200
-                  `}
-                >
-                  <HoverCard>
-                    <HoverCardTrigger asChild>
-                      <button className="w-full h-full flex items-center justify-center">
-                        {block.status === 'available' ? (
-                          <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-green-500" />
-                        ) : (
-                          <XCircle className="w-4 h-4 md:w-5 md:h-5 text-red-500" />
-                        )}
-                      </button>
-                    </HoverCardTrigger>
-                    <HoverCardContent className="bg-[#131A2C] border-white/10 text-white w-64">
-                      <div className="flex flex-col space-y-2">
-                        <div className="flex justify-between items-center">
-                          <span className="font-bold">Block #{block.id}</span>
-                          <span className={`text-xs px-2 py-1 rounded-full ${
-                            block.status === 'available' 
-                              ? 'bg-green-500/20 text-green-400' 
-                              : 'bg-red-500/20 text-red-400'
-                          }`}>
-                            {block.status === 'available' ? 'Available' : 'Sold'}
-                          </span>
-                        </div>
-                        
-                        {block.status === 'sold' && (
-                          <>
-                            <div className="text-xs text-white/70">
-                              <span className="font-medium text-white/90">Purchase Date:</span> {block.purchaseDate}
-                            </div>
-                            {block.buyerWallet && (
-                              <div className="text-xs text-white/70">
-                                <span className="font-medium text-white/90">Owner:</span> {block.buyerWallet}
-                              </div>
-                            )}
-                          </>
-                        )}
-                        
-                        {block.status === 'available' && (
-                          <div className="mt-2">
-                            <Button 
-                              size="sm" 
-                              className="w-full bg-electric-orange hover:bg-electric-orange/90 text-white"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleBlockClick(block);
-                              }}
-                            >
-                              <ShoppingCart className="w-4 h-4 mr-1" />
-                              Mint Block #{block.id} • $495
-                            </Button>
-                          </div>
-                        )}
-                      </div>
-                    </HoverCardContent>
-                  </HoverCard>
-                  
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <span className="absolute bottom-0.5 right-0.5 text-[8px] text-white/50">{block.id}</span>
-                    </TooltipTrigger>
-                    <TooltipContent className="bg-[#131A2C] border-white/10 text-white">
-                      Block #{block.id}
-                    </TooltipContent>
-                  </Tooltip>
-                </motion.div>
-              ))}
-            </TooltipProvider>
-          </div>
-        </div>
+        <SuperBlockContainer>
+          <BlockGrid 
+            blocks={blocks} 
+            gridSize={gridSize} 
+            onBlockClick={handleBlockClick} 
+          />
+        </SuperBlockContainer>
         
-        {/* Block status legend */}
-        <div className="flex justify-center gap-6 mt-4">
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 bg-green-500/70 rounded-full"></div>
-            <span className="text-sm text-white/70">Available • 195 Blocks</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 bg-red-500/70 rounded-full"></div>
-            <span className="text-sm text-white/70">Sold • 48 MineChain Reserve</span>
-          </div>
-        </div>
+        <BlockLegend 
+          availableCount={availableBlocks} 
+          soldCount={soldBlocks} 
+        />
         
         <div className="text-center mt-4 text-sm text-white/50">
           Click on an available block to mint for $495 • Hover for details
