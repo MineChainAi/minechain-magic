@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Gem, Package, Zap, ChevronDown, Sparkle } from 'lucide-react';
@@ -10,6 +11,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { PaymentModal } from '@/components/PaymentModal';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { BuyBlockButton } from '@/components/BuyBlockButton';
+import { BlockBoard } from '@/components/BlockBoard';
 
 export default function Block() {
   const [showSpecs, setShowSpecs] = useState(false);
@@ -96,10 +98,10 @@ export default function Block() {
                   variant="outline" 
                   size="lg"
                   className="border-white/20 hover:bg-white/5 text-white px-8 py-6 text-lg"
-                  onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => document.getElementById('block-board')?.scrollIntoView({ behavior: 'smooth' })}
                 >
                   <Zap className="mr-2 h-5 w-5" />
-                  Explore Features
+                  View Block Board
                 </Button>
               </div>
             </div>
@@ -194,6 +196,41 @@ export default function Block() {
             </Card>
           </div>
         </motion.section>
+        
+        {/* Block Board Section */}
+        <section id="block-board" className="mb-16">
+          <div className="text-center mb-8">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="text-3xl font-bold text-white mb-4"
+            >
+              Stable Block Board – 243 Blocks
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="text-white/70 max-w-3xl mx-auto"
+            >
+              Each block represents ownership in our AI compute infrastructure. Select an available block to mint it.
+            </motion.p>
+          </div>
+          
+          <BlockBoard className="mb-8" />
+          
+          <div className="text-center">
+            <Button 
+              className="bg-electric-orange hover:bg-electric-orange/90 text-white px-8 py-6 text-lg mt-4"
+              onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Learn More About Blocks
+            </Button>
+          </div>
+        </section>
         
         <section id="features" className="mb-16">
           <div className="text-center mb-12">
