@@ -88,14 +88,6 @@ const Navbar = () => {
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0EA5E9] to-[#9b87f5] group-hover:w-full transition-all duration-300"></span>
           </a>
           
-          <Button
-            className="bg-[#8B5CF6] hover:bg-[#7c4ef5] text-white border-none font-semibold px-5 py-2 shadow-lg shadow-cosmic-purple/30"
-            onClick={() => setIsPaymentModalOpen(true)}
-          >
-            <Gem className="mr-2 h-4 w-4" />
-            MINE BLOCKS
-          </Button>
-          
           <UserProfileButton />
         </div>
         
@@ -165,16 +157,6 @@ const Navbar = () => {
               <FileText className="w-4 h-4 text-[#0EA5E9]" />
               Whitepaper
             </a>
-            <Button
-              className="bg-[#8B5CF6] hover:bg-[#7c4ef5] text-white w-full border-none font-semibold shadow-lg shadow-cosmic-purple/30 flex items-center justify-center"
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                setIsPaymentModalOpen(true);
-              }}
-            >
-              <Gem className="mr-2 h-4 w-4" />
-              MINE BLOCKS
-            </Button>
           </div>
         </div>
       )}
