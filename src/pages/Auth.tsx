@@ -1,12 +1,13 @@
 
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from '@/hooks/use-toast';
 import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 
 const Auth = () => {
   const [email, setEmail] = useState('');
@@ -21,18 +22,9 @@ const Auth = () => {
 
     try {
       if (isSignUp) {
-        // Sign up the user
-        const { error } = await supabase.auth.signUp({
-          email,
-          password,
-        });
-
-        if (error) throw error;
-        
-        toast({
-          title: "Account created",
-          description: "Please check your email to confirm your account.",
-        });
+        // Redirect to full account creation page
+        navigate('/create-account');
+        return;
       } else {
         // Sign in the user
         const { error } = await supabase.auth.signInWithPassword({
@@ -108,13 +100,18 @@ const Auth = () => {
 
           <Button
             type="submit"
-            className="w-full bg-cosmic-purple hover:bg-cosmic-purple/90"
+            className="w-full bg-cosmic-purple hover:bg-cosmic-purple/90 group"
             disabled={loading}
           >
             {loading
               ? 'Loading...'
               : isSignUp
-              ? 'Create Account'
+              ? (
+                <>
+                  Continue to Account Setup
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </>
+              )
               : 'Sign In'}
           </Button>
         </form>
@@ -130,6 +127,20 @@ const Auth = () => {
               : "Don't have an account? Sign up"}
           </button>
         </div>
+        
+        {isSignUp && (
+          <div className="text-center">
+            <p className="text-sm text-white/70">
+              Looking for the complete sign up experience?{" "}
+              <Link 
+                to="/create-account" 
+                className="text-electric-orange hover:underline"
+              >
+                Create account here
+              </Link>
+            </p>
+          </div>
+        )}
       </div>
     </motion.div>
   );
