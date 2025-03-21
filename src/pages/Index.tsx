@@ -39,6 +39,11 @@ const Index = () => {
     return () => document.removeEventListener('click', handleAnchorClick);
   }, []);
 
+  // Add a console log to verify the component is being rendered
+  useEffect(() => {
+    console.log('Index home page component rendered successfully');
+  }, []);
+
   return (
     <AnimatePresence mode="wait">
       <motion.div
