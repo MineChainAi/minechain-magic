@@ -1,4 +1,3 @@
-
 import { ArrowRight, Cpu, Globe, Coins, Shield, Zap, Server } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -44,7 +43,7 @@ const About = () => {
               transition={{ duration: 0.7 }}
               className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-gradient leading-tight"
             >
-              Powering the Future of AI Mining
+              Full-Stack Miners - Powering the Future of AI Mining
             </motion.h1>
             
             <motion.p
