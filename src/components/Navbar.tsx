@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Menu, X, FileText, Sparkle, Zap, Gem, Package } from 'lucide-react';
+import { Menu, X, FileText, Sparkle, Zap, Gem, Package, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
@@ -49,6 +49,14 @@ const Navbar = () => {
               <span>How It Works</span>
             </span>
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#D946EF] to-[#F97316] group-hover:w-full transition-all duration-300"></span>
+          </Link>
+          
+          <Link to="/block-cycle" className="relative group text-white/80 hover:text-white transition-colors font-medium">
+            <span className="flex items-center gap-1.5">
+              <Clock className="w-4 h-4 text-[#F97316]" />
+              <span>The Block Cycle</span>
+            </span>
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#F97316] to-[#0EA5E9] group-hover:w-full transition-all duration-300"></span>
           </Link>
           
           <Link to="/roadmap" className="relative group text-white/80 hover:text-white transition-colors font-medium">
@@ -122,6 +130,14 @@ const Navbar = () => {
             >
               <Sparkle className="w-4 h-4 text-[#D946EF]" />
               How It Works
+            </Link>
+            <Link 
+              to="/block-cycle" 
+              className="text-white/80 hover:text-white transition-colors flex items-center gap-2"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <Clock className="w-4 h-4 text-[#F97316]" />
+              The Block Cycle
             </Link>
             <Link 
               to="/roadmap" 
