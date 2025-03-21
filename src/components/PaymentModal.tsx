@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ExternalLink, Check, Loader2 } from 'lucide-react';
@@ -27,9 +28,9 @@ export function PaymentModal({ onClose, simulationMode = false }: PaymentModalPr
   const [chargeUrl, setChargeUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   
-  // Price settings
+  // Price settings - Updated to $495 to maintain consistency
   const blockPrice = 0.015; // Price in BTC
-  const usdPrice = 695; // USD equivalent
+  const usdPrice = 495; // USD equivalent - Fixed from $695 to $495
   
   // Create a payment charge
   const initiatePayment = async () => {
