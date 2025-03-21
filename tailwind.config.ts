@@ -127,6 +127,16 @@ export default {
 				'neon-flow': {
 					'0%, 100%': { boxShadow: '0 0 5px rgba(41, 182, 246, 0.4)' },
 					'50%': { boxShadow: '0 0 15px rgba(41, 182, 246, 0.7)' }
+				},
+				'space-glow': {
+					'0%, 100%': { 
+						boxShadow: '0 0 15px 2px rgba(41, 182, 246, 0.4)',
+						background: 'radial-gradient(circle, rgba(10, 15, 25, 0.95) 0%, rgba(5, 10, 18, 0.98) 100%)'
+					},
+					'50%': { 
+						boxShadow: '0 0 25px 5px rgba(41, 182, 246, 0.6)',
+						background: 'radial-gradient(circle, rgba(16, 21, 32, 0.95) 0%, rgba(10, 15, 25, 0.98) 100%)'
+					}
 				}
 			},
 			animation: {
@@ -138,13 +148,15 @@ export default {
 				'shimmer': 'shimmer 3s infinite linear',
 				'spin-slow': 'spin-slow 12s linear infinite',
 				'glow-pulse': 'glow-pulse 3s infinite ease-in-out',
-				'neon-flow': 'neon-flow 4s infinite ease-in-out'
+				'neon-flow': 'neon-flow 4s infinite ease-in-out',
+				'space-glow': 'space-glow 8s infinite ease-in-out'
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 				'neural-pattern': "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImEiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgcGF0dGVyblRyYW5zZm9ybT0icm90YXRlKDQ1KSI+PGNpcmNsZSBjeD0iMCIgY3k9IjAiIHI9IjAuNSIgZmlsbD0iI2ZmZiIgZmlsbC1vcGFjaXR5PSIwLjAzIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2EpIi8+PC9zdmc+')",
 				'midnight-gradient': 'linear-gradient(to bottom, #050A12, #101520)',
-				'midnight-radial': 'radial-gradient(circle at center, #101520, #050A12)'
+				'midnight-radial': 'radial-gradient(circle at center, #101520, #050A12)',
+				'cosmos-bg': 'radial-gradient(circle at center, rgba(16, 21, 32, 0.95), rgba(5, 10, 18, 0.98))'
 			}
 		}
 	},
