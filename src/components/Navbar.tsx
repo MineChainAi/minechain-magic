@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Menu, X, FileText, Sparkle, Zap, Gem, Package, Clock } from 'lucide-react';
+import { Menu, X, Sparkle, Zap, Gem, Package, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
@@ -74,19 +74,6 @@ const Navbar = () => {
             </span>
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0EA5E9] to-[#9b87f5] group-hover:w-full transition-all duration-300"></span>
           </Link>
-          
-          <a 
-            href="/whitepaper.pdf" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="relative group text-white/80 hover:text-white transition-colors font-medium text-sm lg:text-base"
-          >
-            <span className="flex items-center gap-1">
-              <FileText className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-[#0EA5E9]" />
-              <span>Whitepaper</span>
-            </span>
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0EA5E9] to-[#9b87f5] group-hover:w-full transition-all duration-300"></span>
-          </a>
           
           <div className="ml-2">
             <UserProfileButton />

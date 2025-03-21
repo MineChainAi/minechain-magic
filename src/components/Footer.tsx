@@ -80,7 +80,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="/whitepaper.pdf" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white flex items-center">
+                <a href="/whitepaper.pdf" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white flex items-center font-medium">
                   <span>Whitepaper</span>
                   <FileText className="w-3 h-3 ml-1 inline" />
                 </a>
