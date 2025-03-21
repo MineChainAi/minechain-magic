@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { PaymentModal } from './PaymentModal';
-import { Zap, Server, Coins, Shield, ArrowRight, Gem } from 'lucide-react';
+import { Zap, Server, Coins, Shield, ArrowRight, Gem, Sparkles } from 'lucide-react';
 
 const Hero = () => {
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
@@ -23,10 +23,42 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
             className="max-w-2xl"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/80 leading-tight">
-              <span className="block">Own a Block.</span>
-              <span className="block">Mine USDC.</span>
-              <span className="block">Proof of AI.</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-8 tracking-tight leading-tight">
+              <motion.span 
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className="block bg-clip-text text-transparent bg-gradient-to-r from-neon-cyan via-white to-cosmic-purple mb-2"
+              >
+                <span className="inline-flex items-center">
+                  <Gem className="h-8 w-8 md:h-10 md:w-10 mr-2 text-neon-cyan animate-pulse-slow" />
+                  Own a Block.
+                </span>
+              </motion.span>
+              
+              <motion.span 
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="block bg-clip-text text-transparent bg-gradient-to-r from-electric-orange via-white to-neon-cyan mb-2"
+              >
+                <span className="inline-flex items-center">
+                  <Coins className="h-8 w-8 md:h-10 md:w-10 mr-2 text-electric-orange animate-pulse-slow" />
+                  Mine USDC.
+                </span>
+              </motion.span>
+              
+              <motion.span 
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="block bg-clip-text text-transparent bg-gradient-to-r from-cosmic-purple via-white to-electric-orange"
+              >
+                <span className="inline-flex items-center">
+                  <Sparkles className="h-8 w-8 md:h-10 md:w-10 mr-2 text-cosmic-purple animate-pulse-slow" />
+                  Proof of AI.
+                </span>
+              </motion.span>
             </h1>
 
             <p className="text-lg md:text-xl text-white/70 mb-8">
