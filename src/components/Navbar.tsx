@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Menu, X, Sparkle, Gem, Package, Clock, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -92,14 +91,19 @@ const Navbar = () => {
               </span>
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0EA5E9] to-[#9b87f5] group-hover:w-full transition-all duration-300"></span>
             </div>
+            
+            {/* UserProfileButton moved here, next to Stable-23 */}
+            <div className="ml-3">
+              <UserProfileButton />
+            </div>
           </div>
           
-          {/* User Profile Button - Always visible */}
-          <div className="flex items-center">
-            <UserProfileButton />
-            
-            {/* Mobile Menu Button */}
-            {isMobile && (
+          {/* Mobile Menu Button - For mobile view only */}
+          {isMobile && (
+            <div className="flex items-center">
+              {/* On mobile, keep the UserProfileButton visible */}
+              <UserProfileButton />
+              
               <button 
                 className="ml-4 text-white"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -107,8 +111,8 @@ const Navbar = () => {
               >
                 {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
       
