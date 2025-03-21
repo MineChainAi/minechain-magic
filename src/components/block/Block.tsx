@@ -1,5 +1,4 @@
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle2, XCircle } from 'lucide-react';
 import { 
@@ -22,12 +21,17 @@ interface BlockProps {
 }
 
 export function Block({ block, onBlockClick }: BlockProps) {
+  // Simplified animation with reduced properties and GPU acceleration
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.3, delay: block.id * 0.001 }}
-      whileHover={{ scale: 1.05, zIndex: 10 }}
+      transition={{ 
+        duration: 0.2, 
+        delay: Math.min(block.id * 0.0005, 0.5) // Cap the delay to avoid long staggering
+      }}
+      style={{ willChange: "opacity, transform" }} // Hint for browser optimization
+      whileHover={{ scale: 1.03, zIndex: 10 }} // Reduced scale effect
       onClick={() => onBlockClick(block)}
       className={`
         relative aspect-square rounded-md cursor-pointer flex items-center justify-center

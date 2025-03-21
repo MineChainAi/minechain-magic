@@ -1,60 +1,30 @@
 
 import { motion } from 'framer-motion';
-import { Package, Zap } from 'lucide-react';
+import { Package, Zap, Sparkles } from 'lucide-react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 export function HeroImage() {
-  // Animation variants for image animations
+  // Simplified animation variant with reduced properties
   const imageAnimationVariants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.7, delay: 0.2 } }
+    hidden: { opacity: 0, scale: 0.98 }, // Reduced scale difference
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.5, delay: 0.2 } } // Shortened duration
   };
 
   return (
     <div className="relative">
-      {/* Animated border effect */}
+      {/* Simplified border animation with CSS instead of motion.div */}
       <div className="absolute -inset-1 rounded-xl overflow-hidden">
-        <motion.div 
-          animate={{ 
-            background: [
-              'linear-gradient(45deg, #9b87f5 0%, #D946EF 25%, #0EA5E9 50%, #0EA5E9 75%, #9b87f5 100%)',
-              'linear-gradient(45deg, #D946EF 0%, #0EA5E9 25%, #9b87f5 50%, #D946EF 75%, #0EA5E9 100%)',
-              'linear-gradient(45deg, #0EA5E9 0%, #9b87f5 25%, #D946EF 50%, #0EA5E9 75%, #9b87f5 100%)',
-            ],
-            backgroundSize: ['200% 200%', '200% 200%', '200% 200%'],
-            backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
-          }}
-          transition={{ 
-            duration: 8, 
-            repeat: Infinity,
-            ease: "linear" 
-          }}
-          className="w-full h-full opacity-90"
-        />
+        <div className="w-full h-full animate-gradient-x bg-gradient-to-r from-cosmic-purple via-neon-cyan to-electric-orange" />
       </div>
       
-      {/* Animated corners */}
+      {/* Static decorative elements instead of animated ones */}
       <div className="absolute -top-1 -left-1 w-8 h-8 border-t-4 border-l-4 border-neon-cyan rounded-tl-xl" />
       <div className="absolute -top-1 -right-1 w-8 h-8 border-t-4 border-r-4 border-cosmic-purple rounded-tr-xl" />
       <div className="absolute -bottom-1 -left-1 w-8 h-8 border-b-4 border-l-4 border-electric-orange rounded-bl-xl" />
       <div className="absolute -bottom-1 -right-1 w-8 h-8 border-b-4 border-r-4 border-neon-cyan rounded-br-xl" />
       
-      {/* Animated glow effect */}
-      <motion.div 
-        animate={{ 
-          boxShadow: [
-            '0 0 15px 2px rgba(75, 0, 130, 0.4)', 
-            '0 0 25px 5px rgba(75, 0, 130, 0.7)', 
-            '0 0 15px 2px rgba(75, 0, 130, 0.4)'
-          ],
-        }}
-        transition={{ 
-          duration: 3, 
-          repeat: Infinity,
-          ease: "easeInOut" 
-        }}
-        className="absolute -inset-1 rounded-xl opacity-70 blur-sm z-0"
-      />
+      {/* Static glow effect instead of animated */}
+      <div className="absolute -inset-1 rounded-xl opacity-70 blur-sm z-0 bg-cosmic-purple/30" />
       
       <motion.div 
         variants={imageAnimationVariants}
@@ -85,42 +55,19 @@ export function HeroImage() {
         </div>
       </motion.div>
       
-      {/* Animated floating elements */}
-      <motion.div
-        animate={{ y: [0, -10, 0] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -top-5 -right-5 bg-cosmic-purple/20 backdrop-blur-sm p-2 rounded-lg border border-cosmic-purple/30 shadow-lg z-20"
-      >
+      {/* Simplified floating elements with CSS animations */}
+      <div className="absolute -top-5 -right-5 bg-cosmic-purple/20 backdrop-blur-sm p-2 rounded-lg border border-cosmic-purple/30 shadow-lg z-20 animate-float-slow">
         <Package className="h-5 w-5 text-white" />
-      </motion.div>
+      </div>
       
-      <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute -bottom-3 -left-3 bg-electric-orange/20 backdrop-blur-sm p-2 rounded-lg border border-electric-orange/30 shadow-lg z-20"
-      >
+      <div className="absolute -bottom-3 -left-3 bg-electric-orange/20 backdrop-blur-sm p-2 rounded-lg border border-electric-orange/30 shadow-lg z-20 animate-float-slow-reverse">
         <Zap className="h-5 w-5 text-white" />
-      </motion.div>
+      </div>
       
-      {/* Pulsing dots animation */}
-      <motion.div
-        animate={{ scale: [1, 1.5, 1], opacity: [0.7, 1, 0.7] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/4 -left-3 h-2 w-2 rounded-full bg-neon-cyan z-20"
-      />
-      <motion.div
-        animate={{ scale: [1, 1.5, 1], opacity: [0.7, 1, 0.7] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-        className="absolute top-3/4 -right-3 h-2 w-2 rounded-full bg-electric-orange z-20"
-      />
-      <motion.div
-        animate={{ scale: [1, 1.5, 1], opacity: [0.7, 1, 0.7] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute bottom-1/4 -left-3 h-2 w-2 rounded-full bg-cosmic-purple z-20"
-      />
+      {/* Replace motion.div with CSS animations for dots */}
+      <div className="absolute top-1/4 -left-3 h-2 w-2 rounded-full bg-neon-cyan z-20 animate-pulse"></div>
+      <div className="absolute top-3/4 -right-3 h-2 w-2 rounded-full bg-electric-orange z-20 animate-pulse"></div>
+      <div className="absolute bottom-1/4 -left-3 h-2 w-2 rounded-full bg-cosmic-purple z-20 animate-pulse"></div>
     </div>
   );
 }
-
-// Missing import for Sparkles component
-import { Sparkles } from 'lucide-react';

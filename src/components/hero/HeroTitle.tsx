@@ -2,10 +2,10 @@
 import { motion } from 'framer-motion';
 import { Sparkles, Gem } from 'lucide-react';
 
-// Animation variants for staggered animations
+// Simplified animation variant with fewer properties
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7 } }
+  hidden: { opacity: 0, y: 10 }, // Reduced y distance
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } // Shortened duration
 };
 
 export function HeroTitle() {
@@ -30,15 +30,18 @@ export function HeroTitle() {
       <span className="bg-clip-text text-transparent bg-gradient-to-br from-white via-white/90 to-white/70 block mb-2">
         <span className="relative inline-block">
           Own 
+          {/* Simplified animation with longer duration and fewer properties */}
           <motion.span
             animate={{ 
-              opacity: [0.7, 1, 0.7],
-              scale: [1, 1.05, 1]
+              opacity: [0.7, 0.9, 0.7], // Reduced opacity range
+              scale: [1, 1.03, 1]  // Reduced scale range
             }}
             transition={{ 
-              duration: 3,
+              duration: 4, // Longer duration means fewer repaints
               repeat: Infinity,
-              ease: "easeInOut" 
+              ease: "easeInOut",
+              // Added GPU acceleration hint
+              translateZ: 0
             }}
             className="absolute -top-6 -right-6 text-neon-cyan text-sm"
           >
@@ -48,14 +51,17 @@ export function HeroTitle() {
         <span className="mx-2">a</span>
         <span className="relative inline-block">
           Piece 
+          {/* Simplified rotation animation */}
           <motion.span
             animate={{ 
-              rotate: [0, 10, 0]
+              rotate: [0, 5, 0] // Reduced rotation range
             }}
             transition={{ 
-              duration: 2,
+              duration: 3, // Longer duration
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut",
+              // Added GPU acceleration hint
+              translateZ: 0
             }}
             className="absolute -top-6 -right-6"
           >
