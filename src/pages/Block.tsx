@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Gem, Package, Zap, ChevronDown, Sparkle } from 'lucide-react';
@@ -9,6 +8,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter }
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { PaymentModal } from '@/components/PaymentModal';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { BuyBlockButton } from '@/components/BuyBlockButton';
 
 export default function Block() {
   const [showSpecs, setShowSpecs] = useState(false);
@@ -45,43 +46,66 @@ export default function Block() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="text-center max-w-4xl mx-auto"
+            className="flex flex-col md:flex-row items-center gap-8 md:gap-12"
           >
-            <div className="flex justify-center mb-6">
-              <div className="relative w-24 h-24 bg-gradient-to-br from-purple-500 via-indigo-500 to-blue-500 rounded-2xl p-0.5 shadow-lg shadow-purple-500/20">
-                <div className="absolute inset-0 bg-[#0F1724] rounded-2xl m-0.5 flex items-center justify-center">
-                  <Package className="w-12 h-12 text-white" />
+            {/* NFT Image */}
+            <div className="w-full md:w-1/2 mb-8 md:mb-0">
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                className="relative rounded-xl overflow-hidden border border-purple-500/30 shadow-lg shadow-purple-500/20"
+              >
+                <AspectRatio ratio={1/1} className="bg-black/20">
+                  <img 
+                    src="/lovable-uploads/8eb19d76-390b-442e-a54a-09f26cc6dd40.png" 
+                    alt="MineChain Block NFT - AI Mining Rig" 
+                    className="object-cover w-full h-full"
+                  />
+                </AspectRatio>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <span className="bg-electric-orange/90 text-white text-sm font-bold px-3 py-1 rounded-full">
+                    Stable-23 NFT
+                  </span>
                 </div>
-              </div>
+              </motion.div>
             </div>
             
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gradient bg-clip-text text-transparent bg-gradient-to-r from-[#9b87f5] via-[#D946EF] to-[#0EA5E9]">
-              Stable Block Drop – Own a Piece of the Future
-            </h1>
-            
-            <p className="text-xl text-white/70 mb-8 max-w-3xl mx-auto">
-              243 Blocks | $695 Each | Limited Supply
-            </p>
-            
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button 
-                size="lg" 
-                className="bg-electric-orange hover:bg-electric-orange/90 text-white px-8 py-6 text-lg"
-                onClick={() => setShowPaymentModal(true)}
-              >
-                <Gem className="mr-2 h-5 w-5" />
-                Mint Your Block • $695
-              </Button>
+            {/* Text Content */}
+            <div className="w-full md:w-1/2 text-center md:text-left max-w-2xl">
+              <div className="flex justify-center md:justify-start mb-6">
+                <div className="relative w-16 h-16 bg-gradient-to-br from-purple-500 via-indigo-500 to-blue-500 rounded-2xl p-0.5 shadow-lg shadow-purple-500/20">
+                  <div className="absolute inset-0 bg-[#0F1724] rounded-2xl m-0.5 flex items-center justify-center">
+                    <Package className="w-8 h-8 text-white" />
+                  </div>
+                </div>
+              </div>
               
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="border-white/20 hover:bg-white/5 text-white px-8 py-6 text-lg"
-                onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                <Zap className="mr-2 h-5 w-5" />
-                Explore Features
-              </Button>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gradient bg-clip-text text-transparent bg-gradient-to-r from-[#9b87f5] via-[#D946EF] to-[#0EA5E9]">
+                Stable Block Drop – Own a Piece of the Future
+              </h1>
+              
+              <p className="text-xl text-white/70 mb-8">
+                243 Blocks | $695 Each | Limited Supply
+              </p>
+              
+              <div className="flex flex-col sm:flex-row items-center md:items-start justify-center md:justify-start gap-4">
+                <BuyBlockButton 
+                  showPrice={true} 
+                  className="px-8 py-6 text-lg"
+                />
+                
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  className="border-white/20 hover:bg-white/5 text-white px-8 py-6 text-lg"
+                  onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  <Zap className="mr-2 h-5 w-5" />
+                  Explore Features
+                </Button>
+              </div>
             </div>
           </motion.div>
         </section>
@@ -356,6 +380,63 @@ export default function Block() {
           )}
         </section>
         
+        {/* NFT Showcase */}
+        <motion.section 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="mb-16 bg-gradient-to-b from-purple-900/10 to-transparent p-8 rounded-2xl border border-purple-500/10"
+        >
+          <h2 className="text-3xl font-bold text-white mb-6 text-center">Powering the Future of AI</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div className="space-y-4">
+              <h3 className="text-2xl font-semibold text-white/90">Enterprise-Grade AI Infrastructure</h3>
+              <p className="text-white/70">
+                Each Stable Block NFT represents ownership in cutting-edge AI mining hardware that powers the world's most advanced artificial intelligence systems.
+              </p>
+              <div className="space-y-3 mt-6">
+                <div className="flex items-start gap-3">
+                  <div className="bg-electric-orange/20 p-2 rounded-full">
+                    <Zap className="h-5 w-5 text-electric-orange" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-white">250+ TFLOPS Per Block</h4>
+                    <p className="text-sm text-white/60">Massive computing power for AI workloads</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-electric-orange/20 p-2 rounded-full">
+                    <Gem className="h-5 w-5 text-electric-orange" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-white">99.9% Uptime Guarantee</h4>
+                    <p className="text-sm text-white/60">Maximum availability for consistent earnings</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-electric-orange/20 p-2 rounded-full">
+                    <Package className="h-5 w-5 text-electric-orange" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-white">Liquid-Cooled Systems</h4>
+                    <p className="text-sm text-white/60">Optimized for performance and efficiency</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="rounded-xl overflow-hidden border border-purple-500/20 shadow-lg shadow-purple-900/20">
+              <AspectRatio ratio={16/9}>
+                <img 
+                  src="/lovable-uploads/8eb19d76-390b-442e-a54a-09f26cc6dd40.png" 
+                  alt="MineChain AI Mining Hardware" 
+                  className="w-full h-full object-cover"
+                />
+              </AspectRatio>
+            </div>
+          </div>
+        </motion.section>
+        
         {/* Call to Action */}
         <motion.section 
           initial={{ opacity: 0, y: 20 }}
@@ -368,14 +449,10 @@ export default function Block() {
           <p className="text-xl text-white/70 mb-8 max-w-3xl mx-auto">
             💎 Own AI Infrastructure. Earn USDC. Get Bonus BTC.
           </p>
-          <Button 
-            size="lg" 
-            className="bg-electric-orange hover:bg-electric-orange/90 text-white px-8 py-6 text-lg"
-            onClick={() => setShowPaymentModal(true)}
-          >
-            <Gem className="mr-2 h-5 w-5" />
-            🔗 Mint Your Block Now
-          </Button>
+          <BuyBlockButton 
+            showPrice={true} 
+            className="px-8 py-6 text-lg"
+          />
           <p className="mt-4 text-sm text-white/50">Secure payment options available • Limited quantity</p>
         </motion.section>
       </main>
