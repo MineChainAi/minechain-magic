@@ -92,12 +92,28 @@ const ComputePowerDashboard = () => {
         {/* Dashboard Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/90">
-            Real-Time AI Compute Power
+            Real-Time AI Compute Power <span className="text-electric-orange">(OG Bro Edition)</span>
           </h2>
-          <p className="text-white/70 max-w-3xl mx-auto">
-            MineChain's AI mining network is fueled by enterprise-grade <span className="text-neon-cyan font-medium">96 x NVIDIA RTX 4090 GPUs</span>, 
-            processing AI workloads at massive speeds. Track live performance below.
-          </p>
+          <div className="text-white/70 max-w-3xl mx-auto space-y-3">
+            <p>
+              MineChain runs a fleet of enterprise-grade NVIDIA AI workstations—NVLink strapped, airflow tuned, and war-ready.
+            </p>
+            <p>
+              This ain't cloud fluff. This is bare-metal compute, clocked for real AI jobs.
+            </p>
+            <p>
+              Every block mines workload, every cycle earns USDC.
+            </p>
+            <p>
+              Proof in workload. Payment in truth.
+            </p>
+            <p>
+              Watch it grind. Track it live.
+            </p>
+            <p>
+              Optimized for high-throughput inference, AI rendering, and real-time training — this fleet was built to work, not whisper.
+            </p>
+          </div>
         </div>
         
         {/* Main Dashboard */}
