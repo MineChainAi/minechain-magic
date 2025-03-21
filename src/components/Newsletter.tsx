@@ -2,22 +2,14 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Check, AlertCircle, Loader2 } from 'lucide-react';
+import { Check, AlertCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { supabase } from '@/integrations/supabase/client';
-import { toast } from 'sonner';
-
-// Create a type for our newsletter subscribers
-type NewsletterSubscriber = {
-  email: string;
-  joined_at: string;
-};
 
 const Newsletter = () => {
   const [email, setEmail] = useState('');
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!email || !email.includes('@')) {
@@ -25,33 +17,9 @@ const Newsletter = () => {
       return;
     }
     
-    setStatus('loading');
-    
-    try {
-      // Insert email into Supabase table
-      const { error } = await supabase
-        .from('newsletter_subscribers')
-        .insert({ email, joined_at: new Date().toISOString() });
-        
-      if (error) {
-        if (error.code === '23505') { // Unique constraint violation
-          toast.info('You are already subscribed to our newsletter!');
-          setStatus('success');
-        } else {
-          console.error('Error saving to Supabase:', error);
-          setStatus('error');
-          toast.error('Failed to subscribe. Please try again later.');
-        }
-      } else {
-        setStatus('success');
-        toast.success('Successfully subscribed to the newsletter!');
-        setEmail('');
-      }
-    } catch (err) {
-      console.error('Error in newsletter subscription:', err);
-      setStatus('error');
-      toast.error('Failed to subscribe. Please try again later.');
-    }
+    // Simulate API call
+    setStatus('success');
+    setEmail('');
     
     // Reset after 3 seconds
     setTimeout(() => {
@@ -89,7 +57,6 @@ const Newsletter = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="py-6 px-4 w-full bg-white/10 border-white/10 text-white placeholder:text-white/50 focus:border-blue-500 focus:ring-0"
-                  disabled={status === 'loading'}
                 />
                 
                 {status === 'success' && (
@@ -108,13 +75,8 @@ const Newsletter = () => {
               <Button
                 type="submit"
                 className="py-6 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium rounded-md border-none min-w-[120px]"
-                disabled={status === 'loading'}
               >
-                {status === 'loading' ? (
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                ) : (
-                  'Subscribe'
-                )}
+                Subscribe
               </Button>
             </div>
             

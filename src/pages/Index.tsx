@@ -10,18 +10,10 @@ import HowItWorks from '@/components/HowItWorks';
 import Roadmap from '@/components/Roadmap';
 import Newsletter from '@/components/Newsletter';
 import Footer from '@/components/Footer';
-import { EdgeFunctionTest } from '@/components/EdgeFunctionTest';
-import { BlockBoard } from '@/components/BlockBoard';
-import { BlockHowItWorks } from '@/components/BlockHowItWorks';
-import { BlockPoweringFuture } from '@/components/BlockPoweringFuture';
-import { BlockCallToAction } from '@/components/BlockCallToAction';
 
 const Index = () => {
-  // Add console log to verify the component is rendering
+  // Smooth scrolling for anchor links
   useEffect(() => {
-    console.log('MineChain home page component mounted');
-    
-    // Smooth scrolling for anchor links
     const handleAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (target.tagName === 'A' && target.getAttribute('href')?.startsWith('#')) {
@@ -53,21 +45,12 @@ const Index = () => {
         <Navbar />
         <main>
           <Hero />
-          
-          <div id="block-board" className="container mx-auto px-4 py-16">
-            <BlockBoard className="mb-16" />
-            <BlockHowItWorks />
-            <BlockPoweringFuture />
-            <BlockCallToAction className="my-16" />
-          </div>
-          
           <ComputePowerDashboard />
           <AIWorkloadsBoard />
           <About />
           <HowItWorks />
           <Roadmap />
           <Newsletter />
-          <EdgeFunctionTest />
         </main>
         <Footer />
         

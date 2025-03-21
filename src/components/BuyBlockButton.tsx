@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { PaymentModal } from '@/components/PaymentModal';
 import { Gem } from 'lucide-react';
-import { toast } from '@/hooks/use-toast';
 
 interface BuyBlockButtonProps {
   simulationMode?: boolean;
@@ -31,29 +30,10 @@ export function BuyBlockButton({
       : 'Mint a Block';
   const displayText = buttonText || defaultText;
 
-  const handlePaymentClick = () => {
-    // In a production environment, we would check for Coinbase Commerce API key
-    // This is a simplified check for demonstration purposes
-    const apiKeyExists = process.env.NODE_ENV === 'development' || 
-                         process.env.COINBASE_COMMERCE_API_KEY || 
-                         simulationMode;
-    
-    if (!apiKeyExists && !simulationMode) {
-      toast({
-        title: "Payment provider unavailable",
-        description: "Coinbase Commerce is not configured. Please set up your COINBASE_COMMERCE_API_KEY in Vercel or use simulation mode.",
-        variant: "destructive"
-      });
-      return;
-    }
-    
-    setShowPaymentModal(true);
-  };
-
   return (
     <>
       <Button 
-        onClick={handlePaymentClick}
+        onClick={() => setShowPaymentModal(true)}
         className={`bg-electric-orange hover:bg-electric-orange/90 text-white ${className}`}
       >
         <Gem className="mr-2 h-4 w-4" />

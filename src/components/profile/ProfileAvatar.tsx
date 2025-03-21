@@ -91,7 +91,7 @@ export const ProfileAvatar = ({
 
   return (
     <div className="relative group">
-      <Avatar className="h-24 w-24 ring-2 ring-cosmic-purple/50 cursor-pointer hover:ring-cosmic-purple transition-all duration-300" onClick={handleAvatarClick}>
+      <Avatar className="h-24 w-24 ring-2 ring-cosmic-purple/50 cursor-pointer" onClick={handleAvatarClick}>
         <AvatarImage 
           src={avatarUrl || ''} 
           alt={fullName || email || 'Profile'} 

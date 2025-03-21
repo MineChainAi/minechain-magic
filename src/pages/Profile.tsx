@@ -6,10 +6,6 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { ProfileHeader } from '@/components/profile/ProfileHeader';
 import { ProfileForm } from '@/components/profile/ProfileForm';
 import { useProfileData } from '@/components/profile/useProfileData';
-import { useEffect } from 'react';
-import { toast } from '@/hooks/use-toast';
-import { Button } from '@/components/ui/button';
-import { ArrowLeft, Home } from 'lucide-react';
 
 const Profile = () => {
   const { user } = useAuth();
@@ -24,28 +20,9 @@ const Profile = () => {
     handleAvatarChange,
   } = useProfileData(user?.id);
 
-  // Handle navigation and authentication
-  useEffect(() => {
-    if (!user) {
-      toast({
-        title: 'Authentication required',
-        description: 'Please sign in to view your profile',
-        variant: 'destructive',
-      });
-      navigate('/auth');
-    }
-  }, [user, navigate]);
-
-  const handleGoBack = () => {
-    navigate(-1); // Go back to previous page
-  };
-  
-  const handleGoHome = () => {
-    navigate('/'); // Go to home page
-  };
-
   // Redirect to auth if no user
   if (!user) {
+    navigate('/auth');
     return null;
   }
 
@@ -75,30 +52,8 @@ const Profile = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen pt-28 pb-16 flex flex-col items-center"
+      className="min-h-screen pt-28 pb-16 flex items-center justify-center"
     >
-      <div className="w-full max-w-md mb-4 flex items-center justify-between px-4">
-        <Button 
-          variant="ghost" 
-          size="sm" 
-          onClick={handleGoBack}
-          className="text-white hover:bg-cosmic-purple/20"
-        >
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Back
-        </Button>
-        
-        <Button 
-          variant="ghost" 
-          size="sm" 
-          onClick={handleGoHome}
-          className="text-white hover:bg-cosmic-purple/20"
-        >
-          <Home className="mr-2 h-4 w-4" />
-          Home
-        </Button>
-      </div>
-      
       <div className="w-full max-w-md p-8 space-y-8 bg-midnight-navy/80 backdrop-blur-sm rounded-xl border border-cosmic-purple/20">
         <ProfileHeader 
           avatarUrl={avatarUrl}

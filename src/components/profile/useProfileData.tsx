@@ -62,50 +62,6 @@ export const useProfileData = (userId: string | undefined) => {
     }
 
     getProfile();
-
-    // Set up real-time listener for profile changes
-    const channel = supabase
-      .channel('profile-updates')
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'profiles',
-          filter: `id=eq.${userId}`
-        },
-        (payload) => {
-          console.log('Real-time profile update:', payload);
-          const newProfile = payload.new as Profile;
-          
-          // Update the profile state
-          setProfile(newProfile);
-          
-          // Update the form data
-          setFormData({
-            username: newProfile.username || '',
-            fullName: newProfile.full_name || '',
-            phoneNumber: newProfile.phone_number || '',
-            usdcAddress: newProfile.usdc_address || '',
-            btcAddress: newProfile.btc_address || '',
-          });
-          
-          // Update avatar URL
-          setAvatarUrl(newProfile.avatar_url);
-          
-          // Notify the user about the update
-          toast({
-            title: 'Profile updated',
-            description: 'Your profile has been updated from another device.',
-          });
-        }
-      )
-      .subscribe();
-
-    // Cleanup function to remove channel subscription
-    return () => {
-      supabase.removeChannel(channel);
-    };
   }, [userId]);
 
   const updateProfile = async (data: ProfileFormData) => {
@@ -148,22 +104,6 @@ export const useProfileData = (userId: string | undefined) => {
 
   const handleAvatarChange = (url: string) => {
     setAvatarUrl(url);
-    
-    // Automatically update the profile with the new avatar URL
-    if (userId) {
-      supabase
-        .from('profiles')
-        .update({ 
-          avatar_url: url,
-          updated_at: new Date().toISOString()
-        })
-        .eq('id', userId)
-        .then(({ error }) => {
-          if (error) {
-            console.error('Error updating avatar URL in profile:', error);
-          }
-        });
-    }
   };
 
   return {

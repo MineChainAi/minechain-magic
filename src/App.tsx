@@ -1,5 +1,5 @@
 
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from '@/components/ui/toaster';
 import Index from './pages/Index';
 import Auth from './pages/Auth';
@@ -16,8 +16,6 @@ import { AuthProvider } from './contexts/AuthContext';
 import './App.css';
 
 function App() {
-  console.log('App component mounted - checking routes');
-  
   return (
     <BrowserRouter>
       <AuthProvider>
@@ -32,8 +30,6 @@ function App() {
           <Route path="/settings" element={<Settings />} />
           <Route path="/block" element={<Block />} />
           <Route path="/block-cycle" element={<BlockCycle />} />
-          <Route path="/index" element={<Navigate to="/" replace />} />
-          <Route path="/home" element={<Navigate to="/" replace />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Toaster />
