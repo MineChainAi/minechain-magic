@@ -85,7 +85,7 @@ export function HeroContent() {
           </span>
         </span>
         <span className="bg-clip-text text-transparent bg-gradient-to-r from-neon-cyan via-electric-orange to-cosmic-purple">
-          of the Future
+          of Compute Power
         </span>
       </motion.h1>
       
