@@ -6,6 +6,7 @@ import { Check, AlertCircle, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
+import { sendWelcomeEmail } from '@/utils/supabase-edge-functions';
 
 // Create a type for our newsletter subscribers
 type NewsletterSubscriber = {
@@ -45,6 +46,17 @@ const Newsletter = () => {
       } else {
         setStatus('success');
         toast.success('Successfully subscribed to the newsletter!');
+        
+        // Send welcome email
+        try {
+          await sendWelcomeEmail(email);
+          console.log('Welcome email sent successfully');
+        } catch (emailError) {
+          console.error('Error sending welcome email:', emailError);
+          // Don't change the success status - the subscription worked
+          // but we'll log the email error
+        }
+        
         setEmail('');
       }
     } catch (err) {
