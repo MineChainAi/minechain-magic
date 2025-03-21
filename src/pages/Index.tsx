@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import ComputePowerDashboard from '@/components/ComputePowerDashboard';
+import AIWorkloadsBoard from '@/components/AIWorkloadsBoard';
 import About from '@/components/About';
 import HowItWorks from '@/components/HowItWorks';
 import Roadmap from '@/components/Roadmap';
@@ -45,6 +46,7 @@ const Index = () => {
         <main>
           <Hero />
           <ComputePowerDashboard />
+          <AIWorkloadsBoard />
           <About />
           <HowItWorks />
           <Roadmap />
