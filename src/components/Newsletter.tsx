@@ -7,6 +7,12 @@ import { motion } from 'framer-motion';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 
+// Create a type for our newsletter subscribers
+type NewsletterSubscriber = {
+  email: string;
+  joined_at: string;
+};
+
 const Newsletter = () => {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -25,7 +31,7 @@ const Newsletter = () => {
       // Insert email into Supabase table
       const { error } = await supabase
         .from('newsletter_subscribers')
-        .insert([{ email, joined_at: new Date().toISOString() }]);
+        .insert({ email, joined_at: new Date().toISOString() });
         
       if (error) {
         if (error.code === '23505') { // Unique constraint violation
