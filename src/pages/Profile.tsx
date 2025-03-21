@@ -6,6 +6,8 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { ProfileHeader } from '@/components/profile/ProfileHeader';
 import { ProfileForm } from '@/components/profile/ProfileForm';
 import { useProfileData } from '@/components/profile/useProfileData';
+import { useEffect } from 'react';
+import { toast } from '@/hooks/use-toast';
 
 const Profile = () => {
   const { user } = useAuth();
@@ -20,9 +22,20 @@ const Profile = () => {
     handleAvatarChange,
   } = useProfileData(user?.id);
 
+  // Handle navigation and authentication
+  useEffect(() => {
+    if (!user) {
+      toast({
+        title: 'Authentication required',
+        description: 'Please sign in to view your profile',
+        variant: 'destructive',
+      });
+      navigate('/auth');
+    }
+  }, [user, navigate]);
+
   // Redirect to auth if no user
   if (!user) {
-    navigate('/auth');
     return null;
   }
 
