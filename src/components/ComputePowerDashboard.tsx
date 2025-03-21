@@ -92,7 +92,7 @@ const ComputePowerDashboard = () => {
         {/* Dashboard Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/90">
-            Real-Time AI Compute Power <span className="text-electric-orange">(OG Bro Edition)</span>
+            Real-Time AI Compute Power
           </h2>
           <div className="text-white/70 max-w-3xl mx-auto space-y-3">
             <p>
