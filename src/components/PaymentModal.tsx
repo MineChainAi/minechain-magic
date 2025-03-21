@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ExternalLink, Check, Loader2, AlertTriangle } from 'lucide-react';
@@ -21,7 +22,7 @@ enum PaymentStage {
 }
 
 // Define the charge status type
-type ChargeStatus = 'NEW' | 'PENDING' | 'COMPLETED' | 'EXPIRED' | 'UNRESOLVED' | 'RESOLVED' | 'CANCELED';
+type ChargeStatus = 'NEW' | 'PENDING' | 'COMPLETED' | 'EXPIRED' | 'UNRESOLVED' | 'RESOLVED' | 'CANCELED' | 'CONFIRMED';
 
 export function PaymentModal({ onClose, simulationMode = false }: PaymentModalProps) {
   // State management
@@ -107,7 +108,8 @@ export function PaymentModal({ onClose, simulationMode = false }: PaymentModalPr
         }, 5000);
         
         // Store the timeout ID so we can clear it on unmount
-        setPollInterval(timeout as unknown as number);
+        // Fix: Cast the timeout to number type to satisfy TypeScript
+        setPollInterval(Number(timeout));
         return;
       }
       
