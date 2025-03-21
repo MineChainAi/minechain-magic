@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
@@ -70,7 +71,6 @@ const Hero = () => {
                   onClick={() => setIsPaymentModalOpen(true)}
                   className="px-8 py-6 text-lg font-bold bg-[#8B5CF6] text-white rounded-md border-none shadow-lg shadow-cosmic-purple/30 transition-all duration-300 hover:bg-cosmic-purple"
                 >
-                  <Gem className="mr-2 h-5 w-5 text-white" />
                   MINE BLOCKS
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                 </Button>
@@ -182,7 +182,7 @@ const Hero = () => {
             </div>
             
             <div className="p-6 rounded-xl glass border border-cosmic-purple/20">
-              <Zap size={32} className="text-neon-cyan mb-4" />
+              <ArrowRight size={32} className="text-neon-cyan mb-4" />
               <h3 className="text-xl font-semibold text-white mb-2">Built on Cosmos</h3>
               <p className="text-white/70">Leverage the scalability of the Cosmos ecosystem.</p>
             </div>
